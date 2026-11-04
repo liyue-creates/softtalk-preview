@@ -39,7 +39,7 @@ body{font-family:"ZCOOL KuaiLe","Kaiti SC","STKaiti","KaiTi",cursive,sans-serif;
 @keyframes breath{50%{transform:scale(1.04)}}
 /* ---------- letter ---------- */
 #letter{padding:34px 22px 0}
-.sheet{position:relative;background:var(--paper);border:2px solid var(--ink);border-radius:4px;padding:76px 24px 70px;
+.sheet{position:relative;background:var(--paper);border:2px solid var(--ink);border-radius:4px;padding:76px 24px 44px;
  clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,0 100%)}
 .sheetwrap{position:relative}
 .sheetwrap.unfold{animation:unfold .4s var(--out) both}
@@ -54,7 +54,7 @@ body{font-family:"ZCOOL KuaiLe","Kaiti SC","STKaiti","KaiTi",cursive,sans-serif;
 .sub{font-size:22px;line-height:1.9;color:var(--ink)}
 .hint{font-size:14px;color:var(--ink2);margin:18px 0 4svh;animation:nudge 1.8s ease-in-out infinite}
 @keyframes nudge{50%{transform:translateY(5px)}}
-.beat{padding:10vh 0 2vh;position:relative}
+.beat{padding:44px 0 0;position:relative}.beat>.ln:last-child{margin-bottom:0}
 .tag{display:inline-block;font-size:14px;color:var(--ink);background:var(--coralL);border:2px solid var(--ink);border-radius:999px;padding:2px 12px;margin-bottom:14px}
 .ln{font-size:22px;line-height:1.9;margin:0 0 22px;min-height:42px}.sheet .ln.sign{margin-bottom:0}
 .mark{background:linear-gradient(transparent 60%,rgba(246,217,139,.85) 60% 92%,transparent 92%)}
@@ -146,14 +146,18 @@ body{font-family:"ZCOOL KuaiLe","Kaiti SC","STKaiti","KaiTi",cursive,sans-serif;
 .kid.p-signp .a-hold,.kid.p-signp .brows,.kid.p-signp .msad{opacity:1}.kid.p-signp .mouth{opacity:0}.kid.p-signp .head{transform:rotate(-4deg) translateY(2px)}
 .kid.p-bow .a-hold{opacity:1}.kid.p-bow .head{transform:rotate(12deg) translateY(4px)}.kid.p-bow .bodyi{transform:rotate(6deg)}
 .kid.p-bow .heart,.kid.p-signp .heart{opacity:0}
-.kid.p-signp .a-down,.kid.p-bow .a-down{opacity:0!important}
+.k-tuck .mouth{opacity:0!important}.k-tuck .brows{opacity:1}.k-tuck .eyes{transform:translate(3px,3px) scaleY(.85)}
+.k-tuck.in .eyes{animation:none}.kid.p-signp .a-down,.kid.p-bow .a-down{opacity:0!important}
 .kid.p-peek .tear,.kid.p-peek .brows{opacity:1}
 @keyframes tw{50%{transform:rotate(25deg) scale(1.2)}}
+.kid img{display:block;width:100%;height:auto}
+.k-edge{position:relative!important;right:auto!important;float:right;margin:-4px -24px 4px 8px;width:124px!important}.k-edge img{transform:scaleX(-1)}
+.k-tuck{--w:112px}.k-give{--w:112px}.k-sit{--w:110px}.k-sign{--w:100px;margin:-40px 0 0 -10px}.k-end{--w:130px}
 .k-envpeek .head{transform:rotate(-10deg)}
 .kid.k-envpeek{animation:envpk 2.6s ease-in-out infinite}
 @keyframes envpk{0%,100%{transform:translateX(0)}50%{transform:translateX(-6px)}}
 /* ---------- ending ---------- */
-.final{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:24px 0 calc(24px + env(safe-area-inset-bottom))}
+.final{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-start;padding:40px 0 calc(24px + env(safe-area-inset-bottom))}
 .endq{font-size:16px;line-height:1.8;text-align:center;color:var(--ink2);margin-bottom:6px}
 .endsp{height:200px;position:relative}.endt{font-size:24px;text-align:center;margin:6px 0 2px}
 #endArt{display:none}
@@ -180,33 +184,7 @@ body{font-family:"ZCOOL KuaiLe","Kaiti SC","STKaiti","KaiTi",cursive,sans-serif;
     <div class="flap"><svg viewBox="0 0 100 56" preserveAspectRatio="none"><path d="M1 1L50 54 99 1" fill="#FBE3E0" stroke="#3A2A24" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg></div>
     <svg class="seal" viewBox="0 0 46 42"><path d="M23 39C8 30 2 21 4 12c2-8 13-10 19-1 6-9 17-7 19 1 2 9-4 18-19 27z" fill="#F28C7C" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/></svg>
     <div class="tape"></div>
-    <div class="kid k-envpeek p-peek" data-enter="none" style="position:absolute;right:-52px;top:8%;--w:96px;z-index:0;opacity:1" data-slot="k-envpeek"><svg viewBox="0 -14 120 184" aria-hidden="true"><g class="flip"><g class="bodyi">
-<ellipse class="shadow" cx="60" cy="163" rx="22" ry="3.5" fill="#3A2A24" opacity=".12"/>
-<g class="legL"><path d="M49 124h9v32h-9z" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><ellipse cx="52" cy="158" rx="8" ry="4.5" fill="#7A4B33" stroke="#3A2A24" stroke-width="2"/></g>
-<g class="legR"><path d="M62 124h9v32h-9z" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><ellipse cx="69" cy="158" rx="8" ry="4.5" fill="#7A4B33" stroke="#3A2A24" stroke-width="2"/></g>
-<path d="M41 110h38l3 20h-17l-5-7-5 7h-17z" fill="#E8D9BF" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
-<path d="M44 84q16-6 32 0l10 13-8 5-2-4v16h-32v-16l-2 4-8-5z" fill="#8FBDE8" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
-<g class="head"><g class="headi">
-<circle cx="27" cy="54" r="6" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><circle cx="93" cy="54" r="6" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/>
-<circle cx="60" cy="50" r="33" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/>
-<path d="M26 52q-4-34 30-38 6-6 12-1 4-4 8 1 22 6 18 38-5-11-12-14-3 7-13 5-6 6-15 2-8 5-14-1-9 3-14 8z" fill="#6B4430" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
-<g class="eyes"><ellipse cx="49" cy="55" rx="3.3" ry="4.3" fill="#3A2A24"/><ellipse cx="71" cy="55" rx="3.3" ry="4.3" fill="#3A2A24"/><circle cx="50.2" cy="53.4" r="1.1" fill="#fff"/><circle cx="72.2" cy="53.4" r="1.1" fill="#fff"/></g>
-<g class="brows"><path d="M43 45l9-3M77 45l-9-3" stroke="#3A2A24" stroke-width="2" stroke-linecap="round"/></g>
-<circle cx="41" cy="64" r="5" fill="#F7B5B0"/><circle cx="79" cy="64" r="5" fill="#F7B5B0"/>
-<path class="mouth" d="M55 66q5 5 10 0" stroke="#3A2A24" stroke-width="2" fill="none" stroke-linecap="round"/>
-<path class="msad" d="M55 69q5-4 10 0" stroke="#3A2A24" stroke-width="2" fill="none" stroke-linecap="round"/>
-<ellipse class="tear" cx="46" cy="64" rx="2" ry="3" fill="#8FBDE8" stroke="#3A2A24" stroke-width="1"/>
-<g class="sweat"><path d="M98 22l6-6M102 32l8-2M94 14l2-8" stroke="#3A2A24" stroke-width="2" stroke-linecap="round"/></g>
-</g></g>
-<g class="arms">
-<g class="a-down"><g class="armL"><path d="M44 92L35 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L35 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g><g class="armR"><path d="M76 92L85 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92L85 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g></g>
-<g class="a-scratch"><path d="M44 92L35 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L35 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><g class="scr"><path d="M76 92Q98 82 90 60" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q98 82 90 60" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g></g>
-<g class="a-give"><path d="M44 92Q62 112 88 104" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92Q62 112 88 104" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92Q86 106 92 102" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q86 106 92 102" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
-<g class="a-hold"><path d="M44 92Q44 110 54 106" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92Q44 110 54 106" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92Q76 110 66 106" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q76 110 66 106" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
-<g class="a-up"><path d="M44 92L26 70" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L26 70" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92L94 70" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92L94 70" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
-</g>
-<g class="heart"><path transform="translate(60 98) scale(1)" d="M0 9C-10 2-13-4-11-8c2-4 8-5 11 0 3-5 9-4 11 0 2 4-1 10-11 17z" fill="#F28C7C" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/></g>
-</g></g></svg></div>
+    <div class="kid k-envpeek" data-enter="none" style="position:absolute;right:-40px;bottom:-34px;--w:92px;z-index:3;opacity:1" data-slot="k-envpeek"><img src="assets/chars/him_heart.webp" width="400" height="560" alt="" decoding="async"></div>
   </div>
   <button class="pill breath" id="openBtn">点开</button>
 </section>
@@ -221,170 +199,14 @@ body{font-family:"ZCOOL KuaiLe","Kaiti SC","STKaiti","KaiTi",cursive,sans-serif;
    <div class="hello">给 小鱼：</div>
    <p class="sub">有些话，想好好写给你。</p>
    <div class="hint">慢慢往下看 ↓</div>
-<div class="beat"><span class="tag rv">我做了什么</span><p class="ln tw">周六晚上说好七点去接你，我打游戏忘了时间，八点才出门。</p><div class="kid k-tuck p-scratch" data-enter="pop" style="" data-slot="k-tuck"><svg viewBox="0 -14 120 184" aria-hidden="true"><g class="flip"><g class="bodyi">
-<ellipse class="shadow" cx="60" cy="163" rx="22" ry="3.5" fill="#3A2A24" opacity=".12"/>
-<g class="legL"><path d="M49 124h9v32h-9z" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><ellipse cx="52" cy="158" rx="8" ry="4.5" fill="#7A4B33" stroke="#3A2A24" stroke-width="2"/></g>
-<g class="legR"><path d="M62 124h9v32h-9z" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><ellipse cx="69" cy="158" rx="8" ry="4.5" fill="#7A4B33" stroke="#3A2A24" stroke-width="2"/></g>
-<path d="M41 110h38l3 20h-17l-5-7-5 7h-17z" fill="#E8D9BF" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
-<path d="M44 84q16-6 32 0l10 13-8 5-2-4v16h-32v-16l-2 4-8-5z" fill="#8FBDE8" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
-<g class="head"><g class="headi">
-<circle cx="27" cy="54" r="6" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><circle cx="93" cy="54" r="6" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/>
-<circle cx="60" cy="50" r="33" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/>
-<path d="M26 52q-4-34 30-38 6-6 12-1 4-4 8 1 22 6 18 38-5-11-12-14-3 7-13 5-6 6-15 2-8 5-14-1-9 3-14 8z" fill="#6B4430" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
-<g class="eyes"><ellipse cx="49" cy="55" rx="3.3" ry="4.3" fill="#3A2A24"/><ellipse cx="71" cy="55" rx="3.3" ry="4.3" fill="#3A2A24"/><circle cx="50.2" cy="53.4" r="1.1" fill="#fff"/><circle cx="72.2" cy="53.4" r="1.1" fill="#fff"/></g>
-<g class="brows"><path d="M43 45l9-3M77 45l-9-3" stroke="#3A2A24" stroke-width="2" stroke-linecap="round"/></g>
-<circle cx="41" cy="64" r="5" fill="#F7B5B0"/><circle cx="79" cy="64" r="5" fill="#F7B5B0"/>
-<path class="mouth" d="M55 66q5 5 10 0" stroke="#3A2A24" stroke-width="2" fill="none" stroke-linecap="round"/>
-<path class="msad" d="M55 69q5-4 10 0" stroke="#3A2A24" stroke-width="2" fill="none" stroke-linecap="round"/>
-<ellipse class="tear" cx="46" cy="64" rx="2" ry="3" fill="#8FBDE8" stroke="#3A2A24" stroke-width="1"/>
-<g class="sweat"><path d="M98 22l6-6M102 32l8-2M94 14l2-8" stroke="#3A2A24" stroke-width="2" stroke-linecap="round"/></g>
-</g></g>
-<g class="arms">
-<g class="a-down"><g class="armL"><path d="M44 92L35 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L35 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g><g class="armR"><path d="M76 92L85 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92L85 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g></g>
-<g class="a-scratch"><path d="M44 92L35 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L35 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><g class="scr"><path d="M76 92Q98 82 90 60" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q98 82 90 60" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g></g>
-<g class="a-give"><path d="M44 92Q62 112 88 104" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92Q62 112 88 104" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92Q86 106 92 102" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q86 106 92 102" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
-<g class="a-hold"><path d="M44 92Q44 110 54 106" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92Q44 110 54 106" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92Q76 110 66 106" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q76 110 66 106" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
-<g class="a-up"><path d="M44 92L26 70" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L26 70" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92L94 70" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92L94 70" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
-</g>
-<g class="heart"><path transform="translate(60 98) scale(1)" d="M0 9C-10 2-13-4-11-8c2-4 8-5 11 0 3-5 9-4 11 0 2 4-1 10-11 17z" fill="#F28C7C" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/></g>
-<path class="drop" d="M90 30q4 6 0 9q-4-3 0-9z" fill="#8FBDE8" stroke="#3A2A24" stroke-width="1.5"/></g></g></svg></div><p class="ln tw">你在楼下等了一个小时，给我打了三个电话，我一个都没接。</p><p class="ln tw">是我<span class="mark">没把和你的约定放在心上</span>。</p></div>
-<div class="beat"><span class="tag rv">我懂你为什么难过</span><div class="kid k-edge p-peek" data-enter="slide" style="top:30%;--bd:1.3s" data-slot="k-edge"><svg viewBox="0 -14 120 184" aria-hidden="true"><g class="flip"><g class="bodyi">
-<ellipse class="shadow" cx="60" cy="163" rx="22" ry="3.5" fill="#3A2A24" opacity=".12"/>
-<g class="legL"><path d="M49 124h9v32h-9z" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><ellipse cx="52" cy="158" rx="8" ry="4.5" fill="#7A4B33" stroke="#3A2A24" stroke-width="2"/></g>
-<g class="legR"><path d="M62 124h9v32h-9z" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><ellipse cx="69" cy="158" rx="8" ry="4.5" fill="#7A4B33" stroke="#3A2A24" stroke-width="2"/></g>
-<path d="M41 110h38l3 20h-17l-5-7-5 7h-17z" fill="#E8D9BF" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
-<path d="M44 84q16-6 32 0l10 13-8 5-2-4v16h-32v-16l-2 4-8-5z" fill="#8FBDE8" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
-<g class="head"><g class="headi">
-<circle cx="27" cy="54" r="6" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><circle cx="93" cy="54" r="6" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/>
-<circle cx="60" cy="50" r="33" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/>
-<path d="M26 52q-4-34 30-38 6-6 12-1 4-4 8 1 22 6 18 38-5-11-12-14-3 7-13 5-6 6-15 2-8 5-14-1-9 3-14 8z" fill="#6B4430" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
-<g class="eyes"><ellipse cx="49" cy="55" rx="3.3" ry="4.3" fill="#3A2A24"/><ellipse cx="71" cy="55" rx="3.3" ry="4.3" fill="#3A2A24"/><circle cx="50.2" cy="53.4" r="1.1" fill="#fff"/><circle cx="72.2" cy="53.4" r="1.1" fill="#fff"/></g>
-<g class="brows"><path d="M43 45l9-3M77 45l-9-3" stroke="#3A2A24" stroke-width="2" stroke-linecap="round"/></g>
-<circle cx="41" cy="64" r="5" fill="#F7B5B0"/><circle cx="79" cy="64" r="5" fill="#F7B5B0"/>
-<path class="mouth" d="M55 66q5 5 10 0" stroke="#3A2A24" stroke-width="2" fill="none" stroke-linecap="round"/>
-<path class="msad" d="M55 69q5-4 10 0" stroke="#3A2A24" stroke-width="2" fill="none" stroke-linecap="round"/>
-<ellipse class="tear" cx="46" cy="64" rx="2" ry="3" fill="#8FBDE8" stroke="#3A2A24" stroke-width="1"/>
-<g class="sweat"><path d="M98 22l6-6M102 32l8-2M94 14l2-8" stroke="#3A2A24" stroke-width="2" stroke-linecap="round"/></g>
-</g></g>
-<g class="arms">
-<g class="a-down"><g class="armL"><path d="M44 92L35 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L35 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g><g class="armR"><path d="M76 92L85 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92L85 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g></g>
-<g class="a-scratch"><path d="M44 92L35 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L35 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><g class="scr"><path d="M76 92Q98 82 90 60" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q98 82 90 60" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g></g>
-<g class="a-give"><path d="M44 92Q62 112 88 104" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92Q62 112 88 104" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92Q86 106 92 102" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q86 106 92 102" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
-<g class="a-hold"><path d="M44 92Q44 110 54 106" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92Q44 110 54 106" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92Q76 110 66 106" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q76 110 66 106" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
-<g class="a-up"><path d="M44 92L26 70" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L26 70" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92L94 70" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92L94 70" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
-</g>
-<g class="heart"><path transform="translate(60 98) scale(1)" d="M0 9C-10 2-13-4-11-8c2-4 8-5 11 0 3-5 9-4 11 0 2 4-1 10-11 17z" fill="#F28C7C" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/></g>
-</g></g></svg></div><p class="ln tw">那天风很大，你一个人站在楼下，电话一次次打过来，一直没人接。</p><p class="ln tw">那一个小时，你一定又冷又着急，还担心我是不是出了什么事。</p><p class="ln tw">你可能也在想：<span class="mark">在我心里，你排在第几位</span>。</p><p class="ln tw">让你有这种感觉，是我做的事造成的。</p><div class="kid k-sit p-signp" data-enter="drop" style="--bd:2.1s" data-slot="k-sit"><svg viewBox="0 -14 120 184" aria-hidden="true"><g class="flip"><g class="bodyi">
-<ellipse class="shadow" cx="60" cy="163" rx="22" ry="3.5" fill="#3A2A24" opacity=".12"/>
-<g class="legL"><path d="M49 124h9v32h-9z" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><ellipse cx="52" cy="158" rx="8" ry="4.5" fill="#7A4B33" stroke="#3A2A24" stroke-width="2"/></g>
-<g class="legR"><path d="M62 124h9v32h-9z" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><ellipse cx="69" cy="158" rx="8" ry="4.5" fill="#7A4B33" stroke="#3A2A24" stroke-width="2"/></g>
-<path d="M41 110h38l3 20h-17l-5-7-5 7h-17z" fill="#E8D9BF" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
-<path d="M44 84q16-6 32 0l10 13-8 5-2-4v16h-32v-16l-2 4-8-5z" fill="#8FBDE8" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
-<g class="head"><g class="headi">
-<circle cx="27" cy="54" r="6" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><circle cx="93" cy="54" r="6" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/>
-<circle cx="60" cy="50" r="33" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/>
-<path d="M26 52q-4-34 30-38 6-6 12-1 4-4 8 1 22 6 18 38-5-11-12-14-3 7-13 5-6 6-15 2-8 5-14-1-9 3-14 8z" fill="#6B4430" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
-<g class="eyes"><ellipse cx="49" cy="55" rx="3.3" ry="4.3" fill="#3A2A24"/><ellipse cx="71" cy="55" rx="3.3" ry="4.3" fill="#3A2A24"/><circle cx="50.2" cy="53.4" r="1.1" fill="#fff"/><circle cx="72.2" cy="53.4" r="1.1" fill="#fff"/></g>
-<g class="brows"><path d="M43 45l9-3M77 45l-9-3" stroke="#3A2A24" stroke-width="2" stroke-linecap="round"/></g>
-<circle cx="41" cy="64" r="5" fill="#F7B5B0"/><circle cx="79" cy="64" r="5" fill="#F7B5B0"/>
-<path class="mouth" d="M55 66q5 5 10 0" stroke="#3A2A24" stroke-width="2" fill="none" stroke-linecap="round"/>
-<path class="msad" d="M55 69q5-4 10 0" stroke="#3A2A24" stroke-width="2" fill="none" stroke-linecap="round"/>
-<ellipse class="tear" cx="46" cy="64" rx="2" ry="3" fill="#8FBDE8" stroke="#3A2A24" stroke-width="1"/>
-<g class="sweat"><path d="M98 22l6-6M102 32l8-2M94 14l2-8" stroke="#3A2A24" stroke-width="2" stroke-linecap="round"/></g>
-</g></g>
-<g class="arms">
-<g class="a-down"><g class="armL"><path d="M44 92L35 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L35 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g><g class="armR"><path d="M76 92L85 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92L85 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g></g>
-<g class="a-scratch"><path d="M44 92L35 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L35 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><g class="scr"><path d="M76 92Q98 82 90 60" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q98 82 90 60" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g></g>
-<g class="a-give"><path d="M44 92Q62 112 88 104" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92Q62 112 88 104" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92Q86 106 92 102" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q86 106 92 102" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
-<g class="a-hold"><path d="M44 92Q44 110 54 106" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92Q44 110 54 106" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92Q76 110 66 106" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q76 110 66 106" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
-<g class="a-up"><path d="M44 92L26 70" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L26 70" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92L94 70" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92L94 70" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
-</g>
-<g class="heart"><path transform="translate(60 98) scale(1)" d="M0 9C-10 2-13-4-11-8c2-4 8-5 11 0 3-5 9-4 11 0 2 4-1 10-11 17z" fill="#F28C7C" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/></g>
-<g><rect x="34" y="94" width="52" height="24" rx="4" fill="#FFF9EC" stroke="#3A2A24" stroke-width="2"/><text x="60" y="111" font-size="12" text-anchor="middle" fill="#3A2A24" font-family="ZCOOL KuaiLe,sans-serif">对不起</text></g></g></g></svg></div></div>
-<div class="beat"><span class="tag rv">以后我会这样做</span><div class="kid k-give p-give" data-enter="wobble" style="--bd:.7s" data-slot="k-give"><svg viewBox="0 -14 120 184" aria-hidden="true"><g class="flip"><g class="bodyi">
-<ellipse class="shadow" cx="60" cy="163" rx="22" ry="3.5" fill="#3A2A24" opacity=".12"/>
-<g class="legL"><path d="M49 124h9v32h-9z" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><ellipse cx="52" cy="158" rx="8" ry="4.5" fill="#7A4B33" stroke="#3A2A24" stroke-width="2"/></g>
-<g class="legR"><path d="M62 124h9v32h-9z" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><ellipse cx="69" cy="158" rx="8" ry="4.5" fill="#7A4B33" stroke="#3A2A24" stroke-width="2"/></g>
-<path d="M41 110h38l3 20h-17l-5-7-5 7h-17z" fill="#E8D9BF" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
-<path d="M44 84q16-6 32 0l10 13-8 5-2-4v16h-32v-16l-2 4-8-5z" fill="#8FBDE8" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
-<g class="head"><g class="headi">
-<circle cx="27" cy="54" r="6" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><circle cx="93" cy="54" r="6" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/>
-<circle cx="60" cy="50" r="33" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/>
-<path d="M26 52q-4-34 30-38 6-6 12-1 4-4 8 1 22 6 18 38-5-11-12-14-3 7-13 5-6 6-15 2-8 5-14-1-9 3-14 8z" fill="#6B4430" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
-<g class="eyes"><ellipse cx="49" cy="55" rx="3.3" ry="4.3" fill="#3A2A24"/><ellipse cx="71" cy="55" rx="3.3" ry="4.3" fill="#3A2A24"/><circle cx="50.2" cy="53.4" r="1.1" fill="#fff"/><circle cx="72.2" cy="53.4" r="1.1" fill="#fff"/></g>
-<g class="brows"><path d="M43 45l9-3M77 45l-9-3" stroke="#3A2A24" stroke-width="2" stroke-linecap="round"/></g>
-<circle cx="41" cy="64" r="5" fill="#F7B5B0"/><circle cx="79" cy="64" r="5" fill="#F7B5B0"/>
-<path class="mouth" d="M55 66q5 5 10 0" stroke="#3A2A24" stroke-width="2" fill="none" stroke-linecap="round"/>
-<path class="msad" d="M55 69q5-4 10 0" stroke="#3A2A24" stroke-width="2" fill="none" stroke-linecap="round"/>
-<ellipse class="tear" cx="46" cy="64" rx="2" ry="3" fill="#8FBDE8" stroke="#3A2A24" stroke-width="1"/>
-<g class="sweat"><path d="M98 22l6-6M102 32l8-2M94 14l2-8" stroke="#3A2A24" stroke-width="2" stroke-linecap="round"/></g>
-</g></g>
-<g class="arms">
-<g class="a-down"><g class="armL"><path d="M44 92L35 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L35 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g><g class="armR"><path d="M76 92L85 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92L85 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g></g>
-<g class="a-scratch"><path d="M44 92L35 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L35 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><g class="scr"><path d="M76 92Q98 82 90 60" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q98 82 90 60" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g></g>
-<g class="a-give"><path d="M44 92Q62 112 88 104" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92Q62 112 88 104" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92Q86 106 92 102" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q86 106 92 102" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
-<g class="a-hold"><path d="M44 92Q44 110 54 106" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92Q44 110 54 106" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92Q76 110 66 106" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q76 110 66 106" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
-<g class="a-up"><path d="M44 92L26 70" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L26 70" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92L94 70" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92L94 70" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
-</g>
-<g class="heart"><path transform="translate(60 98) scale(1)" d="M0 9C-10 2-13-4-11-8c2-4 8-5 11 0 3-5 9-4 11 0 2 4-1 10-11 17z" fill="#F28C7C" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/></g>
-<path class="twk" d="M104 70l3 6 6 .5-4.6 4 1.5 6.2-5.9-3.4-5.9 3.4 1.5-6.2-4.6-4 6-.5z" fill="#F6D98B" stroke="#3A2A24" stroke-width="1.5"/></g></g></svg></div><p class="ln tw">以后约好的时间，我提前半小时定闹钟，出门前给你发一句「出发啦」。</p><p class="ln tw">这周六，还是那家店门口，这次换我先到，等你。</p><p class="ln tw">你不用急着回我。想聊的时候，我都在。</p></div>
-<div class="kid k-sign p-bow" data-enter="pop" style="--bd:2.8s" data-slot="k-sign"><svg viewBox="0 -14 120 184" aria-hidden="true"><g class="flip"><g class="bodyi">
-<ellipse class="shadow" cx="60" cy="163" rx="22" ry="3.5" fill="#3A2A24" opacity=".12"/>
-<g class="legL"><path d="M49 124h9v32h-9z" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><ellipse cx="52" cy="158" rx="8" ry="4.5" fill="#7A4B33" stroke="#3A2A24" stroke-width="2"/></g>
-<g class="legR"><path d="M62 124h9v32h-9z" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><ellipse cx="69" cy="158" rx="8" ry="4.5" fill="#7A4B33" stroke="#3A2A24" stroke-width="2"/></g>
-<path d="M41 110h38l3 20h-17l-5-7-5 7h-17z" fill="#E8D9BF" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
-<path d="M44 84q16-6 32 0l10 13-8 5-2-4v16h-32v-16l-2 4-8-5z" fill="#8FBDE8" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
-<g class="head"><g class="headi">
-<circle cx="27" cy="54" r="6" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><circle cx="93" cy="54" r="6" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/>
-<circle cx="60" cy="50" r="33" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/>
-<path d="M26 52q-4-34 30-38 6-6 12-1 4-4 8 1 22 6 18 38-5-11-12-14-3 7-13 5-6 6-15 2-8 5-14-1-9 3-14 8z" fill="#6B4430" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
-<g class="eyes"><ellipse cx="49" cy="55" rx="3.3" ry="4.3" fill="#3A2A24"/><ellipse cx="71" cy="55" rx="3.3" ry="4.3" fill="#3A2A24"/><circle cx="50.2" cy="53.4" r="1.1" fill="#fff"/><circle cx="72.2" cy="53.4" r="1.1" fill="#fff"/></g>
-<g class="brows"><path d="M43 45l9-3M77 45l-9-3" stroke="#3A2A24" stroke-width="2" stroke-linecap="round"/></g>
-<circle cx="41" cy="64" r="5" fill="#F7B5B0"/><circle cx="79" cy="64" r="5" fill="#F7B5B0"/>
-<path class="mouth" d="M55 66q5 5 10 0" stroke="#3A2A24" stroke-width="2" fill="none" stroke-linecap="round"/>
-<path class="msad" d="M55 69q5-4 10 0" stroke="#3A2A24" stroke-width="2" fill="none" stroke-linecap="round"/>
-<ellipse class="tear" cx="46" cy="64" rx="2" ry="3" fill="#8FBDE8" stroke="#3A2A24" stroke-width="1"/>
-<g class="sweat"><path d="M98 22l6-6M102 32l8-2M94 14l2-8" stroke="#3A2A24" stroke-width="2" stroke-linecap="round"/></g>
-</g></g>
-<g class="arms">
-<g class="a-down"><g class="armL"><path d="M44 92L35 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L35 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g><g class="armR"><path d="M76 92L85 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92L85 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g></g>
-<g class="a-scratch"><path d="M44 92L35 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L35 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><g class="scr"><path d="M76 92Q98 82 90 60" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q98 82 90 60" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g></g>
-<g class="a-give"><path d="M44 92Q62 112 88 104" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92Q62 112 88 104" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92Q86 106 92 102" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q86 106 92 102" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
-<g class="a-hold"><path d="M44 92Q44 110 54 106" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92Q44 110 54 106" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92Q76 110 66 106" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q76 110 66 106" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
-<g class="a-up"><path d="M44 92L26 70" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L26 70" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92L94 70" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92L94 70" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
-</g>
-<g class="heart"><path transform="translate(60 98) scale(1)" d="M0 9C-10 2-13-4-11-8c2-4 8-5 11 0 3-5 9-4 11 0 2 4-1 10-11 17z" fill="#F28C7C" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/></g>
-<path class="pulse" d="M60 100c-3-4-9-1-6 3l6 6 6-6c3-4-3-7-6-3z" fill="#F28C7C" stroke="#3A2A24" stroke-width="1.5"/></g></g></svg></div><p class="ln tw sign">—— 阿哲</p>
+<div class="beat"><span class="tag rv">我做了什么</span><p class="ln tw">周六晚上说好七点去接你，我打游戏忘了时间，八点才出门。</p><div class="kid k-tuck" data-enter="pop" style="" data-slot="k-tuck"><img src="assets/chars/him_scratch.webp" width="400" height="560" alt="" decoding="async"></div><p class="ln tw">你在楼下等了一个小时，给我打了三个电话，我一个都没接。</p><p class="ln tw">是我<span class="mark">没把和你的约定放在心上</span>。</p></div>
+<div class="beat"><span class="tag rv">我懂你为什么难过</span><div class="kid k-edge" data-enter="slide" style="top:20px" data-slot="k-edge"><img src="assets/chars/him_peek.webp" width="400" height="560" alt="" decoding="async"></div><p class="ln tw">那天风很大，你一个人站在楼下，电话一次次打过来，一直没人接。</p><p class="ln tw">那一个小时，你一定又冷又着急，还担心我是不是出了什么事。</p><p class="ln tw">你可能也在想：<span class="mark">在我心里，你排在第几位</span>。</p><p class="ln tw">让你有这种感觉，是我做的事造成的。</p><div class="kid k-sit" data-enter="drop" style="" data-slot="k-sit"><img src="assets/chars/him_sorry.webp" width="400" height="560" alt="" decoding="async"></div></div>
+<div class="beat"><span class="tag rv">以后我会这样做</span><div class="kid k-give" data-enter="wobble" style="" data-slot="k-give"><img src="assets/chars/him_notes.webp" width="400" height="560" alt="" decoding="async"></div><p class="ln tw">以后约好的时间，我提前半小时定闹钟，出门前给你发一句「出发啦」。</p><p class="ln tw">这周六，还是那家店门口，这次换我先到，等你。</p><p class="ln tw">你不用急着回我。想聊的时候，我都在。</p></div>
+<div class="kid k-sign" data-enter="pop" style="" data-slot="k-sign"><img src="assets/chars/him_corner.webp" width="400" height="560" alt="" decoding="async"></div><p class="ln tw sign">—— 阿哲</p>
   </div>
  </div>
  <div class="final" id="final">
-   <div class="endsp"><img id="endArt" data-slot="ending" alt=""><div class="kid k-end p-hold" data-enter="pop" style="--bd:1.6s" data-slot="k-end"><svg viewBox="0 -14 120 184" aria-hidden="true"><g class="flip"><g class="bodyi">
-<ellipse class="shadow" cx="60" cy="163" rx="22" ry="3.5" fill="#3A2A24" opacity=".12"/>
-<g class="legL"><path d="M49 124h9v32h-9z" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><ellipse cx="52" cy="158" rx="8" ry="4.5" fill="#7A4B33" stroke="#3A2A24" stroke-width="2"/></g>
-<g class="legR"><path d="M62 124h9v32h-9z" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><ellipse cx="69" cy="158" rx="8" ry="4.5" fill="#7A4B33" stroke="#3A2A24" stroke-width="2"/></g>
-<path d="M41 110h38l3 20h-17l-5-7-5 7h-17z" fill="#E8D9BF" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
-<path d="M44 84q16-6 32 0l10 13-8 5-2-4v16h-32v-16l-2 4-8-5z" fill="#8FBDE8" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
-<g class="head"><g class="headi">
-<circle cx="27" cy="54" r="6" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><circle cx="93" cy="54" r="6" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/>
-<circle cx="60" cy="50" r="33" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/>
-<path d="M26 52q-4-34 30-38 6-6 12-1 4-4 8 1 22 6 18 38-5-11-12-14-3 7-13 5-6 6-15 2-8 5-14-1-9 3-14 8z" fill="#6B4430" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
-<g class="eyes"><ellipse cx="49" cy="55" rx="3.3" ry="4.3" fill="#3A2A24"/><ellipse cx="71" cy="55" rx="3.3" ry="4.3" fill="#3A2A24"/><circle cx="50.2" cy="53.4" r="1.1" fill="#fff"/><circle cx="72.2" cy="53.4" r="1.1" fill="#fff"/></g>
-<g class="brows"><path d="M43 45l9-3M77 45l-9-3" stroke="#3A2A24" stroke-width="2" stroke-linecap="round"/></g>
-<circle cx="41" cy="64" r="5" fill="#F7B5B0"/><circle cx="79" cy="64" r="5" fill="#F7B5B0"/>
-<path class="mouth" d="M55 66q5 5 10 0" stroke="#3A2A24" stroke-width="2" fill="none" stroke-linecap="round"/>
-<path class="msad" d="M55 69q5-4 10 0" stroke="#3A2A24" stroke-width="2" fill="none" stroke-linecap="round"/>
-<ellipse class="tear" cx="46" cy="64" rx="2" ry="3" fill="#8FBDE8" stroke="#3A2A24" stroke-width="1"/>
-<g class="sweat"><path d="M98 22l6-6M102 32l8-2M94 14l2-8" stroke="#3A2A24" stroke-width="2" stroke-linecap="round"/></g>
-</g></g>
-<g class="arms">
-<g class="a-down"><g class="armL"><path d="M44 92L35 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L35 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g><g class="armR"><path d="M76 92L85 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92L85 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g></g>
-<g class="a-scratch"><path d="M44 92L35 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L35 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><g class="scr"><path d="M76 92Q98 82 90 60" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q98 82 90 60" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g></g>
-<g class="a-give"><path d="M44 92Q62 112 88 104" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92Q62 112 88 104" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92Q86 106 92 102" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q86 106 92 102" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
-<g class="a-hold"><path d="M44 92Q44 110 54 106" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92Q44 110 54 106" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92Q76 110 66 106" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q76 110 66 106" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
-<g class="a-up"><path d="M44 92L26 70" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L26 70" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92L94 70" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92L94 70" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
-</g>
-<g class="heart"><path transform="translate(60 98) scale(1)" d="M0 9C-10 2-13-4-11-8c2-4 8-5 11 0 3-5 9-4 11 0 2 4-1 10-11 17z" fill="#F28C7C" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/></g>
-</g></g></svg></div></div>
+   <div class="endsp"><img id="endArt" data-slot="ending" alt=""><div class="kid k-end" data-enter="pop" style="" data-slot="k-end"><img src="assets/chars/him_wait.webp" width="400" height="560" alt="" decoding="async"></div></div>
    <p class="endt rv">小鱼，信写完了。</p>
    <p class="endq rv">接下来，你想怎样都可以</p>
    <button class="card c1 hide" id="c1" data-go="phA"><svg viewBox="0 0 28 28" fill="none" stroke="#3A2A24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14v-4a2 2 0 0 1 4 0v3M13 12V8a2 2 0 0 1 4 0v5M17 12V9a2 2 0 0 1 4 0v6M9 14q-3 1-1 6 2 5 6 6h4q5-2 4-11" fill="#FFF1E6"/><path d="M3 6l2 2M14 1v3M24 5l-2 2"/></svg>还在生气，想出出气</button>
