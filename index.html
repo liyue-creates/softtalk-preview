@@ -58,6 +58,30 @@ body{font-family:"Xingkai SC","STXingkai","Kaiti SC","STKaiti","KaiTi","楷体",
 .ph{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:30px;text-align:center;font-size:22px;background:#fff}
 .back{font:inherit;font-size:18px;background:none;border:none;color:var(--blue);text-decoration:underline wavy var(--red)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01s!important;transition-delay:0s!important}.doo{transform:none!important}}
+
+/* motion v2 */
+.rv{transition:none!important;opacity:0}
+.rv.in{opacity:1;transform:none}
+.walker{width:88px;float:right;margin:-6px -8px 6px 8px;opacity:0;will-change:transform}
+.walker.l{float:left;margin:-6px 10px 6px -14px}
+.walker.on{opacity:1}
+.walker svg{display:block;width:100%;overflow:visible}
+.walker .lg,.walker .ar{transform-box:view-box}
+.walker .lg{transform-origin:50px 100px}.walker .ar{transform-origin:50px 60px}
+.walker .headg{transform-box:view-box;transform-origin:50px 48px}
+.walker .bodyg{transform-box:view-box;transform-origin:50px 158px}
+.walking .lg1,.walking .ar2{animation:swing .36s ease-in-out infinite alternate}
+.walking .lg2,.walking .ar1{animation:swing .36s ease-in-out infinite alternate-reverse}
+.walking .bodyg{animation:step .18s ease-in-out infinite alternate}
+@keyframes swing{from{transform:rotate(-16deg)}to{transform:rotate(16deg)}}
+@keyframes step{from{transform:translateY(0) scale(1.03,.96)}to{transform:translateY(-4px) scale(1)}}
+.talking .headg{animation:nod .42s ease-in-out infinite alternate}
+.talking .mouth{animation:talk .16s steps(2) infinite}
+@keyframes nod{from{transform:rotate(-3deg)}to{transform:rotate(3deg) translateY(-1px)}}
+@keyframes talk{50%{transform:scaleY(2.4);transform-box:fill-box;transform-origin:center}}
+.ln:after{content:"";display:table;clear:none}
+.beat:after{content:"";display:block;clear:both}
+@media (prefers-reduced-motion:reduce){.walker{opacity:1}}
 </style></head><body>
 <section id="env" class="scr on">
   <div class="to">给 小雨</div>
@@ -81,15 +105,17 @@ body{font-family:"Xingkai SC","STXingkai","Kaiti SC","STKaiti","KaiTi","楷体",
   <div class="beat">
     <span class="tag rv">我做了什么</span>
     <svg class="doo" data-k="-.18" style="right:6px;top:30px;width:58px" viewBox="0 0 60 40"><path d="M5 30 Q15 5 30 22 T56 12" fill="none" stroke="#111" stroke-width="2.2" stroke-linecap="round"/></svg>
+    <div class="walker r" data-dir="r"><svg viewBox="0 0 100 165" aria-hidden="true"><g fill="none" stroke="#111" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><g class="bodyg"><g class="lg lg1"><path d="M50 100l-6 30 -2 28M36 158h8"/></g><g class="lg lg2"><path d="M50 100l6 30 2 28M58 158h9"/></g><path d="M50 50v50"/><g class="ar ar1"><path d="M50 60l-16 20 -4 14"/></g><g class="ar ar2"><path d="M50 60l16 20 4 14"/></g><g class="headg"><circle cx="50" cy="30" r="18" fill="#fff"/><path d="M44 12q3-6 8-4M53 11q4-5 9-1"/><circle cx="43" cy="29" r="1.6" fill="#111"/><circle cx="57" cy="29" r="1.6" fill="#111"/><ellipse class="mouth" cx="50" cy="38" rx="3.5" ry="1.6" fill="#111" stroke="none"/><circle cx="39" cy="35" r="2.4" fill="#e8402f" stroke="none"/><circle cx="61" cy="35" r="2.4" fill="#e8402f" stroke="none"/></g></g></g></svg></div>
     <p class="ln tw">周六晚上说好七点去接你，我打游戏忘了时间，八点才出门。</p>
     <p class="ln tw">你在楼下等了一个小时，给我打了三个电话，我一个都没接。</p>
-    <img class="fig rv r" src="assets/stick_oops.svg" alt="">
+    
     <p class="ln tw">是我<span class="mark">没把和你的约定放在心上</span>。</p>
   </div>
 
   <div class="beat">
     <span class="tag rv">我懂你为什么难过</span>
     <svg class="doo" data-k=".22" style="left:-30px;top:120px;width:40px" viewBox="0 0 40 40"><path d="M20 34C8 26 3 18 7 11c3-5 10-5 13 1 3-6 10-6 13-1 4 7-1 15-13 23z" fill="none" stroke="#e8402f" stroke-width="2.2"/></svg>
+    <div class="walker l" data-dir="l"><svg viewBox="0 0 100 165" aria-hidden="true"><g fill="none" stroke="#111" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><g class="bodyg"><g class="lg lg1"><path d="M50 100l-6 30 -2 28M36 158h8"/></g><g class="lg lg2"><path d="M50 100l6 30 2 28M58 158h9"/></g><path d="M50 50v50"/><g class="ar ar1"><path d="M50 60l-16 20 -4 14"/></g><g class="ar ar2"><path d="M50 60l16 20 4 14"/></g><g class="headg"><circle cx="50" cy="30" r="18" fill="#fff"/><path d="M44 12q3-6 8-4M53 11q4-5 9-1"/><circle cx="43" cy="29" r="1.6" fill="#111"/><circle cx="57" cy="29" r="1.6" fill="#111"/><ellipse class="mouth" cx="50" cy="38" rx="3.5" ry="1.6" fill="#111" stroke="none"/><circle cx="39" cy="35" r="2.4" fill="#e8402f" stroke="none"/><circle cx="61" cy="35" r="2.4" fill="#e8402f" stroke="none"/></g></g></g></svg></div>
     <p class="ln tw">那天风很大，你一个人站在楼下，电话一次次打过来，一直没人接。</p>
     <p class="ln tw">那一个小时，你一定又冷又着急，还担心我是不是出了什么事。</p>
     <p class="ln tw">你可能也在想：<span class="mark">在我心里，你排在第几位</span>。</p>
@@ -99,8 +125,9 @@ body{font-family:"Xingkai SC","STXingkai","Kaiti SC","STKaiti","KaiTi","楷体",
   <div class="beat">
     <span class="tag rv">以后我会这样做</span>
     <svg class="doo" data-k="-.2" style="right:4px;top:40px;width:50px" viewBox="0 0 50 50"><circle cx="25" cy="27" r="17" fill="none" stroke="currentColor" stroke-width="2"/><path d="M25 16v11l7 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <div class="walker r" data-dir="r"><svg viewBox="0 0 100 165" aria-hidden="true"><g fill="none" stroke="#111" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><g class="bodyg"><g class="lg lg1"><path d="M50 100l-6 30 -2 28M36 158h8"/></g><g class="lg lg2"><path d="M50 100l6 30 2 28M58 158h9"/></g><path d="M50 50v50"/><g class="ar ar1"><path d="M50 60l-16 20 -4 14"/></g><g class="ar ar2"><path d="M50 60l16 20 4 14"/><path d="M70 92c-5-7-15-2-10 6l10 10 10-10c5-8-5-13-10-6z" fill="#e8402f" stroke="#111" stroke-width="2.5"/></g><g class="headg"><circle cx="50" cy="30" r="18" fill="#fff"/><path d="M44 12q3-6 8-4M53 11q4-5 9-1"/><circle cx="43" cy="29" r="1.6" fill="#111"/><circle cx="57" cy="29" r="1.6" fill="#111"/><ellipse class="mouth" cx="50" cy="38" rx="3.5" ry="1.6" fill="#111" stroke="none"/><circle cx="39" cy="35" r="2.4" fill="#e8402f" stroke="none"/><circle cx="61" cy="35" r="2.4" fill="#e8402f" stroke="none"/></g></g></g></svg></div>
     <p class="ln tw">以后约好的时间，我提前半小时定闹钟，出门前给你发一句「出发啦」。</p>
-    <img class="fig rv l" style="margin:6px auto 18px 0" src="assets/stick_bow.svg" alt="">
+    
     <p class="ln tw">这周六，还是那家店门口，这次换我先到，等你。</p>
     <p class="ln tw">你不用急着回我。想聊的时候，我都在。</p>
     <p class="sign rv">—— 阿哲</p>
@@ -109,7 +136,7 @@ body{font-family:"Xingkai SC","STXingkai","Kaiti SC","STKaiti","KaiTi","楷体",
   <div class="final" id="final">
     <svg class="doo rv l d1" style="left:-28px;top:16%;width:44px" viewBox="0 0 40 40"><path d="M20 4l4 11 12 1-9 8 3 12-10-7-10 7 3-12-9-8 12-1z" fill="none" stroke="#111" stroke-width="2"/></svg>
     <svg class="doo rv r d2" style="right:0;top:20%;width:40px" viewBox="0 0 40 40"><path d="M20 34C8 26 3 18 7 11c3-5 10-5 13 1 3-6 10-6 13-1 4 7-1 15-13 23z" fill="none" stroke="#e8402f" stroke-width="2.2"/></svg>
-    <img class="fig rv d1" src="assets/stick_kneel.svg" alt="">
+    <img class="fig rv d1" data-slot="ending" src="assets/stick_kneel.svg" alt="">
     <p class="big rv d2">小雨，信写完了。</p>
     <p class="small rv d3">接下来，你想怎样都可以。</p>
     <button class="btn a rv d4" data-go="phA">还在生气，想出出气</button>
@@ -128,32 +155,54 @@ envBtn.addEventListener('click',function(){if(opened)return;opened=true;envBtn.c
   setTimeout(function(){$('#env').classList.remove('on')},1500)},1150)});
 document.addEventListener('click',function(e){var g=e.target.closest('[data-go]');if(!g)return;show(g.dataset.go);
   if(g.dataset.go==='letter'){$('#final').scrollIntoView()}else window.scrollTo(0,0)});
-var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -14% 0px',threshold:.15});
+var SPRING=[{opacity:0,transform:'translate3d(0,18px,0) scale(.85)'},{opacity:1,transform:'translate3d(0,-2px,0) scale(1.06)',offset:.62},{opacity:1,transform:'none'}];
+function pop(els,gap){els.forEach(function(el,i){if(el.classList.contains('in'))return;
+  if(rm){el.classList.add('in');return}
+  var a=el.animate(SPRING,{duration:520,delay:i*(gap||80),easing:'cubic-bezier(.34,1.56,.64,1)',fill:'backwards'});el.classList.add('in')})}
+var io=new IntersectionObserver(function(es){var b=[];es.forEach(function(e){if(e.isIntersecting){b.push(e.target);io.unobserve(e.target)}});pop(b,80)},{rootMargin:'0px 0px -14% 0px',threshold:.15});
 document.querySelectorAll('.rv:not(.in)').forEach(function(el){if(!el.closest('.final'))io.observe(el)});
-var fio=new IntersectionObserver(function(es){if(es[0].intersectionRatio>.55){document.querySelectorAll('.final .rv').forEach(function(x){x.classList.add('in')});fio.disconnect()}},{threshold:[.55]});
+var fio=new IntersectionObserver(function(es){if(es[0].intersectionRatio>.55){pop([].slice.call(document.querySelectorAll('.final .rv')),100);fio.disconnect()}},{threshold:[.55]});
 fio.observe($('#final'));
+/* walkers: short walk-in when its section enters, then settle bounce */
+function walkIn(w){if(w.dataset.w)return;w.dataset.w=1;w.classList.add('on');if(rm)return;
+  var dx=(w.dataset.dir==='l'?-1:1)*150;w.classList.add('walking');
+  w.animate([{transform:'translate3d('+dx+'px,0,0)'},{transform:'none'}],{duration:1100,easing:'cubic-bezier(.3,.2,.4,1)'}).onfinish=function(){
+    w.classList.remove('walking');
+    w.animate([{transform:'none'},{transform:'translateY(-6px) scale(.98,1.03)',offset:.35},{transform:'translateY(0) scale(1.04,.95)',offset:.7},{transform:'none'}],{duration:340,easing:'ease-out',transformOrigin:'50% 100%'})}}
+var wio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){walkIn(e.target);wio.unobserve(e.target)}})},{rootMargin:'0px 0px -10% 0px'});
+document.querySelectorAll('.walker').forEach(function(w){wio.observe(w)});
 var doos=[].slice.call(document.querySelectorAll('.doo[data-k]')),tick=false,rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
 function par(){tick=false;var y=scrollY;doos.forEach(function(d){d.style.transform='translate3d(0,'+(y*d.dataset.k).toFixed(1)+'px,0) rotate('+(y*.03*Math.sign(d.dataset.k)).toFixed(1)+'deg)'})}
 if(!rm)addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(par)}},{passive:true});
 
-// typewriter: per paragraph, 36ms/char, tap finishes current, typed text persists
-var SPD=36,queue=[],cur=null,timer=null;
-document.querySelectorAll('.ln.tw').forEach(function(p){p.dataset.h=p.innerHTML;p.innerHTML='&nbsp;'});
-function finish(p){clearTimeout(timer);p.innerHTML=p.dataset.h;p.dataset.done=1;cur=null;next()}
-function next(){if(cur||!queue.length)return;cur=queue.shift();if(cur.dataset.done){cur=null;return next()}
-  var src=cur.dataset.h,tmp=document.createElement('div');tmp.innerHTML=src;
-  var chars=Array.from(tmp.textContent),i=0,p=cur;
-  if(rm)return finish(p);
-  (function step(){if(cur!==p)return;i++;
-    var n=i,out='',walk=function(node){node.childNodes.forEach(function(c){if(n<=0)return;
-      if(c.nodeType===3){var a=Array.from(c.textContent),s=a.slice(0,n).join('');n-=a.length;out+=s}
-      else{out+='<span class="'+c.className+'">';walk(c);out+='</span>'}})};
-    walk(tmp);p.innerHTML=out+'<span class="cur"></span>';
-    if(i>=chars.length)return finish(p);timer=setTimeout(step,SPD)})()}
-var tio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){queue.push(e.target);tio.unobserve(e.target)}});
-  queue.sort(function(a,b){return a.compareDocumentPosition(b)&2?1:-1});next()},{rootMargin:'0px 0px -18% 0px'});
-document.querySelectorAll('.ln.tw').forEach(function(p){tio.observe(p)});
+// typewriter v2: 36ms/char, ，120 / 。！？250, starts 150ms after a line settles in view,
+// catches up instantly when she scrolls past, tap finishes, typed text persists, never blocks scroll
+var SPD=36,queue=[],cur=null,timer=null,startT=null;
+var lines=[].slice.call(document.querySelectorAll('.beat .ln.tw'));
+lines.forEach(function(p){p.dataset.h=p.innerHTML;p.innerHTML='&nbsp;'});
+function walkerOf(p){return p.closest('.beat').querySelector('.walker')}
+function talk(p,on){var w=walkerOf(p);if(w)w.classList.toggle('talking',on)}
+function done(p){p.innerHTML=p.dataset.h;p.dataset.done=1}
+function finish(p){clearTimeout(timer);done(p);talk(p,false);if(cur===p)cur=null;schedule(0)}
+function schedule(d){clearTimeout(startT);startT=setTimeout(next,rm?0:d)}
+function next(){if(cur)return;while(queue.length&&queue[0].dataset.done)queue.shift();if(!queue.length)return;
+  var p=cur=queue.shift(),tmp=document.createElement('div');tmp.innerHTML=p.dataset.h;var chars=Array.from(tmp.textContent),i=0;
+  if(rm)return finish(p);talk(p,true);
+  (function step(){if(cur!==p)return;i++;var n=i,out='';
+    (function walk(node){node.childNodes.forEach(function(c){if(n<=0)return;
+      if(c.nodeType===3){var a=Array.from(c.textContent);out+=a.slice(0,n).join('');n-=a.length}
+      else{out+='<span class="'+c.className+'">';walk(c);out+='</span>'}})})(tmp);
+    p.innerHTML=out+'<span class="cur"></span>';
+    if(i>=chars.length){clearTimeout(timer);done(p);talk(p,false);cur=null;return schedule(150)}
+    var ch=chars[i-1];timer=setTimeout(step,SPD+('。！？'.indexOf(ch)>=0?250:'，、：'.indexOf(ch)>=0?120:0))})()}
+function sortQ(){queue.sort(function(a,b){return a.compareDocumentPosition(b)&2?1:-1})}
+var tio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){queue.push(e.target);tio.unobserve(e.target)}});sortQ();if(!cur)schedule(150)},{rootMargin:'0px 0px -18% 0px'});
+lines.forEach(function(p){tio.observe(p)});
+// catch-up: a line reaching the top 30% of the screen (she has read past it) completes it and everything before it
+var cio=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting||e.target.dataset.done)return;
+  var idx=lines.indexOf(e.target);lines.slice(0,idx+1).forEach(function(p){if(!p.dataset.done){if(cur===p){clearTimeout(timer);cur=null}done(p);talk(p,false)}});schedule(150)})},{rootMargin:'0px 0px -70% 0px'});
+lines.forEach(function(p){cio.observe(p)});
 document.getElementById('letter').addEventListener('click',function(e){if(e.target.closest('button'))return;if(cur)finish(cur)});
-new IntersectionObserver(function(es){if(es[0].isIntersecting){if(cur)finish(cur);queue.forEach(function(p){p.innerHTML=p.dataset.h;p.dataset.done=1});queue=[];
-  document.querySelectorAll('.ln.tw:not([data-done])').forEach(function(p){p.innerHTML=p.dataset.h;p.dataset.done=1})}},{threshold:.3}).observe(document.getElementById('final'));
+new IntersectionObserver(function(es){if(es[0].isIntersecting){if(cur){clearTimeout(timer);cur=null}lines.forEach(function(p){if(!p.dataset.done){done(p);talk(p,false)}});queue=[];
+  document.querySelectorAll('.walker').forEach(function(w){w.classList.add('on')})}},{threshold:.3}).observe(document.getElementById('final'));
 </script></body></html>
