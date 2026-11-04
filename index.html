@@ -2,16 +2,16 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>有一封信给你</title>
 <style>
-:root{--ink:#2f3b52;--pencil:#5b6478;--blue:#3d6fd6;--red:#e0605a;--paper:#fffdf6;--line:#cfe0f3;--margin:#f2a7a7;--ease:cubic-bezier(.22,.8,.26,1)}
+:root{--ink:#111;--pencil:#111;--blue:#111;--red:#e8402f;--paper:#fff;--line:transparent;--margin:transparent;--ease:cubic-bezier(.22,.8,.26,1)}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{overflow-x:hidden}
-body{font-family:"Xingkai SC","STXingkai","Kaiti SC","STKaiti","KaiTi","楷体","Hannotate SC","HanziPen SC",cursive,serif;color:var(--ink);background:#f4efe3;min-height:100svh}
+body{font-family:"Xingkai SC","STXingkai","Kaiti SC","STKaiti","KaiTi","楷体","Hannotate SC","HanziPen SC",cursive,serif;color:var(--ink);background:#fff;min-height:100svh}
 .scr{display:none}.scr.on{display:block}
 /* envelope */
-#env{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;background:#f4efe3 repeating-linear-gradient(0deg,transparent 0 27px,#e6dcc6 27px 28px)}
+#env{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;background:#fff}
 #env.gone{opacity:0;transition:opacity .5s var(--ease) .9s;pointer-events:none}
 .envwrap{position:relative;width:min(78vw,300px);aspect-ratio:1.45;cursor:pointer;perspective:800px}
-.envbody{position:absolute;inset:0;background:#fbf3dc;border:2.5px solid var(--ink);border-radius:6px 9px 5px 8px;box-shadow:4px 5px 0 rgba(47,59,82,.15)}
+.envbody{position:absolute;inset:0;background:#fff;border:2.5px solid var(--ink);border-radius:6px 9px 5px 8px;}
 .envbody:after{content:"";position:absolute;inset:0;background:linear-gradient(to top right,transparent 49.3%,var(--ink) 49.6% 50.4%,transparent 50.7%) left/50% 100% no-repeat,linear-gradient(to top left,transparent 49.3%,var(--ink) 49.6% 50.4%,transparent 50.7%) right/50% 100% no-repeat;opacity:.55}
 .flap{position:absolute;left:0;right:0;top:0;height:62%;transform-origin:top;transition:transform .7s var(--ease);z-index:3}
 .flap svg{width:100%;height:100%;display:block}
@@ -25,36 +25,38 @@ body{font-family:"Xingkai SC","STXingkai","Kaiti SC","STKaiti","KaiTi","楷体",
 .hint{font-size:20px;color:var(--pencil)}
 .to{font-size:24px}
 /* letter */
-#letter{background:var(--paper) repeating-linear-gradient(0deg,transparent 0 35px,var(--line) 35px 36px);background-attachment:local;min-height:100svh;position:relative;padding:0 22px 0 46px}
-#letter:before{content:"";position:absolute;top:0;bottom:0;left:32px;width:2px;background:var(--margin);opacity:.7}
+#letter{background:#fff;min-height:100svh;position:relative;padding:0 26px}
+#letter:before{display:none;content:"";position:absolute;top:0;bottom:0;left:32px;width:2px;background:var(--margin);opacity:.7}
 .top{height:88svh;display:flex;flex-direction:column;justify-content:center}
 .top h1{font-size:34px;font-weight:normal;line-height:1.4}
 .down{margin-top:26px;font-size:17px;color:var(--pencil);animation:nudge 1.8s ease-in-out infinite}
 @keyframes nudge{50%{transform:translateY(6px)}}
 .beat{position:relative;padding:12vh 0 8vh}
-.tag{display:inline-block;font-size:15px;color:var(--blue);border:1.8px solid var(--blue);border-radius:12px 4px 12px 5px;padding:1px 10px;transform:rotate(-2deg);margin-bottom:18px}
+.tag{display:inline-block;font-size:15px;color:var(--red);border:2px solid var(--red);border-radius:12px 4px 12px 5px;padding:1px 10px;transform:rotate(-2deg);margin-bottom:18px}
 .ln{font-size:21px;line-height:36px;margin:0 0 36px;max-width:22em}
 .rv{opacity:0;transform:translate3d(0,26px,0);transition:opacity .9s var(--ease),transform .9s var(--ease);will-change:opacity,transform}
 .rv.in{opacity:1;transform:none}
 .rv.l{transform:translate3d(-40px,10px,0) rotate(-4deg)}.rv.r{transform:translate3d(40px,10px,0) rotate(4deg)}
 .rv.l.in,.rv.r.in{transform:none}
-.mark{background:linear-gradient(transparent 58%,rgba(255,214,102,.65) 58% 92%,transparent 92%)}
+.mark{background:linear-gradient(transparent 58%,rgba(232,64,47,.22) 58% 92%,transparent 92%)}
 .fig{width:118px;display:block;margin:6px 0 18px auto}
 .doo{position:absolute;pointer-events:none;will-change:transform;color:var(--pencil)}
 .sign{text-align:right;font-size:22px;margin-top:10px}
+.ln.tw{opacity:1;transform:none;min-height:36px}.ln .cur{display:inline-block;width:2px;height:1em;background:var(--red);vertical-align:-2px;margin-left:1px;animation:blink .8s steps(1) infinite}@keyframes blink{50%{opacity:0}}
 /* final */
 .final{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 0 calc(40px + env(safe-area-inset-bottom));position:relative}
 .final .rv{transition-duration:1s}
 .final .fig{margin:0 auto 6px;width:150px}
 .final .big{font-size:26px;line-height:1.6;margin:8px 0 6px}
 .final .small{font-size:17px;color:var(--pencil);margin-bottom:26px}
-.btn{display:block;width:min(100%,300px);margin:0 auto 14px;font:inherit;font-size:20px;padding:13px 10px;border:2.5px solid var(--ink);border-radius:14px 6px 13px 7px;background:#fff;color:var(--ink);box-shadow:3px 4px 0 var(--ink);transition:transform .15s}
-.btn:active{transform:translate(2px,3px);box-shadow:1px 1px 0 var(--ink)}
-.btn.a{background:#ffe9e4}.btn.b{background:#e6f0ff}
+.btn{position:relative;display:block;width:min(100%,300px);margin:0 auto 18px;font:inherit;font-size:20px;padding:13px 10px;border:2.6px solid var(--ink);border-radius:255px 15px 225px 15px/15px 225px 15px 255px;background:#fff;color:var(--ink);transition:transform .15s}.btn:after{content:"";position:absolute;inset:-4px -2px -2px -4px;border:1.6px solid var(--ink);border-radius:15px 225px 15px 255px/255px 15px 225px 15px;opacity:.55;pointer-events:none}
+.btn:active{transform:scale(.97) rotate(-1deg)}
+.btn.a{color:var(--red);border-color:var(--red)}.btn.a:after{border-color:var(--red)}
 .d1{transition-delay:.15s}.d2{transition-delay:.35s}.d3{transition-delay:.55s}.d4{transition-delay:.8s}.d5{transition-delay:1s}
+@media (max-height:700px){.final .fig{width:112px}.final .big{font-size:23px}.final .small{margin-bottom:18px}.btn{padding:11px 10px;margin-bottom:14px}}
 /* placeholder */
-.ph{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:30px;text-align:center;font-size:22px;background:var(--paper) repeating-linear-gradient(90deg,transparent 0 23px,var(--line) 23px 24px),repeating-linear-gradient(0deg,transparent 0 23px,var(--line) 23px 24px)}
-.back{font:inherit;font-size:18px;background:none;border:none;color:var(--blue);text-decoration:underline wavy}
+.ph{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:30px;text-align:center;font-size:22px;background:#fff}
+.back{font:inherit;font-size:18px;background:none;border:none;color:var(--blue);text-decoration:underline wavy var(--red)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01s!important;transition-delay:0s!important}.doo{transform:none!important}}
 </style></head><body>
 <section id="env" class="scr on">
@@ -62,7 +64,7 @@ body{font-family:"Xingkai SC","STXingkai","Kaiti SC","STKaiti","KaiTi","楷体",
   <div class="envwrap" id="envBtn" role="button" aria-label="打开信封">
     <div class="note"></div>
     <div class="envbody"></div>
-    <div class="flap"><svg viewBox="0 0 100 62" preserveAspectRatio="none"><path d="M1.5 1.5 Q50 64 98.5 1.8" fill="#f6e9c6" stroke="#2f3b52" stroke-width="1.6" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg></div>
+    <div class="flap"><svg viewBox="0 0 100 62" preserveAspectRatio="none"><path d="M1.5 1.5 Q50 64 98.5 1.8" fill="#fff" stroke="#111" stroke-width="1.6" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg></div>
     <div class="heart">❤</div>
   </div>
   <div class="hint">轻点，拆开看看</div>
@@ -78,36 +80,36 @@ body{font-family:"Xingkai SC","STXingkai","Kaiti SC","STKaiti","KaiTi","楷体",
 
   <div class="beat">
     <span class="tag rv">我做了什么</span>
-    <svg class="doo" data-k="-.18" style="right:6px;top:30px;width:58px" viewBox="0 0 60 40"><path d="M5 30 Q15 5 30 22 T56 12" fill="none" stroke="#3d6fd6" stroke-width="2.2" stroke-linecap="round"/></svg>
-    <p class="ln rv">周六晚上说好七点去接你，我打游戏忘了时间，八点才出门。</p>
-    <p class="ln rv">你在楼下等了一个小时，给我打了三个电话，我一个都没接。</p>
-    <img class="fig rv r" src="assets/set1_boy_guilty.svg" alt="">
-    <p class="ln rv">是我<span class="mark">没把和你的约定放在心上</span>。</p>
+    <svg class="doo" data-k="-.18" style="right:6px;top:30px;width:58px" viewBox="0 0 60 40"><path d="M5 30 Q15 5 30 22 T56 12" fill="none" stroke="#111" stroke-width="2.2" stroke-linecap="round"/></svg>
+    <p class="ln tw">周六晚上说好七点去接你，我打游戏忘了时间，八点才出门。</p>
+    <p class="ln tw">你在楼下等了一个小时，给我打了三个电话，我一个都没接。</p>
+    <img class="fig rv r" src="assets/stick_oops.svg" alt="">
+    <p class="ln tw">是我<span class="mark">没把和你的约定放在心上</span>。</p>
   </div>
 
   <div class="beat">
     <span class="tag rv">我懂你为什么难过</span>
-    <svg class="doo" data-k=".22" style="left:-30px;top:120px;width:40px" viewBox="0 0 40 40"><path d="M20 34C8 26 3 18 7 11c3-5 10-5 13 1 3-6 10-6 13-1 4 7-1 15-13 23z" fill="none" stroke="#e0605a" stroke-width="2.2"/></svg>
-    <p class="ln rv">那天风很大，你一个人站在楼下，电话一次次打过来，一直没人接。</p>
-    <p class="ln rv">那一个小时，你一定又冷又着急，还担心我是不是出了什么事。</p>
-    <p class="ln rv">你可能也在想：<span class="mark">在我心里，你排在第几位</span>。</p>
-    <p class="ln rv">让你有这种感觉，是我做的事造成的。</p>
+    <svg class="doo" data-k=".22" style="left:-30px;top:120px;width:40px" viewBox="0 0 40 40"><path d="M20 34C8 26 3 18 7 11c3-5 10-5 13 1 3-6 10-6 13-1 4 7-1 15-13 23z" fill="none" stroke="#e8402f" stroke-width="2.2"/></svg>
+    <p class="ln tw">那天风很大，你一个人站在楼下，电话一次次打过来，一直没人接。</p>
+    <p class="ln tw">那一个小时，你一定又冷又着急，还担心我是不是出了什么事。</p>
+    <p class="ln tw">你可能也在想：<span class="mark">在我心里，你排在第几位</span>。</p>
+    <p class="ln tw">让你有这种感觉，是我做的事造成的。</p>
   </div>
 
   <div class="beat">
     <span class="tag rv">以后我会这样做</span>
     <svg class="doo" data-k="-.2" style="right:4px;top:40px;width:50px" viewBox="0 0 50 50"><circle cx="25" cy="27" r="17" fill="none" stroke="currentColor" stroke-width="2"/><path d="M25 16v11l7 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-    <p class="ln rv">以后约好的时间，我提前半小时定闹钟，出门前给你发一句「出发啦」。</p>
-    <img class="fig rv l" style="margin:6px auto 18px 0" src="assets/set1_boy_kneel.svg" alt="">
-    <p class="ln rv">这周六，还是那家店门口，这次换我先到，等你。</p>
-    <p class="ln rv">你不用急着回我。想聊的时候，我都在。</p>
+    <p class="ln tw">以后约好的时间，我提前半小时定闹钟，出门前给你发一句「出发啦」。</p>
+    <img class="fig rv l" style="margin:6px auto 18px 0" src="assets/stick_bow.svg" alt="">
+    <p class="ln tw">这周六，还是那家店门口，这次换我先到，等你。</p>
+    <p class="ln tw">你不用急着回我。想聊的时候，我都在。</p>
     <p class="sign rv">—— 阿哲</p>
   </div>
 
   <div class="final" id="final">
-    <svg class="doo rv l d1" style="left:-28px;top:16%;width:44px" viewBox="0 0 40 40"><path d="M20 4l4 11 12 1-9 8 3 12-10-7-10 7 3-12-9-8 12-1z" fill="none" stroke="#3d6fd6" stroke-width="2"/></svg>
-    <svg class="doo rv r d2" style="right:0;top:20%;width:40px" viewBox="0 0 40 40"><path d="M20 34C8 26 3 18 7 11c3-5 10-5 13 1 3-6 10-6 13-1 4 7-1 15-13 23z" fill="none" stroke="#e0605a" stroke-width="2.2"/></svg>
-    <img class="fig rv d1" src="assets/set1_boy_kneel.svg" alt="">
+    <svg class="doo rv l d1" style="left:-28px;top:16%;width:44px" viewBox="0 0 40 40"><path d="M20 4l4 11 12 1-9 8 3 12-10-7-10 7 3-12-9-8 12-1z" fill="none" stroke="#111" stroke-width="2"/></svg>
+    <svg class="doo rv r d2" style="right:0;top:20%;width:40px" viewBox="0 0 40 40"><path d="M20 34C8 26 3 18 7 11c3-5 10-5 13 1 3-6 10-6 13-1 4 7-1 15-13 23z" fill="none" stroke="#e8402f" stroke-width="2.2"/></svg>
+    <img class="fig rv d1" src="assets/stick_kneel.svg" alt="">
     <p class="big rv d2">小雨，信写完了。</p>
     <p class="small rv d3">接下来，你想怎样都可以。</p>
     <button class="btn a rv d4" data-go="phA">还在生气，想出出气</button>
@@ -133,4 +135,25 @@ fio.observe($('#final'));
 var doos=[].slice.call(document.querySelectorAll('.doo[data-k]')),tick=false,rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
 function par(){tick=false;var y=scrollY;doos.forEach(function(d){d.style.transform='translate3d(0,'+(y*d.dataset.k).toFixed(1)+'px,0) rotate('+(y*.03*Math.sign(d.dataset.k)).toFixed(1)+'deg)'})}
 if(!rm)addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(par)}},{passive:true});
+
+// typewriter: per paragraph, 36ms/char, tap finishes current, typed text persists
+var SPD=36,queue=[],cur=null,timer=null;
+document.querySelectorAll('.ln.tw').forEach(function(p){p.dataset.h=p.innerHTML;p.innerHTML='&nbsp;'});
+function finish(p){clearTimeout(timer);p.innerHTML=p.dataset.h;p.dataset.done=1;cur=null;next()}
+function next(){if(cur||!queue.length)return;cur=queue.shift();if(cur.dataset.done){cur=null;return next()}
+  var src=cur.dataset.h,tmp=document.createElement('div');tmp.innerHTML=src;
+  var chars=Array.from(tmp.textContent),i=0,p=cur;
+  if(rm)return finish(p);
+  (function step(){if(cur!==p)return;i++;
+    var n=i,out='',walk=function(node){node.childNodes.forEach(function(c){if(n<=0)return;
+      if(c.nodeType===3){var a=Array.from(c.textContent),s=a.slice(0,n).join('');n-=a.length;out+=s}
+      else{out+='<span class="'+c.className+'">';walk(c);out+='</span>'}})};
+    walk(tmp);p.innerHTML=out+'<span class="cur"></span>';
+    if(i>=chars.length)return finish(p);timer=setTimeout(step,SPD)})()}
+var tio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){queue.push(e.target);tio.unobserve(e.target)}});
+  queue.sort(function(a,b){return a.compareDocumentPosition(b)&2?1:-1});next()},{rootMargin:'0px 0px -18% 0px'});
+document.querySelectorAll('.ln.tw').forEach(function(p){tio.observe(p)});
+document.getElementById('letter').addEventListener('click',function(e){if(e.target.closest('button'))return;if(cur)finish(cur)});
+new IntersectionObserver(function(es){if(es[0].isIntersecting){if(cur)finish(cur);queue.forEach(function(p){p.innerHTML=p.dataset.h;p.dataset.done=1});queue=[];
+  document.querySelectorAll('.ln.tw:not([data-done])').forEach(function(p){p.innerHTML=p.dataset.h;p.dataset.done=1})}},{threshold:.3}).observe(document.getElementById('final'));
 </script></body></html>
