@@ -39,7 +39,7 @@ body{font-family:"ZCOOL KuaiLe","Kaiti SC","STKaiti","KaiTi",cursive,sans-serif;
 @keyframes breath{50%{transform:scale(1.04)}}
 /* ---------- letter ---------- */
 #letter{padding:34px 22px 0}
-.sheet{position:relative;background:var(--paper);border:2px solid var(--ink);border-radius:4px;padding:76px 24px 34svh;
+.sheet{position:relative;background:var(--paper);border:2px solid var(--ink);border-radius:4px;padding:76px 24px 70px;
  clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,0 100%)}
 .sheetwrap{position:relative}
 .sheetwrap.unfold{animation:unfold .4s var(--out) both}
@@ -52,82 +52,106 @@ body{font-family:"ZCOOL KuaiLe","Kaiti SC","STKaiti","KaiTi",cursive,sans-serif;
 .deco.in{opacity:1}
 .hello{font-size:28px;line-height:1.6}
 .sub{font-size:22px;line-height:1.9;color:var(--ink)}
-.hint{font-size:14px;color:var(--ink2);margin:18px 0 12svh;animation:nudge 1.8s ease-in-out infinite}
+.hint{font-size:14px;color:var(--ink2);margin:18px 0 4svh;animation:nudge 1.8s ease-in-out infinite}
 @keyframes nudge{50%{transform:translateY(5px)}}
-.beat{padding:6vh 0 0}.beat+.beat{padding-top:10vh}
+.beat{padding:10vh 0 2vh;position:relative}
 .tag{display:inline-block;font-size:14px;color:var(--ink);background:var(--coralL);border:2px solid var(--ink);border-radius:999px;padding:2px 12px;margin-bottom:14px}
-.ln{font-size:22px;line-height:1.9;margin:0 0 34svh;min-height:42px}.sheet .ln.sign{margin-bottom:0}
+.ln{font-size:22px;line-height:1.9;margin:0 0 22px;min-height:42px}.sheet .ln.sign{margin-bottom:0}
 .mark{background:linear-gradient(transparent 60%,rgba(246,217,139,.85) 60% 92%,transparent 92%)}
 .sign{text-align:right;margin-top:24px}
 .cur{display:inline-block;width:3px;height:1.05em;background:var(--coral);border-radius:2px;vertical-align:-3px;margin-left:2px;animation:blink .53s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
 .rv{opacity:0}.rv.in{opacity:1}
 /* ---------- the one hero ---------- */
-#hero{position:fixed;left:0;bottom:0;contain:layout paint style;backface-visibility:hidden;width:var(--hw,136px);z-index:4;pointer-events:none;will-change:transform;
- transform:translate3d(var(--x,-200px),var(--y,0px),0);transition:transform .9s var(--move)}
-#hero.snap{transition:none}
-#hero svg{display:block;width:100%;overflow:visible}
-#hero .flip{transform-box:view-box;transform-origin:60px 80px;transition:transform .25s ease}
-#hero.face-l .flip{transform:scaleX(-1)}
-#hero .bodyi,#hero .head,#hero .headi,#hero .legL,#hero .legR,#hero .armL,#hero .armR,#hero .heart,#hero .scr,#hero .eyes{transform-box:view-box}
-#hero .bodyi{transform-origin:60px 162px}
-#hero .head{transform-origin:60px 84px;transition:transform .4s var(--out)}
-#hero .headi{transform-origin:60px 84px}
-#hero .legL{transform-origin:53px 124px}#hero .legR{transform-origin:67px 124px}
-#hero .armL{transform-origin:44px 92px}#hero .armR{transform-origin:76px 92px}
-#hero .eyes{transition:transform .3s}
-#hero .heart{transform-origin:60px 104px;opacity:0;transform:scale(.4);transition:transform .45s var(--pop),opacity .3s}
-#hero .arms>g{opacity:0;transition:opacity .28s ease}
-#hero .brows,#hero .msad,#hero .tear,#hero .sweat{opacity:0;transition:opacity .3s}
-#hero .mouth{transition:opacity .3s}
+.kid svg{display:block;width:100%;overflow:visible}
+.kid .flip{transform-box:view-box;transform-origin:60px 80px;transition:transform .25s ease}
+.kid.face-l .flip{transform:scaleX(-1)}
+.kid .bodyi,.kid .head,.kid .headi,.kid .legL,.kid .legR,.kid .armL,.kid .armR,.kid .heart,.kid .scr,.kid .eyes{transform-box:view-box}
+.kid .bodyi{transform-origin:60px 162px}
+.kid .head{transform-origin:60px 84px;transition:transform .4s var(--out)}
+.kid .headi{transform-origin:60px 84px}
+.kid .legL{transform-origin:53px 124px}.kid .legR{transform-origin:67px 124px}
+.kid .armL{transform-origin:44px 92px}.kid .armR{transform-origin:76px 92px}
+.kid .eyes{transition:transform .3s}
+.kid .heart{transform-origin:60px 104px;opacity:0;transform:scale(.4);transition:transform .45s var(--pop),opacity .3s}
+.kid .arms>g{opacity:0;transition:opacity .28s ease}
+.kid .brows,.kid .msad,.kid .tear,.kid .sweat{opacity:0;transition:opacity .3s}
+.kid .mouth{transition:opacity .3s}
 /* pose: default arms down */
-#hero:not(.p-scratch):not(.p-give):not(.p-hold):not(.p-bounce) .a-down{opacity:1}
+.kid:not(.p-scratch):not(.p-give):not(.p-hold):not(.p-bounce) .a-down{opacity:1}
 /* walk */
-#hero.walking .legL,#hero.walking .armR{animation:swing .34s ease-in-out infinite alternate}
-#hero.walking .legR,#hero.walking .armL{animation:swing .34s ease-in-out infinite alternate-reverse}
-#hero.walking .bodyi{animation:step .17s ease-in-out infinite alternate}
+.kid.walking .legL,.kid.walking .armR{animation:swing .34s ease-in-out infinite alternate}
+.kid.walking .legR,.kid.walking .armL{animation:swing .34s ease-in-out infinite alternate-reverse}
+.kid.walking .bodyi{animation:step .17s ease-in-out infinite alternate}
 @keyframes swing{from{transform:rotate(-18deg)}to{transform:rotate(18deg)}}
 @keyframes step{from{transform:translateY(0) scale(1.03,.96)}to{transform:translateY(-5px) scale(1)}}
 /* settle after arriving */
-#hero.settle .bodyi{animation:settle .36s ease-out}
+.kid.settle .bodyi{animation:settle .36s ease-out}
 @keyframes settle{35%{transform:translateY(-6px) scale(.98,1.03)}70%{transform:translateY(0) scale(1.05,.94)}}
 /* scratch head */
-#hero.p-scratch .a-scratch,#hero.p-scratch .sweat{opacity:1}
-#hero.p-scratch .head{transform:rotate(-7deg)}
-#hero.p-scratch .scr{animation:scr .3s ease-in-out infinite alternate;transform-origin:90px 62px}
+.kid.p-scratch .a-scratch,.kid.p-scratch .sweat{opacity:1}
+.kid.p-scratch .head{transform:rotate(-7deg)}
+.kid.p-scratch .scr{animation:scr .3s ease-in-out infinite alternate;transform-origin:90px 62px}
 @keyframes scr{to{transform:translate(1.5px,-2px) rotate(4deg)}}
 /* peek */
-#hero.p-peek .head{transform:rotate(10deg)}
-#hero.p-peek .eyes{transform:translate(-3px,1px)}
+.kid.p-peek .head{transform:rotate(10deg)}
+.kid.p-peek .eyes{transform:translate(-3px,1px)}
 /* look around */
-#hero.p-look .headi{animation:look 2.4s ease-in-out infinite}
-#hero.p-look .eyes{animation:lookEye 2.4s ease-in-out infinite}
+.kid.p-look .headi{animation:look 2.4s ease-in-out infinite}
+.kid.p-look .eyes{animation:lookEye 2.4s ease-in-out infinite}
 @keyframes look{0%,100%{transform:rotate(0)}25%{transform:rotate(-6deg)}65%{transform:rotate(6deg)}}
 @keyframes lookEye{0%,100%{transform:none}25%{transform:translateX(-4px)}65%{transform:translateX(4px)}}
 /* aggrieved / sorry */
-#hero.p-sad .brows,#hero.p-sad .msad,#hero.p-sad .tear{opacity:1}
-#hero.p-sad .mouth{opacity:0}
-#hero.p-sad .head{transform:translateY(3px) rotate(-3deg)}
-#hero.p-sad .bodyi{animation:sigh 2.6s ease-in-out infinite}
+.kid.p-sad .brows,.kid.p-sad .msad,.kid.p-sad .tear{opacity:1}
+.kid.p-sad .mouth{opacity:0}
+.kid.p-sad .head{transform:translateY(3px) rotate(-3deg)}
+.kid.p-sad .bodyi{animation:sigh 2.6s ease-in-out infinite}
 @keyframes sigh{50%{transform:scale(1.02,.97)}}
 /* give heart */
-#hero.p-give .a-give{opacity:1}
-#hero.p-give .heart{opacity:1;transform:translate(30px,2px) scale(1.15)}
-#hero.p-give .head{transform:rotate(5deg) translateX(2px)}
-#hero.p-give .heart{animation:beat 1.2s ease-in-out .5s infinite}
+.kid.p-give .a-give{opacity:1}
+.kid.p-give .heart{opacity:1;transform:translate(30px,2px) scale(1.15)}
+.kid.p-give .head{transform:rotate(5deg) translateX(2px)}
+.kid.p-give .heart{animation:beat 1.2s ease-in-out .5s infinite}
 @keyframes beat{50%{transform:translate(30px,0) scale(1.25)}}
 /* hold heart quietly */
-#hero.p-hold .a-hold{opacity:1}
-#hero.p-hold .heart{opacity:1;transform:none}
-#hero.p-hold .bodyi{animation:float 2.2s ease-in-out infinite}
+.kid.p-hold .a-hold{opacity:1}
+.kid.p-hold .heart{opacity:1;transform:none}
+.kid.p-hold .bodyi{animation:float 2.2s ease-in-out infinite}
 @keyframes float{50%{transform:translateY(-2px)}}
 /* happy bounce */
-#hero.p-bounce .a-up{opacity:1}
-#hero.p-bounce .bodyi{animation:hop .5s ease-in-out 3}
+.kid.p-bounce .a-up{opacity:1}
+.kid.p-bounce .bodyi{animation:hop .5s ease-in-out 3}
 @keyframes hop{0%,100%{transform:none}30%{transform:translateY(0) scale(1.06,.92)}60%{transform:translateY(-14px) scale(.96,1.05)}}
 /* talking: subtle extra */
-#hero.talking .mouth{animation:talk .2s steps(2) infinite;transform-box:fill-box;transform-origin:center}
+.kid.talking .mouth{animation:talk .2s steps(2) infinite;transform-box:fill-box;transform-origin:center}
 @keyframes talk{50%{transform:scaleY(1.8)}}
+.kid{position:relative;width:var(--w,110px);pointer-events:none;opacity:0}
+.kid.in{opacity:1}
+.kid .eyes{transform-origin:60px 55px}
+.kid.in .eyes{animation:blink 4.2s ease-in-out infinite var(--bd,0s)}
+@keyframes blink{0%,94%,100%{transform:none}97%{transform:scaleY(.1)}}
+.kid .drop{animation:drop 2.4s ease-in infinite;transform-box:view-box}
+@keyframes drop{0%{transform:translate(0,0);opacity:0}15%{opacity:1}80%{transform:translate(2px,14px);opacity:1}100%{transform:translate(2px,18px);opacity:0}}
+.kid .pulse{transform-box:fill-box;transform-origin:center;animation:pulse 1.2s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.18)}}
+.kid .twk{transform-box:fill-box;transform-origin:center;animation:tw 2s ease-in-out infinite}
+.k-tuck{float:right;margin:-8px -6px 4px 8px;shape-outside:margin-box}
+.k-edge{position:absolute;right:-48px;width:118px;--w:118px}
+.k-sit{display:block;margin:-6px auto 6px;--w:96px}
+.k-give{float:left;margin:0 10px 4px -10px}
+.k-sign{float:left;margin:-30px 0 0 -4px;--w:84px}
+.k-end{margin:0 auto;--w:132px}
+.beat:after{content:"";display:block;clear:both}
+.ln{position:relative}
+.kid.p-signp .a-hold,.kid.p-signp .brows,.kid.p-signp .msad{opacity:1}.kid.p-signp .mouth{opacity:0}.kid.p-signp .head{transform:rotate(-4deg) translateY(2px)}
+.kid.p-bow .a-hold{opacity:1}.kid.p-bow .head{transform:rotate(12deg) translateY(4px)}.kid.p-bow .bodyi{transform:rotate(6deg)}
+.kid.p-bow .heart,.kid.p-signp .heart{opacity:0}
+.kid.p-signp .a-down,.kid.p-bow .a-down{opacity:0!important}
+.kid.p-peek .tear,.kid.p-peek .brows{opacity:1}
+@keyframes tw{50%{transform:rotate(25deg) scale(1.2)}}
+.k-envpeek .head{transform:rotate(-10deg)}
+.kid.k-envpeek{animation:envpk 2.6s ease-in-out infinite}
+@keyframes envpk{0%,100%{transform:translateX(0)}50%{transform:translateX(-6px)}}
 /* ---------- ending ---------- */
 .final{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:24px 0 calc(24px + env(safe-area-inset-bottom))}
 .endq{font-size:16px;line-height:1.8;text-align:center;color:var(--ink2);margin-bottom:6px}
@@ -156,35 +180,7 @@ body{font-family:"ZCOOL KuaiLe","Kaiti SC","STKaiti","KaiTi",cursive,sans-serif;
     <div class="flap"><svg viewBox="0 0 100 56" preserveAspectRatio="none"><path d="M1 1L50 54 99 1" fill="#FBE3E0" stroke="#3A2A24" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg></div>
     <svg class="seal" viewBox="0 0 46 42"><path d="M23 39C8 30 2 21 4 12c2-8 13-10 19-1 6-9 17-7 19 1 2 9-4 18-19 27z" fill="#F28C7C" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/></svg>
     <div class="tape"></div>
-  </div>
-  <button class="pill breath" id="openBtn">点开</button>
-</section>
-
-<section id="letter" class="scr">
- <div class="sheetwrap" id="sheetwrap">
-  <div class="tape deco" data-d="0"></div>
-  <svg class="fold" viewBox="0 0 20 20"><path d="M0 0L20 20H0Z" fill="#FBE3E0" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/><path d="M0 0L20 20" stroke="#3A2A24" stroke-width="2"/></svg>
-  <div class="stamp deco" data-d="1"><svg width="26" viewBox="0 0 46 42"><path d="M23 39C8 30 2 21 4 12c2-8 13-10 19-1 6-9 17-7 19 1 2 9-4 18-19 27z" fill="#F28C7C" stroke="#3A2A24" stroke-width="2.5"/></svg></div>
-  <svg class="flower deco" data-d="2" viewBox="0 0 34 40"><g stroke="#3A2A24" stroke-width="1.6" stroke-linejoin="round"><path d="M17 20v18M17 30q-7-5-10-1 4 4 10 1M17 33q7-6 10-2-4 4-10 2" fill="#B9C48A"/><g fill="#FFF9EC"><circle cx="17" cy="8" r="5"/><circle cx="25" cy="14" r="5"/><circle cx="22" cy="23" r="5"/><circle cx="12" cy="23" r="5"/><circle cx="9" cy="14" r="5"/></g><circle cx="17" cy="16" r="3.5" fill="#F6D98B"/></g></svg>
-  <div class="sheet" id="sheet">
-   <div class="hello">给 小鱼：</div>
-   <p class="sub">有些话，想好好写给你。</p>
-   <div class="hint">慢慢往下看 ↓</div>
-<div class="beat"><span class="tag rv">我做了什么</span><p class="ln tw">周六晚上说好七点去接你，我打游戏忘了时间，八点才出门。</p><p class="ln tw">你在楼下等了一个小时，给我打了三个电话，我一个都没接。</p><p class="ln tw">是我<span class="mark">没把和你的约定放在心上</span>。</p></div>
-<div class="beat"><span class="tag rv">我懂你为什么难过</span><p class="ln tw">那天风很大，你一个人站在楼下，电话一次次打过来，一直没人接。</p><p class="ln tw">那一个小时，你一定又冷又着急，还担心我是不是出了什么事。</p><p class="ln tw">你可能也在想：<span class="mark">在我心里，你排在第几位</span>。</p><p class="ln tw">让你有这种感觉，是我做的事造成的。</p></div>
-<div class="beat"><span class="tag rv">以后我会这样做</span><p class="ln tw">以后约好的时间，我提前半小时定闹钟，出门前给你发一句「出发啦」。</p><p class="ln tw">这周六，还是那家店门口，这次换我先到，等你。</p><p class="ln tw">你不用急着回我。想聊的时候，我都在。</p></div>
-<p class="ln tw sign">—— 阿哲</p>
-  </div>
- </div>
- <div class="final" id="final">
-   <div class="endsp"><img id="endArt" data-slot="ending" alt=""></div>
-   <p class="endt rv">小鱼，信写完了。</p>
-   <p class="endq rv">接下来，你想怎样都可以</p>
-   <button class="card c1 hide" id="c1" data-go="phA"><svg viewBox="0 0 28 28" fill="none" stroke="#3A2A24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14v-4a2 2 0 0 1 4 0v3M13 12V8a2 2 0 0 1 4 0v5M17 12V9a2 2 0 0 1 4 0v6M9 14q-3 1-1 6 2 5 6 6h4q5-2 4-11" fill="#FFF1E6"/><path d="M3 6l2 2M14 1v3M24 5l-2 2"/></svg>还在生气，想出出气</button>
-   <button class="card c2 hide" id="c2" data-go="phB"><svg viewBox="0 0 28 28" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"><rect x="4" y="11" width="20" height="6" rx="1" fill="#F28C7C"/><path d="M6 17v9h16v-9z" fill="#F28C7C"/><path d="M14 11v15" fill="none"/><path d="M14 11q-7-8-8-2 0 2 8 2M14 11q7-8 8-2 0 2-8 2" fill="#F6D98B"/></svg>看看他准备了什么</button>
- </div>
-</section>
-<div id="hero" class="snap"><svg viewBox="0 -14 120 184" aria-hidden="true"><g class="flip"><g class="bodyi">
+    <div class="kid k-envpeek p-peek" data-enter="none" style="position:absolute;right:-52px;top:8%;--w:96px;z-index:0;opacity:1" data-slot="k-envpeek"><svg viewBox="0 -14 120 184" aria-hidden="true"><g class="flip"><g class="bodyi">
 <ellipse class="shadow" cx="60" cy="163" rx="22" ry="3.5" fill="#3A2A24" opacity=".12"/>
 <g class="legL"><path d="M49 124h9v32h-9z" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><ellipse cx="52" cy="158" rx="8" ry="4.5" fill="#7A4B33" stroke="#3A2A24" stroke-width="2"/></g>
 <g class="legR"><path d="M62 124h9v32h-9z" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><ellipse cx="69" cy="158" rx="8" ry="4.5" fill="#7A4B33" stroke="#3A2A24" stroke-width="2"/></g>
@@ -211,74 +207,224 @@ body{font-family:"ZCOOL KuaiLe","Kaiti SC","STKaiti","KaiTi",cursive,sans-serif;
 </g>
 <g class="heart"><path transform="translate(60 98) scale(1)" d="M0 9C-10 2-13-4-11-8c2-4 8-5 11 0 3-5 9-4 11 0 2 4-1 10-11 17z" fill="#F28C7C" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/></g>
 </g></g></svg></div>
+  </div>
+  <button class="pill breath" id="openBtn">点开</button>
+</section>
+
+<section id="letter" class="scr">
+ <div class="sheetwrap" id="sheetwrap">
+  <div class="tape deco" data-d="0"></div>
+  <svg class="fold" viewBox="0 0 20 20"><path d="M0 0L20 20H0Z" fill="#FBE3E0" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/><path d="M0 0L20 20" stroke="#3A2A24" stroke-width="2"/></svg>
+  <div class="stamp deco" data-d="1"><svg width="26" viewBox="0 0 46 42"><path d="M23 39C8 30 2 21 4 12c2-8 13-10 19-1 6-9 17-7 19 1 2 9-4 18-19 27z" fill="#F28C7C" stroke="#3A2A24" stroke-width="2.5"/></svg></div>
+  <svg class="flower deco" data-d="2" viewBox="0 0 34 40"><g stroke="#3A2A24" stroke-width="1.6" stroke-linejoin="round"><path d="M17 20v18M17 30q-7-5-10-1 4 4 10 1M17 33q7-6 10-2-4 4-10 2" fill="#B9C48A"/><g fill="#FFF9EC"><circle cx="17" cy="8" r="5"/><circle cx="25" cy="14" r="5"/><circle cx="22" cy="23" r="5"/><circle cx="12" cy="23" r="5"/><circle cx="9" cy="14" r="5"/></g><circle cx="17" cy="16" r="3.5" fill="#F6D98B"/></g></svg>
+  <div class="sheet" id="sheet">
+   <div class="hello">给 小鱼：</div>
+   <p class="sub">有些话，想好好写给你。</p>
+   <div class="hint">慢慢往下看 ↓</div>
+<div class="beat"><span class="tag rv">我做了什么</span><p class="ln tw">周六晚上说好七点去接你，我打游戏忘了时间，八点才出门。</p><div class="kid k-tuck p-scratch" data-enter="pop" style="" data-slot="k-tuck"><svg viewBox="0 -14 120 184" aria-hidden="true"><g class="flip"><g class="bodyi">
+<ellipse class="shadow" cx="60" cy="163" rx="22" ry="3.5" fill="#3A2A24" opacity=".12"/>
+<g class="legL"><path d="M49 124h9v32h-9z" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><ellipse cx="52" cy="158" rx="8" ry="4.5" fill="#7A4B33" stroke="#3A2A24" stroke-width="2"/></g>
+<g class="legR"><path d="M62 124h9v32h-9z" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><ellipse cx="69" cy="158" rx="8" ry="4.5" fill="#7A4B33" stroke="#3A2A24" stroke-width="2"/></g>
+<path d="M41 110h38l3 20h-17l-5-7-5 7h-17z" fill="#E8D9BF" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
+<path d="M44 84q16-6 32 0l10 13-8 5-2-4v16h-32v-16l-2 4-8-5z" fill="#8FBDE8" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
+<g class="head"><g class="headi">
+<circle cx="27" cy="54" r="6" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><circle cx="93" cy="54" r="6" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/>
+<circle cx="60" cy="50" r="33" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/>
+<path d="M26 52q-4-34 30-38 6-6 12-1 4-4 8 1 22 6 18 38-5-11-12-14-3 7-13 5-6 6-15 2-8 5-14-1-9 3-14 8z" fill="#6B4430" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
+<g class="eyes"><ellipse cx="49" cy="55" rx="3.3" ry="4.3" fill="#3A2A24"/><ellipse cx="71" cy="55" rx="3.3" ry="4.3" fill="#3A2A24"/><circle cx="50.2" cy="53.4" r="1.1" fill="#fff"/><circle cx="72.2" cy="53.4" r="1.1" fill="#fff"/></g>
+<g class="brows"><path d="M43 45l9-3M77 45l-9-3" stroke="#3A2A24" stroke-width="2" stroke-linecap="round"/></g>
+<circle cx="41" cy="64" r="5" fill="#F7B5B0"/><circle cx="79" cy="64" r="5" fill="#F7B5B0"/>
+<path class="mouth" d="M55 66q5 5 10 0" stroke="#3A2A24" stroke-width="2" fill="none" stroke-linecap="round"/>
+<path class="msad" d="M55 69q5-4 10 0" stroke="#3A2A24" stroke-width="2" fill="none" stroke-linecap="round"/>
+<ellipse class="tear" cx="46" cy="64" rx="2" ry="3" fill="#8FBDE8" stroke="#3A2A24" stroke-width="1"/>
+<g class="sweat"><path d="M98 22l6-6M102 32l8-2M94 14l2-8" stroke="#3A2A24" stroke-width="2" stroke-linecap="round"/></g>
+</g></g>
+<g class="arms">
+<g class="a-down"><g class="armL"><path d="M44 92L35 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L35 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g><g class="armR"><path d="M76 92L85 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92L85 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g></g>
+<g class="a-scratch"><path d="M44 92L35 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L35 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><g class="scr"><path d="M76 92Q98 82 90 60" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q98 82 90 60" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g></g>
+<g class="a-give"><path d="M44 92Q62 112 88 104" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92Q62 112 88 104" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92Q86 106 92 102" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q86 106 92 102" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
+<g class="a-hold"><path d="M44 92Q44 110 54 106" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92Q44 110 54 106" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92Q76 110 66 106" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q76 110 66 106" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
+<g class="a-up"><path d="M44 92L26 70" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L26 70" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92L94 70" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92L94 70" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
+</g>
+<g class="heart"><path transform="translate(60 98) scale(1)" d="M0 9C-10 2-13-4-11-8c2-4 8-5 11 0 3-5 9-4 11 0 2 4-1 10-11 17z" fill="#F28C7C" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/></g>
+<path class="drop" d="M90 30q4 6 0 9q-4-3 0-9z" fill="#8FBDE8" stroke="#3A2A24" stroke-width="1.5"/></g></g></svg></div><p class="ln tw">你在楼下等了一个小时，给我打了三个电话，我一个都没接。</p><p class="ln tw">是我<span class="mark">没把和你的约定放在心上</span>。</p></div>
+<div class="beat"><span class="tag rv">我懂你为什么难过</span><div class="kid k-edge p-peek" data-enter="slide" style="top:30%;--bd:1.3s" data-slot="k-edge"><svg viewBox="0 -14 120 184" aria-hidden="true"><g class="flip"><g class="bodyi">
+<ellipse class="shadow" cx="60" cy="163" rx="22" ry="3.5" fill="#3A2A24" opacity=".12"/>
+<g class="legL"><path d="M49 124h9v32h-9z" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><ellipse cx="52" cy="158" rx="8" ry="4.5" fill="#7A4B33" stroke="#3A2A24" stroke-width="2"/></g>
+<g class="legR"><path d="M62 124h9v32h-9z" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><ellipse cx="69" cy="158" rx="8" ry="4.5" fill="#7A4B33" stroke="#3A2A24" stroke-width="2"/></g>
+<path d="M41 110h38l3 20h-17l-5-7-5 7h-17z" fill="#E8D9BF" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
+<path d="M44 84q16-6 32 0l10 13-8 5-2-4v16h-32v-16l-2 4-8-5z" fill="#8FBDE8" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
+<g class="head"><g class="headi">
+<circle cx="27" cy="54" r="6" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><circle cx="93" cy="54" r="6" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/>
+<circle cx="60" cy="50" r="33" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/>
+<path d="M26 52q-4-34 30-38 6-6 12-1 4-4 8 1 22 6 18 38-5-11-12-14-3 7-13 5-6 6-15 2-8 5-14-1-9 3-14 8z" fill="#6B4430" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
+<g class="eyes"><ellipse cx="49" cy="55" rx="3.3" ry="4.3" fill="#3A2A24"/><ellipse cx="71" cy="55" rx="3.3" ry="4.3" fill="#3A2A24"/><circle cx="50.2" cy="53.4" r="1.1" fill="#fff"/><circle cx="72.2" cy="53.4" r="1.1" fill="#fff"/></g>
+<g class="brows"><path d="M43 45l9-3M77 45l-9-3" stroke="#3A2A24" stroke-width="2" stroke-linecap="round"/></g>
+<circle cx="41" cy="64" r="5" fill="#F7B5B0"/><circle cx="79" cy="64" r="5" fill="#F7B5B0"/>
+<path class="mouth" d="M55 66q5 5 10 0" stroke="#3A2A24" stroke-width="2" fill="none" stroke-linecap="round"/>
+<path class="msad" d="M55 69q5-4 10 0" stroke="#3A2A24" stroke-width="2" fill="none" stroke-linecap="round"/>
+<ellipse class="tear" cx="46" cy="64" rx="2" ry="3" fill="#8FBDE8" stroke="#3A2A24" stroke-width="1"/>
+<g class="sweat"><path d="M98 22l6-6M102 32l8-2M94 14l2-8" stroke="#3A2A24" stroke-width="2" stroke-linecap="round"/></g>
+</g></g>
+<g class="arms">
+<g class="a-down"><g class="armL"><path d="M44 92L35 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L35 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g><g class="armR"><path d="M76 92L85 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92L85 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g></g>
+<g class="a-scratch"><path d="M44 92L35 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L35 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><g class="scr"><path d="M76 92Q98 82 90 60" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q98 82 90 60" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g></g>
+<g class="a-give"><path d="M44 92Q62 112 88 104" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92Q62 112 88 104" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92Q86 106 92 102" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q86 106 92 102" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
+<g class="a-hold"><path d="M44 92Q44 110 54 106" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92Q44 110 54 106" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92Q76 110 66 106" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q76 110 66 106" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
+<g class="a-up"><path d="M44 92L26 70" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L26 70" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92L94 70" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92L94 70" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
+</g>
+<g class="heart"><path transform="translate(60 98) scale(1)" d="M0 9C-10 2-13-4-11-8c2-4 8-5 11 0 3-5 9-4 11 0 2 4-1 10-11 17z" fill="#F28C7C" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/></g>
+</g></g></svg></div><p class="ln tw">那天风很大，你一个人站在楼下，电话一次次打过来，一直没人接。</p><p class="ln tw">那一个小时，你一定又冷又着急，还担心我是不是出了什么事。</p><p class="ln tw">你可能也在想：<span class="mark">在我心里，你排在第几位</span>。</p><p class="ln tw">让你有这种感觉，是我做的事造成的。</p><div class="kid k-sit p-signp" data-enter="drop" style="--bd:2.1s" data-slot="k-sit"><svg viewBox="0 -14 120 184" aria-hidden="true"><g class="flip"><g class="bodyi">
+<ellipse class="shadow" cx="60" cy="163" rx="22" ry="3.5" fill="#3A2A24" opacity=".12"/>
+<g class="legL"><path d="M49 124h9v32h-9z" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><ellipse cx="52" cy="158" rx="8" ry="4.5" fill="#7A4B33" stroke="#3A2A24" stroke-width="2"/></g>
+<g class="legR"><path d="M62 124h9v32h-9z" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><ellipse cx="69" cy="158" rx="8" ry="4.5" fill="#7A4B33" stroke="#3A2A24" stroke-width="2"/></g>
+<path d="M41 110h38l3 20h-17l-5-7-5 7h-17z" fill="#E8D9BF" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
+<path d="M44 84q16-6 32 0l10 13-8 5-2-4v16h-32v-16l-2 4-8-5z" fill="#8FBDE8" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
+<g class="head"><g class="headi">
+<circle cx="27" cy="54" r="6" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><circle cx="93" cy="54" r="6" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/>
+<circle cx="60" cy="50" r="33" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/>
+<path d="M26 52q-4-34 30-38 6-6 12-1 4-4 8 1 22 6 18 38-5-11-12-14-3 7-13 5-6 6-15 2-8 5-14-1-9 3-14 8z" fill="#6B4430" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
+<g class="eyes"><ellipse cx="49" cy="55" rx="3.3" ry="4.3" fill="#3A2A24"/><ellipse cx="71" cy="55" rx="3.3" ry="4.3" fill="#3A2A24"/><circle cx="50.2" cy="53.4" r="1.1" fill="#fff"/><circle cx="72.2" cy="53.4" r="1.1" fill="#fff"/></g>
+<g class="brows"><path d="M43 45l9-3M77 45l-9-3" stroke="#3A2A24" stroke-width="2" stroke-linecap="round"/></g>
+<circle cx="41" cy="64" r="5" fill="#F7B5B0"/><circle cx="79" cy="64" r="5" fill="#F7B5B0"/>
+<path class="mouth" d="M55 66q5 5 10 0" stroke="#3A2A24" stroke-width="2" fill="none" stroke-linecap="round"/>
+<path class="msad" d="M55 69q5-4 10 0" stroke="#3A2A24" stroke-width="2" fill="none" stroke-linecap="round"/>
+<ellipse class="tear" cx="46" cy="64" rx="2" ry="3" fill="#8FBDE8" stroke="#3A2A24" stroke-width="1"/>
+<g class="sweat"><path d="M98 22l6-6M102 32l8-2M94 14l2-8" stroke="#3A2A24" stroke-width="2" stroke-linecap="round"/></g>
+</g></g>
+<g class="arms">
+<g class="a-down"><g class="armL"><path d="M44 92L35 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L35 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g><g class="armR"><path d="M76 92L85 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92L85 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g></g>
+<g class="a-scratch"><path d="M44 92L35 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L35 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><g class="scr"><path d="M76 92Q98 82 90 60" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q98 82 90 60" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g></g>
+<g class="a-give"><path d="M44 92Q62 112 88 104" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92Q62 112 88 104" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92Q86 106 92 102" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q86 106 92 102" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
+<g class="a-hold"><path d="M44 92Q44 110 54 106" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92Q44 110 54 106" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92Q76 110 66 106" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q76 110 66 106" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
+<g class="a-up"><path d="M44 92L26 70" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L26 70" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92L94 70" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92L94 70" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
+</g>
+<g class="heart"><path transform="translate(60 98) scale(1)" d="M0 9C-10 2-13-4-11-8c2-4 8-5 11 0 3-5 9-4 11 0 2 4-1 10-11 17z" fill="#F28C7C" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/></g>
+<g><rect x="34" y="94" width="52" height="24" rx="4" fill="#FFF9EC" stroke="#3A2A24" stroke-width="2"/><text x="60" y="111" font-size="12" text-anchor="middle" fill="#3A2A24" font-family="ZCOOL KuaiLe,sans-serif">对不起</text></g></g></g></svg></div></div>
+<div class="beat"><span class="tag rv">以后我会这样做</span><div class="kid k-give p-give" data-enter="wobble" style="--bd:.7s" data-slot="k-give"><svg viewBox="0 -14 120 184" aria-hidden="true"><g class="flip"><g class="bodyi">
+<ellipse class="shadow" cx="60" cy="163" rx="22" ry="3.5" fill="#3A2A24" opacity=".12"/>
+<g class="legL"><path d="M49 124h9v32h-9z" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><ellipse cx="52" cy="158" rx="8" ry="4.5" fill="#7A4B33" stroke="#3A2A24" stroke-width="2"/></g>
+<g class="legR"><path d="M62 124h9v32h-9z" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><ellipse cx="69" cy="158" rx="8" ry="4.5" fill="#7A4B33" stroke="#3A2A24" stroke-width="2"/></g>
+<path d="M41 110h38l3 20h-17l-5-7-5 7h-17z" fill="#E8D9BF" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
+<path d="M44 84q16-6 32 0l10 13-8 5-2-4v16h-32v-16l-2 4-8-5z" fill="#8FBDE8" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
+<g class="head"><g class="headi">
+<circle cx="27" cy="54" r="6" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><circle cx="93" cy="54" r="6" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/>
+<circle cx="60" cy="50" r="33" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/>
+<path d="M26 52q-4-34 30-38 6-6 12-1 4-4 8 1 22 6 18 38-5-11-12-14-3 7-13 5-6 6-15 2-8 5-14-1-9 3-14 8z" fill="#6B4430" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
+<g class="eyes"><ellipse cx="49" cy="55" rx="3.3" ry="4.3" fill="#3A2A24"/><ellipse cx="71" cy="55" rx="3.3" ry="4.3" fill="#3A2A24"/><circle cx="50.2" cy="53.4" r="1.1" fill="#fff"/><circle cx="72.2" cy="53.4" r="1.1" fill="#fff"/></g>
+<g class="brows"><path d="M43 45l9-3M77 45l-9-3" stroke="#3A2A24" stroke-width="2" stroke-linecap="round"/></g>
+<circle cx="41" cy="64" r="5" fill="#F7B5B0"/><circle cx="79" cy="64" r="5" fill="#F7B5B0"/>
+<path class="mouth" d="M55 66q5 5 10 0" stroke="#3A2A24" stroke-width="2" fill="none" stroke-linecap="round"/>
+<path class="msad" d="M55 69q5-4 10 0" stroke="#3A2A24" stroke-width="2" fill="none" stroke-linecap="round"/>
+<ellipse class="tear" cx="46" cy="64" rx="2" ry="3" fill="#8FBDE8" stroke="#3A2A24" stroke-width="1"/>
+<g class="sweat"><path d="M98 22l6-6M102 32l8-2M94 14l2-8" stroke="#3A2A24" stroke-width="2" stroke-linecap="round"/></g>
+</g></g>
+<g class="arms">
+<g class="a-down"><g class="armL"><path d="M44 92L35 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L35 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g><g class="armR"><path d="M76 92L85 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92L85 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g></g>
+<g class="a-scratch"><path d="M44 92L35 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L35 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><g class="scr"><path d="M76 92Q98 82 90 60" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q98 82 90 60" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g></g>
+<g class="a-give"><path d="M44 92Q62 112 88 104" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92Q62 112 88 104" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92Q86 106 92 102" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q86 106 92 102" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
+<g class="a-hold"><path d="M44 92Q44 110 54 106" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92Q44 110 54 106" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92Q76 110 66 106" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q76 110 66 106" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
+<g class="a-up"><path d="M44 92L26 70" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L26 70" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92L94 70" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92L94 70" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
+</g>
+<g class="heart"><path transform="translate(60 98) scale(1)" d="M0 9C-10 2-13-4-11-8c2-4 8-5 11 0 3-5 9-4 11 0 2 4-1 10-11 17z" fill="#F28C7C" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/></g>
+<path class="twk" d="M104 70l3 6 6 .5-4.6 4 1.5 6.2-5.9-3.4-5.9 3.4 1.5-6.2-4.6-4 6-.5z" fill="#F6D98B" stroke="#3A2A24" stroke-width="1.5"/></g></g></svg></div><p class="ln tw">以后约好的时间，我提前半小时定闹钟，出门前给你发一句「出发啦」。</p><p class="ln tw">这周六，还是那家店门口，这次换我先到，等你。</p><p class="ln tw">你不用急着回我。想聊的时候，我都在。</p></div>
+<div class="kid k-sign p-bow" data-enter="pop" style="--bd:2.8s" data-slot="k-sign"><svg viewBox="0 -14 120 184" aria-hidden="true"><g class="flip"><g class="bodyi">
+<ellipse class="shadow" cx="60" cy="163" rx="22" ry="3.5" fill="#3A2A24" opacity=".12"/>
+<g class="legL"><path d="M49 124h9v32h-9z" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><ellipse cx="52" cy="158" rx="8" ry="4.5" fill="#7A4B33" stroke="#3A2A24" stroke-width="2"/></g>
+<g class="legR"><path d="M62 124h9v32h-9z" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><ellipse cx="69" cy="158" rx="8" ry="4.5" fill="#7A4B33" stroke="#3A2A24" stroke-width="2"/></g>
+<path d="M41 110h38l3 20h-17l-5-7-5 7h-17z" fill="#E8D9BF" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
+<path d="M44 84q16-6 32 0l10 13-8 5-2-4v16h-32v-16l-2 4-8-5z" fill="#8FBDE8" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
+<g class="head"><g class="headi">
+<circle cx="27" cy="54" r="6" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><circle cx="93" cy="54" r="6" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/>
+<circle cx="60" cy="50" r="33" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/>
+<path d="M26 52q-4-34 30-38 6-6 12-1 4-4 8 1 22 6 18 38-5-11-12-14-3 7-13 5-6 6-15 2-8 5-14-1-9 3-14 8z" fill="#6B4430" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
+<g class="eyes"><ellipse cx="49" cy="55" rx="3.3" ry="4.3" fill="#3A2A24"/><ellipse cx="71" cy="55" rx="3.3" ry="4.3" fill="#3A2A24"/><circle cx="50.2" cy="53.4" r="1.1" fill="#fff"/><circle cx="72.2" cy="53.4" r="1.1" fill="#fff"/></g>
+<g class="brows"><path d="M43 45l9-3M77 45l-9-3" stroke="#3A2A24" stroke-width="2" stroke-linecap="round"/></g>
+<circle cx="41" cy="64" r="5" fill="#F7B5B0"/><circle cx="79" cy="64" r="5" fill="#F7B5B0"/>
+<path class="mouth" d="M55 66q5 5 10 0" stroke="#3A2A24" stroke-width="2" fill="none" stroke-linecap="round"/>
+<path class="msad" d="M55 69q5-4 10 0" stroke="#3A2A24" stroke-width="2" fill="none" stroke-linecap="round"/>
+<ellipse class="tear" cx="46" cy="64" rx="2" ry="3" fill="#8FBDE8" stroke="#3A2A24" stroke-width="1"/>
+<g class="sweat"><path d="M98 22l6-6M102 32l8-2M94 14l2-8" stroke="#3A2A24" stroke-width="2" stroke-linecap="round"/></g>
+</g></g>
+<g class="arms">
+<g class="a-down"><g class="armL"><path d="M44 92L35 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L35 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g><g class="armR"><path d="M76 92L85 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92L85 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g></g>
+<g class="a-scratch"><path d="M44 92L35 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L35 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><g class="scr"><path d="M76 92Q98 82 90 60" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q98 82 90 60" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g></g>
+<g class="a-give"><path d="M44 92Q62 112 88 104" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92Q62 112 88 104" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92Q86 106 92 102" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q86 106 92 102" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
+<g class="a-hold"><path d="M44 92Q44 110 54 106" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92Q44 110 54 106" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92Q76 110 66 106" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q76 110 66 106" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
+<g class="a-up"><path d="M44 92L26 70" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L26 70" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92L94 70" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92L94 70" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
+</g>
+<g class="heart"><path transform="translate(60 98) scale(1)" d="M0 9C-10 2-13-4-11-8c2-4 8-5 11 0 3-5 9-4 11 0 2 4-1 10-11 17z" fill="#F28C7C" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/></g>
+<path class="pulse" d="M60 100c-3-4-9-1-6 3l6 6 6-6c3-4-3-7-6-3z" fill="#F28C7C" stroke="#3A2A24" stroke-width="1.5"/></g></g></svg></div><p class="ln tw sign">—— 阿哲</p>
+  </div>
+ </div>
+ <div class="final" id="final">
+   <div class="endsp"><img id="endArt" data-slot="ending" alt=""><div class="kid k-end p-hold" data-enter="pop" style="--bd:1.6s" data-slot="k-end"><svg viewBox="0 -14 120 184" aria-hidden="true"><g class="flip"><g class="bodyi">
+<ellipse class="shadow" cx="60" cy="163" rx="22" ry="3.5" fill="#3A2A24" opacity=".12"/>
+<g class="legL"><path d="M49 124h9v32h-9z" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><ellipse cx="52" cy="158" rx="8" ry="4.5" fill="#7A4B33" stroke="#3A2A24" stroke-width="2"/></g>
+<g class="legR"><path d="M62 124h9v32h-9z" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><ellipse cx="69" cy="158" rx="8" ry="4.5" fill="#7A4B33" stroke="#3A2A24" stroke-width="2"/></g>
+<path d="M41 110h38l3 20h-17l-5-7-5 7h-17z" fill="#E8D9BF" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
+<path d="M44 84q16-6 32 0l10 13-8 5-2-4v16h-32v-16l-2 4-8-5z" fill="#8FBDE8" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
+<g class="head"><g class="headi">
+<circle cx="27" cy="54" r="6" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/><circle cx="93" cy="54" r="6" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/>
+<circle cx="60" cy="50" r="33" fill="#FFF1E6" stroke="#3A2A24" stroke-width="2"/>
+<path d="M26 52q-4-34 30-38 6-6 12-1 4-4 8 1 22 6 18 38-5-11-12-14-3 7-13 5-6 6-15 2-8 5-14-1-9 3-14 8z" fill="#6B4430" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/>
+<g class="eyes"><ellipse cx="49" cy="55" rx="3.3" ry="4.3" fill="#3A2A24"/><ellipse cx="71" cy="55" rx="3.3" ry="4.3" fill="#3A2A24"/><circle cx="50.2" cy="53.4" r="1.1" fill="#fff"/><circle cx="72.2" cy="53.4" r="1.1" fill="#fff"/></g>
+<g class="brows"><path d="M43 45l9-3M77 45l-9-3" stroke="#3A2A24" stroke-width="2" stroke-linecap="round"/></g>
+<circle cx="41" cy="64" r="5" fill="#F7B5B0"/><circle cx="79" cy="64" r="5" fill="#F7B5B0"/>
+<path class="mouth" d="M55 66q5 5 10 0" stroke="#3A2A24" stroke-width="2" fill="none" stroke-linecap="round"/>
+<path class="msad" d="M55 69q5-4 10 0" stroke="#3A2A24" stroke-width="2" fill="none" stroke-linecap="round"/>
+<ellipse class="tear" cx="46" cy="64" rx="2" ry="3" fill="#8FBDE8" stroke="#3A2A24" stroke-width="1"/>
+<g class="sweat"><path d="M98 22l6-6M102 32l8-2M94 14l2-8" stroke="#3A2A24" stroke-width="2" stroke-linecap="round"/></g>
+</g></g>
+<g class="arms">
+<g class="a-down"><g class="armL"><path d="M44 92L35 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L35 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g><g class="armR"><path d="M76 92L85 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92L85 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g></g>
+<g class="a-scratch"><path d="M44 92L35 114" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L35 114" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><g class="scr"><path d="M76 92Q98 82 90 60" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q98 82 90 60" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g></g>
+<g class="a-give"><path d="M44 92Q62 112 88 104" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92Q62 112 88 104" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92Q86 106 92 102" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q86 106 92 102" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
+<g class="a-hold"><path d="M44 92Q44 110 54 106" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92Q44 110 54 106" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92Q76 110 66 106" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92Q76 110 66 106" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
+<g class="a-up"><path d="M44 92L26 70" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M44 92L26 70" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M76 92L94 70" stroke="#3A2A24" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M76 92L94 70" stroke="#FFF1E6" stroke-width="5" stroke-linecap="round" fill="none"/></g>
+</g>
+<g class="heart"><path transform="translate(60 98) scale(1)" d="M0 9C-10 2-13-4-11-8c2-4 8-5 11 0 3-5 9-4 11 0 2 4-1 10-11 17z" fill="#F28C7C" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"/></g>
+</g></g></svg></div></div>
+   <p class="endt rv">小鱼，信写完了。</p>
+   <p class="endq rv">接下来，你想怎样都可以</p>
+   <button class="card c1 hide" id="c1" data-go="phA"><svg viewBox="0 0 28 28" fill="none" stroke="#3A2A24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14v-4a2 2 0 0 1 4 0v3M13 12V8a2 2 0 0 1 4 0v5M17 12V9a2 2 0 0 1 4 0v6M9 14q-3 1-1 6 2 5 6 6h4q5-2 4-11" fill="#FFF1E6"/><path d="M3 6l2 2M14 1v3M24 5l-2 2"/></svg>还在生气，想出出气</button>
+   <button class="card c2 hide" id="c2" data-go="phB"><svg viewBox="0 0 28 28" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"><rect x="4" y="11" width="20" height="6" rx="1" fill="#F28C7C"/><path d="M6 17v9h16v-9z" fill="#F28C7C"/><path d="M14 11v15" fill="none"/><path d="M14 11q-7-8-8-2 0 2 8 2M14 11q7-8 8-2 0 2-8 2" fill="#F6D98B"/></svg>看看他准备了什么</button>
+ </div>
+</section>
 
 <section id="phA" class="scr"><div class="ph">打小人 / 罚单 放在这里<small>（demo 占位）</small><button class="pill ghost" data-go="letter">回到信</button></div></section>
 <section id="phB" class="scr"><div class="ph">转盘 / 承诺 放在这里<small>（demo 占位）</small><button class="pill" data-go="letter">回到信</button></div></section>
 
 <script>
-/* ===== action config: line index -> where he goes (x: 0 left … 1 right of screen) and what he does =====
-   poses: idle | scratch | peek | look | sad | give | hold | bounce   (peek also drops him down behind the bottom edge) */
-var ACTIONS=[
- {x:.10,pose:'idle'},     // 0 周六晚上…   walks in from bottom-left
- {x:.42,pose:'scratch'},  // 1 你在楼下等… walks to middle, scratches head
- {x:.42,pose:'sad'},      // 2 是我没把…   sorry face
- {x:.86,pose:'peek'},     // 3 那天风很大… peeks up from the bottom-right edge
- {x:.70,pose:'look'},     // 4 那一个小时… looks around (worried for her)
- {x:.58,pose:'sad'},      // 5 你可能也在想… aggrieved-sorry
- {x:.42,pose:'scratch'},  // 6 让你有这种感觉… owns it
- {x:.82,pose:'give'},     // 7 以后约好…   walks right, offers heart
- {x:.82,pose:'give'},     // 8 这周六…
- {x:.50,pose:'hold'},     // 9 你不用急着回我… back to middle, holds heart quietly
- {x:.50,pose:'bounce'}    // 10 —— 阿哲    small happy bounce
-];
-var FINAL={pose:'hold'};
-var $=function(s){return document.querySelector(s)},rm=matchMedia('(prefers-reduced-motion:reduce)').matches,hero=$('#hero'),opened=false;
-/* ---- hero controller ---- */
-var H={x:-200,y:0,pose:'idle',wt:0,st:0},HW=innerHeight<700?120:136;hero.style.setProperty('--hw',HW+'px');var BASEY=innerHeight<700?-14:-34;
-function vw(){return document.documentElement.clientWidth}
-function heroTo(px,py,pose,dur){dur=dur||900;var dx=px-H.x;H.x=px;H.y=py;hero.style.transitionDuration=dur+'ms';
-  hero.style.setProperty('--x',px.toFixed(0)+'px');hero.style.setProperty('--y',py.toFixed(0)+'px');
-  if(Math.abs(dx)>18&&!rm){hero.classList.toggle('face-l',dx<0);setPose('walk');hero.classList.add('walking');clearTimeout(H.wt);
-    H.wt=setTimeout(function(){hero.classList.remove('walking','face-l');hero.classList.add('settle');clearTimeout(H.st);H.st=setTimeout(function(){hero.classList.remove('settle')},380);setPose(pose)},dur)}
-  else{clearTimeout(H.wt);hero.classList.remove('walking');setPose(pose)}}
-function setPose(p){hero.className=hero.className.replace(/\bp-\w+/g,'').trim();if(p&&p!=='walk')hero.classList.add('p-'+p);H.pose=p}
-/* action queue: every action plays; when she is ahead, each plays compressed (450ms move + 450ms dwell); >2 queued keeps the latest 2 */
-var AQ=[],playing=false,LOG=window.__actLog=[];
-function enqueue(a){AQ.push(a);if(AQ.length>2)AQ.splice(0,AQ.length-2);if(!playing)playNext()}
-function playNext(){var a=AQ.shift();if(!a){playing=false;return}playing=true;var fast=AQ.length>0||a.fast,mv=rm?0:(fast?450:900),dwell=rm?0:(fast?450:700);
-  LOG.push({t:Date.now(),i:a.i,pose:a.pose,fast:fast});
-  if(a.final){var sp=$('.endsp').getBoundingClientRect();heroTo((vw()-HW)/2,Math.min(-8,sp.bottom-innerHeight+4),'hold',mv)}
-  else{var W=vw()-HW;heroTo(a.x*W,a.pose==='peek'?Math.round(HW*.62):BASEY,a.pose,mv)}
-  setTimeout(playNext,mv+dwell)}
-function act(i){var a=ACTIONS[Math.min(i,ACTIONS.length-1)];if(!a)return;enqueue({i:i,x:a.x,pose:a.pose})}
-function show(id){document.querySelectorAll('.scr').forEach(function(s){s.classList.toggle('on',s.id===id)});hero.style.display=(id==='letter'||id==='env')?'':'none'}
-/* ---- envelope: he peeks from behind the right side ---- */
-function placeOnEnv(){var r=$('#envBtn').getBoundingClientRect(),ih=innerHeight;hero.classList.add('snap');
-  H.x=Math.min(r.right-HW*.55,vw()-HW*.75);H.y=r.bottom+8-ih;hero.style.setProperty('--x',H.x+'px');hero.style.setProperty('--y',H.y+'px');setPose('peek');
-  hero.style.opacity=0;requestAnimationFrame(function(){hero.classList.remove('snap');setTimeout(function(){hero.style.transition='opacity .3s, transform .9s var(--move)';hero.style.opacity=1},rm?0:300)})}
-placeOnEnv();addEventListener('resize',function(){if(!opened)placeOnEnv()});
+var $=function(s){return document.querySelector(s)},rm=matchMedia('(prefers-reduced-motion:reduce)').matches,opened=false;
+function show(id){document.querySelectorAll('.scr').forEach(function(s){s.classList.toggle('on',s.id===id)});}
 function openEnv(){if(opened)return;opened=true;var e=$('#envBtn');e.classList.add('open');$('#openBtn').classList.remove('breath');
-  var r=e.getBoundingClientRect();heroTo(Math.max(0,r.left-50),H.y,'scratch');   // he hurries to the left side to help pull
   setTimeout(function(){$('#env').classList.add('gone');
     setTimeout(function(){show('letter');scrollTo(0,0);$('#sheetwrap').classList.add('unfold');
-      hero.classList.add('snap');H.x=-160;H.y=BASEY;hero.style.setProperty('--x','-160px');hero.style.setProperty('--y',BASEY+'px');setPose('idle');
-      requestAnimationFrame(function(){requestAnimationFrame(function(){hero.classList.remove('snap')})});
       document.querySelectorAll('.deco').forEach(function(d){setTimeout(function(){pop([d],0)},400+d.dataset.d*120)})},rm?0:350)},rm?0:1100)}
 $('#envBtn').addEventListener('click',openEnv);$('#openBtn').addEventListener('click',openEnv);
 document.addEventListener('click',function(e){var g=e.target.closest('[data-go]');if(!g)return;show(g.dataset.go);
-  if(g.dataset.go==='letter'){$('#final').scrollIntoView();placeFinal()}else scrollTo(0,0)});
+  if(g.dataset.go==='letter'){$('#final').scrollIntoView()}else scrollTo(0,0)});
 /* ---- spring pop-ins ---- */
 var SPRING=[{opacity:0,transform:'translate3d(0,18px,0) scale(.85)'},{opacity:1,transform:'translate3d(0,-2px,0) scale(1.06)',offset:.62},{opacity:1,transform:'none'}];
 function pop(els,gap){els.forEach(function(el,i){if(el.classList.contains('in'))return;el.classList.add('in');if(rm)return;
   el.animate(SPRING,{duration:520,delay:i*(gap||80),easing:'cubic-bezier(.34,1.56,.64,1)',fill:'backwards'})})}
 var io=new IntersectionObserver(function(es){var b=[];es.forEach(function(e){if(e.isIntersecting){b.push(e.target);io.unobserve(e.target)}});pop(b,80)},{rootMargin:'0px 0px -14% 0px',threshold:.15});
 document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+/* ---- figures: each has its own entrance ---- */
+var ENTER={
+ pop:[{opacity:0,transform:'translateY(60px) scale(.7)'},{opacity:1,transform:'translateY(-8px) scale(1.06)',offset:.6},{opacity:1,transform:'none'}],
+ slide:[{opacity:0,transform:'translateX(80px) rotate(10deg)'},{opacity:1,transform:'translateX(-6px) rotate(-3deg)',offset:.7},{opacity:1,transform:'none'}],
+ drop:[{opacity:0,transform:'translateY(-120px)'},{opacity:1,transform:'translateY(0) scale(1.08,.9)',offset:.55},{transform:'translateY(-14px) scale(.97,1.03)',offset:.75},{opacity:1,transform:'none'}],
+ wobble:[{opacity:0,transform:'rotate(-14deg) scale(.9)'},{opacity:1,transform:'rotate(9deg)',offset:.4},{transform:'rotate(-5deg)',offset:.65},{transform:'rotate(2deg)',offset:.85},{opacity:1,transform:'none'}]};
+var kio=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var k=e.target;kio.unobserve(k);k.classList.add('in');
+  if(!rm)k.animate(ENTER[k.dataset.enter],{duration:k.dataset.enter==='wobble'?900:700,easing:'ease-out',fill:'backwards'})})},{rootMargin:'0px 0px -12% 0px',threshold:.2});
+document.querySelectorAll('.kid').forEach(function(k){kio.observe(k)});
 /* ---- typewriter: 36ms/char, ，120 / 。！？250, 150ms settle, catch-up, tap to finish, persists ---- */
 var SPD=36,queue=[],cur=null,timer=null,startT=null,lines=[].slice.call(document.querySelectorAll('.sheet .ln.tw')),lastAct=-1;
 lines.forEach(function(p){p.dataset.h=p.innerHTML;p.innerHTML='&nbsp;'});
 function done(p){p.innerHTML=p.dataset.h;p.dataset.done=1}
-function talk(on){hero.classList.toggle('talking',on&&!rm)}
-function begin(i){while(lastAct<i){lastAct++;act(lastAct)}}
+function talk(){}function begin(){}
 function finish(p){clearTimeout(timer);done(p);talk(false);if(cur===p)cur=null;schedule(0)}
 function schedule(d){clearTimeout(startT);startT=setTimeout(next,rm?0:d)}
 function next(){if(cur)return;while(queue.length&&queue[0].dataset.done)queue.shift();if(!queue.length)return;
@@ -292,7 +438,7 @@ function next(){if(cur)return;while(queue.length&&queue[0].dataset.done)queue.sh
     if(i>=chars.length){clearTimeout(timer);done(p);talk(false);cur=null;return schedule(150)}
     var ch=chars[i-1];timer=setTimeout(step,SPD+('。！？'.indexOf(ch)>=0?250:'，、：'.indexOf(ch)>=0?120:0))})()}
 var tio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){queue.push(e.target);tio.unobserve(e.target)}});
-  queue.sort(function(a,b){return a.compareDocumentPosition(b)&2?1:-1});if(!cur)schedule(150)},{rootMargin:'0px 0px -38% 0px'});
+  queue.sort(function(a,b){return a.compareDocumentPosition(b)&2?1:-1});if(!cur)schedule(150)},{rootMargin:'0px 0px -18% 0px'});
 lines.forEach(function(p){tio.observe(p)});
 var cio=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting||e.target.dataset.done)return;var idx=lines.indexOf(e.target);
   lines.slice(0,idx+1).forEach(function(p){if(!p.dataset.done){if(cur===p){clearTimeout(timer);cur=null}done(p)}});talk(false);begin(idx);schedule(150)})},{rootMargin:'0px 0px -70% 0px'});
@@ -300,11 +446,9 @@ lines.forEach(function(p){cio.observe(p)});
 $('#letter').addEventListener('click',function(e){if(e.target.closest('button'))return;if(cur)finish(cur)});
 /* ---- ending: he settles centered above the cards, holding the heart; cards rise in ---- */
 var finalSeen=false;
-function placeFinal(){enqueue({final:true,i:'final',pose:'hold'})}
-var finT=null;addEventListener('scroll',function(){if(!finalSeen)return;clearTimeout(finT);finT=setTimeout(function(){if(!playing){var sp=$('.endsp').getBoundingClientRect(),y=Math.min(-8,sp.bottom-innerHeight+4);if(Math.abs(y-H.y)>2){hero.style.transitionDuration='300ms';H.y=y;hero.style.setProperty('--y',y+'px')}}},120)},{passive:true});
+
 new IntersectionObserver(function(es){if(!es[0].isIntersecting||finalSeen)return;finalSeen=true;
   if(cur){clearTimeout(timer);cur=null}lines.forEach(function(p){if(!p.dataset.done)done(p)});queue=[];talk(false);begin(lines.length-1);
-  placeFinal();
   setTimeout(function(){$('#c1').classList.remove('hide');$('#c1').classList.add('show')},rm?0:700);
   setTimeout(function(){$('#c2').classList.remove('hide');$('#c2').classList.add('show')},rm?0:850)},{threshold:.5}).observe($('#final'));
 </script></body></html>
