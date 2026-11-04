@@ -39,7 +39,7 @@ body{font-family:"ZCOOL KuaiLe","Kaiti SC","STKaiti","KaiTi",cursive,sans-serif;
 @keyframes breath{50%{transform:scale(1.04)}}
 /* ---------- letter ---------- */
 #letter{padding:34px 22px 0}
-.sheet{position:relative;background:var(--paper);border:2px solid var(--ink);border-radius:4px;padding:76px 24px 260px;
+.sheet{position:relative;background:var(--paper);border:2px solid var(--ink);border-radius:4px;padding:76px 24px 34svh;
  clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,0 100%)}
 .sheetwrap{position:relative}
 .sheetwrap.unfold{animation:unfold .4s var(--out) both}
@@ -52,18 +52,18 @@ body{font-family:"ZCOOL KuaiLe","Kaiti SC","STKaiti","KaiTi",cursive,sans-serif;
 .deco.in{opacity:1}
 .hello{font-size:28px;line-height:1.6}
 .sub{font-size:22px;line-height:1.9;color:var(--ink)}
-.hint{font-size:14px;color:var(--ink2);margin-top:22px;animation:nudge 1.8s ease-in-out infinite}
+.hint{font-size:14px;color:var(--ink2);margin:18px 0 12svh;animation:nudge 1.8s ease-in-out infinite}
 @keyframes nudge{50%{transform:translateY(5px)}}
-.beat{padding:12vh 0 2vh}
+.beat{padding:6vh 0 0}.beat+.beat{padding-top:10vh}
 .tag{display:inline-block;font-size:14px;color:var(--ink);background:var(--coralL);border:2px solid var(--ink);border-radius:999px;padding:2px 12px;margin-bottom:14px}
-.ln{font-size:22px;line-height:1.9;margin:0 0 20px;min-height:42px}
+.ln{font-size:22px;line-height:1.9;margin:0 0 34svh;min-height:42px}.sheet .ln.sign{margin-bottom:0}
 .mark{background:linear-gradient(transparent 60%,rgba(246,217,139,.85) 60% 92%,transparent 92%)}
 .sign{text-align:right;margin-top:24px}
 .cur{display:inline-block;width:3px;height:1.05em;background:var(--coral);border-radius:2px;vertical-align:-3px;margin-left:2px;animation:blink .53s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
 .rv{opacity:0}.rv.in{opacity:1}
 /* ---------- the one hero ---------- */
-#hero{position:fixed;left:0;bottom:0;width:var(--hw,136px);z-index:4;pointer-events:none;will-change:transform;
+#hero{position:fixed;left:0;bottom:0;contain:layout paint style;backface-visibility:hidden;width:var(--hw,136px);z-index:4;pointer-events:none;will-change:transform;
  transform:translate3d(var(--x,-200px),var(--y,0px),0);transition:transform .9s var(--move)}
 #hero.snap{transition:none}
 #hero svg{display:block;width:100%;overflow:visible}
@@ -129,9 +129,9 @@ body{font-family:"ZCOOL KuaiLe","Kaiti SC","STKaiti","KaiTi",cursive,sans-serif;
 #hero.talking .mouth{animation:talk .2s steps(2) infinite;transform-box:fill-box;transform-origin:center}
 @keyframes talk{50%{transform:scaleY(1.8)}}
 /* ---------- ending ---------- */
-.final{min-height:100svh;display:flex;flex-direction:column;padding:46px 0 calc(28px + env(safe-area-inset-bottom))}
-.endq{font-size:22px;line-height:1.9;text-align:center}
-.endsp{flex:1;min-height:220px}
+.final{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:24px 0 calc(24px + env(safe-area-inset-bottom))}
+.endq{font-size:16px;line-height:1.8;text-align:center;color:var(--ink2);margin-bottom:6px}
+.endsp{height:200px;position:relative}.endt{font-size:24px;text-align:center;margin:6px 0 2px}
 #endArt{display:none}
 .card{display:flex;align-items:center;gap:14px;width:100%;height:64px;margin-top:14px;padding:0 20px;font:inherit;font-size:18px;text-align:left;border:2.5px solid var(--ink);border-radius:16px;color:var(--ink);transition:transform .08s,border-width .08s}
 .card svg{width:28px;height:28px;flex:none}
@@ -142,7 +142,7 @@ body{font-family:"ZCOOL KuaiLe","Kaiti SC","STKaiti","KaiTi",cursive,sans-serif;
 @keyframes cardIn{from{opacity:0;transform:translateY(40px)}}
 .ph{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;padding:24px;text-align:center;font-size:22px}
 .ph small{font-size:14px;color:var(--ink2)}
-@media (max-height:700px){.endsp{min-height:170px}.final{padding-top:30px}}
+@media (max-height:700px){.endsp{height:170px}}
 @media (prefers-reduced-motion:reduce){*,#hero *{animation:none!important;transition-duration:.01s!important;transition-delay:0s!important}#hero{transition:none}}
 </style></head><body>
 <section id="env" class="scr on">
@@ -177,8 +177,9 @@ body{font-family:"ZCOOL KuaiLe","Kaiti SC","STKaiti","KaiTi",cursive,sans-serif;
   </div>
  </div>
  <div class="final" id="final">
-   <p class="endq rv">接下来，你想怎样都可以</p>
    <div class="endsp"><img id="endArt" data-slot="ending" alt=""></div>
+   <p class="endt rv">小鱼，信写完了。</p>
+   <p class="endq rv">接下来，你想怎样都可以</p>
    <button class="card c1 hide" id="c1" data-go="phA"><svg viewBox="0 0 28 28" fill="none" stroke="#3A2A24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14v-4a2 2 0 0 1 4 0v3M13 12V8a2 2 0 0 1 4 0v5M17 12V9a2 2 0 0 1 4 0v6M9 14q-3 1-1 6 2 5 6 6h4q5-2 4-11" fill="#FFF1E6"/><path d="M3 6l2 2M14 1v3M24 5l-2 2"/></svg>还在生气，想出出气</button>
    <button class="card c2 hide" id="c2" data-go="phB"><svg viewBox="0 0 28 28" stroke="#3A2A24" stroke-width="2" stroke-linejoin="round"><rect x="4" y="11" width="20" height="6" rx="1" fill="#F28C7C"/><path d="M6 17v9h16v-9z" fill="#F28C7C"/><path d="M14 11v15" fill="none"/><path d="M14 11q-7-8-8-2 0 2 8 2M14 11q7-8 8-2 0 2-8 2" fill="#F6D98B"/></svg>看看他准备了什么</button>
  </div>
@@ -235,13 +236,21 @@ var $=function(s){return document.querySelector(s)},rm=matchMedia('(prefers-redu
 /* ---- hero controller ---- */
 var H={x:-200,y:0,pose:'idle',wt:0,st:0},HW=innerHeight<700?120:136;hero.style.setProperty('--hw',HW+'px');var BASEY=innerHeight<700?-14:-34;
 function vw(){return document.documentElement.clientWidth}
-function heroTo(px,py,pose,faceFrom){var dx=px-H.x;H.x=px;H.y=py;
+function heroTo(px,py,pose,dur){dur=dur||900;var dx=px-H.x;H.x=px;H.y=py;hero.style.transitionDuration=dur+'ms';
   hero.style.setProperty('--x',px.toFixed(0)+'px');hero.style.setProperty('--y',py.toFixed(0)+'px');
   if(Math.abs(dx)>18&&!rm){hero.classList.toggle('face-l',dx<0);setPose('walk');hero.classList.add('walking');clearTimeout(H.wt);
-    H.wt=setTimeout(function(){hero.classList.remove('walking','face-l');hero.classList.add('settle');clearTimeout(H.st);H.st=setTimeout(function(){hero.classList.remove('settle')},380);setPose(pose)},900)}
+    H.wt=setTimeout(function(){hero.classList.remove('walking','face-l');hero.classList.add('settle');clearTimeout(H.st);H.st=setTimeout(function(){hero.classList.remove('settle')},380);setPose(pose)},dur)}
   else{clearTimeout(H.wt);hero.classList.remove('walking');setPose(pose)}}
 function setPose(p){hero.className=hero.className.replace(/\bp-\w+/g,'').trim();if(p&&p!=='walk')hero.classList.add('p-'+p);H.pose=p}
-function act(i){var a=ACTIONS[Math.min(i,ACTIONS.length-1)];if(!a)return;var W=vw()-HW;heroTo(a.x*W,a.pose==='peek'?Math.round(HW*.62):BASEY,a.pose)}
+/* action queue: every action plays; when she is ahead, each plays compressed (450ms move + 450ms dwell); >2 queued keeps the latest 2 */
+var AQ=[],playing=false,LOG=window.__actLog=[];
+function enqueue(a){AQ.push(a);if(AQ.length>2)AQ.splice(0,AQ.length-2);if(!playing)playNext()}
+function playNext(){var a=AQ.shift();if(!a){playing=false;return}playing=true;var fast=AQ.length>0||a.fast,mv=rm?0:(fast?450:900),dwell=rm?0:(fast?450:700);
+  LOG.push({t:Date.now(),i:a.i,pose:a.pose,fast:fast});
+  if(a.final){var sp=$('.endsp').getBoundingClientRect();heroTo((vw()-HW)/2,Math.min(-8,sp.bottom-innerHeight+4),'hold',mv)}
+  else{var W=vw()-HW;heroTo(a.x*W,a.pose==='peek'?Math.round(HW*.62):BASEY,a.pose,mv)}
+  setTimeout(playNext,mv+dwell)}
+function act(i){var a=ACTIONS[Math.min(i,ACTIONS.length-1)];if(!a)return;enqueue({i:i,x:a.x,pose:a.pose})}
 function show(id){document.querySelectorAll('.scr').forEach(function(s){s.classList.toggle('on',s.id===id)});hero.style.display=(id==='letter'||id==='env')?'':'none'}
 /* ---- envelope: he peeks from behind the right side ---- */
 function placeOnEnv(){var r=$('#envBtn').getBoundingClientRect(),ih=innerHeight;hero.classList.add('snap');
@@ -269,7 +278,7 @@ var SPD=36,queue=[],cur=null,timer=null,startT=null,lines=[].slice.call(document
 lines.forEach(function(p){p.dataset.h=p.innerHTML;p.innerHTML='&nbsp;'});
 function done(p){p.innerHTML=p.dataset.h;p.dataset.done=1}
 function talk(on){hero.classList.toggle('talking',on&&!rm)}
-function begin(i){if(i>lastAct){lastAct=i;act(i)}}
+function begin(i){while(lastAct<i){lastAct++;act(lastAct)}}
 function finish(p){clearTimeout(timer);done(p);talk(false);if(cur===p)cur=null;schedule(0)}
 function schedule(d){clearTimeout(startT);startT=setTimeout(next,rm?0:d)}
 function next(){if(cur)return;while(queue.length&&queue[0].dataset.done)queue.shift();if(!queue.length)return;
@@ -283,7 +292,7 @@ function next(){if(cur)return;while(queue.length&&queue[0].dataset.done)queue.sh
     if(i>=chars.length){clearTimeout(timer);done(p);talk(false);cur=null;return schedule(150)}
     var ch=chars[i-1];timer=setTimeout(step,SPD+('。！？'.indexOf(ch)>=0?250:'，、：'.indexOf(ch)>=0?120:0))})()}
 var tio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){queue.push(e.target);tio.unobserve(e.target)}});
-  queue.sort(function(a,b){return a.compareDocumentPosition(b)&2?1:-1});if(!cur)schedule(150)},{rootMargin:'0px 0px -30% 0px'});
+  queue.sort(function(a,b){return a.compareDocumentPosition(b)&2?1:-1});if(!cur)schedule(150)},{rootMargin:'0px 0px -38% 0px'});
 lines.forEach(function(p){tio.observe(p)});
 var cio=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting||e.target.dataset.done)return;var idx=lines.indexOf(e.target);
   lines.slice(0,idx+1).forEach(function(p){if(!p.dataset.done){if(cur===p){clearTimeout(timer);cur=null}done(p)}});talk(false);begin(idx);schedule(150)})},{rootMargin:'0px 0px -70% 0px'});
@@ -291,13 +300,11 @@ lines.forEach(function(p){cio.observe(p)});
 $('#letter').addEventListener('click',function(e){if(e.target.closest('button'))return;if(cur)finish(cur)});
 /* ---- ending: he settles centered above the cards, holding the heart; cards rise in ---- */
 var finalSeen=false;
-function placeFinal(){var sp=$('.endsp').getBoundingClientRect(),ih=innerHeight,W=vw();
-  heroTo((W-HW)/2,Math.min(-8,sp.bottom-ih+4),FINAL.pose)}
-var finTick=false;addEventListener('scroll',function(){if(!finalSeen||finTick)return;finTick=true;requestAnimationFrame(function(){finTick=false;
-  var sp=$('.endsp').getBoundingClientRect();var y=Math.min(-8,sp.bottom-innerHeight+4);if(Math.abs(y-H.y)>2){hero.classList.add('snap');H.y=y;hero.style.setProperty('--y',y+'px');requestAnimationFrame(function(){hero.classList.remove('snap')})}})},{passive:true});
+function placeFinal(){enqueue({final:true,i:'final',pose:'hold'})}
+var finT=null;addEventListener('scroll',function(){if(!finalSeen)return;clearTimeout(finT);finT=setTimeout(function(){if(!playing){var sp=$('.endsp').getBoundingClientRect(),y=Math.min(-8,sp.bottom-innerHeight+4);if(Math.abs(y-H.y)>2){hero.style.transitionDuration='300ms';H.y=y;hero.style.setProperty('--y',y+'px')}}},120)},{passive:true});
 new IntersectionObserver(function(es){if(!es[0].isIntersecting||finalSeen)return;finalSeen=true;
-  if(cur){clearTimeout(timer);cur=null}lines.forEach(function(p){if(!p.dataset.done)done(p)});queue=[];talk(false);
-  setTimeout(placeFinal,rm?0:600);
+  if(cur){clearTimeout(timer);cur=null}lines.forEach(function(p){if(!p.dataset.done)done(p)});queue=[];talk(false);begin(lines.length-1);
+  placeFinal();
   setTimeout(function(){$('#c1').classList.remove('hide');$('#c1').classList.add('show')},rm?0:700);
   setTimeout(function(){$('#c2').classList.remove('hide');$('#c2').classList.add('show')},rm?0:850)},{threshold:.5}).observe($('#final'));
 </script></body></html>
