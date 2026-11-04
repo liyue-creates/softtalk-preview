@@ -244,31 +244,36 @@ body{font-family:"ZCOOL KuaiLe","Kaiti SC","STKaiti","KaiTi",cursive,sans-serif;
 
 <section id="S0" class="scr wf"><span class="sid">S0</span>
  <h2>软话小人</h2><p class="note">线框 demo · 开始页</p><div class="box" style="height:180px">（标题 / 插画占位）</div>
- <button class="btn pri" data-go="S1">我要道歉</button><button class="btn" id="toEnv">我收到了一封信</button></section>
-<section id="S1" class="scr wf"><span class="sid">S1</span><button class="back" data-back>‹ 返回</button>
- <div class="steps" data-s="1"></div><h2>她可能为什么生气？</h2><p class="note">AI 建议的原因（占位），勾上你觉得对的</p>
- <textarea id="s1what" style="min-height:90px" placeholder="AI 会根据这里列原因"></textarea>
- <div id="reasons"></div><button class="btn" id="allck">不确定就全勾</button><button class="btn pri" data-go="S2">下一步</button></section>
+ <button class="btn pri" data-go="S1a">我要道歉</button><button class="btn" id="toEnv">我收到了一封信</button></section>
+<section id="S1a" class="scr wf"><span class="sid">S1a</span><button class="back" data-back>‹ 返回</button>
+ <div class="steps" data-s="1"></div><h2>发生了什么？</h2><p class="note">照实写就好，下一步会帮你想她可能在气什么</p>
+ <textarea id="s1what" placeholder="比如：说好 7 点半，迟了两个小时才打电话，没去接她"></textarea>
+ <button class="btn pri" id="toS1b" disabled>下一步</button></section>
+<section id="S1b" class="scr wf"><span class="sid">S1b</span><button class="back" data-back>‹ 返回</button>
+ <div class="steps" data-s="2"></div><h2>她可能在气什么？</h2>
+ <div id="thinking" class="box">正在看她可能在气什么…</div>
+ <div id="rwrap" hidden><p class="note">勾上你觉得对的（规则占位，之后换成 AI）</p><div id="reasons"></div>
+ <button class="btn" id="allck">不确定就全勾</button><button class="btn pri" id="toS2">下一步</button></div></section>
 <section id="S2" class="scr wf"><span class="sid">S2</span><button class="back" data-back>‹ 返回</button>
- <div class="steps" data-s="2"></div><h2>我做错了什么</h2><p class="note">只写发生了什么、你做了什么</p>
+ <div class="steps" data-s="3"></div><h2>我做错了什么</h2><p class="note">只写发生了什么、你做了什么</p>
  <textarea class="rem" id="t2"></textarea><div class="hints"></div><button class="btn pri" data-go="S3">下一步</button></section>
 <section id="S3" class="scr wf"><span class="sid">S3</span><button class="back" data-back>‹ 返回</button>
- <div class="steps" data-s="3"></div><h2>我懂你为什么难过</h2><p class="note">站在她那边，想想她那一刻的感受</p>
+ <div class="steps" data-s="4"></div><h2>我懂你为什么难过</h2><p class="note">站在她那边，想想她那一刻的感受</p>
  <textarea class="rem" id="t3"></textarea><div class="hints"></div><button class="btn pri" data-go="S4">下一步</button></section>
 <section id="S4" class="scr wf"><span class="sid">S4</span><button class="back" data-back>‹ 返回</button>
- <div class="steps" data-s="4"></div><h2>以后我会怎么做</h2><p class="note">写具体能做到的事</p>
+ <div class="steps" data-s="5"></div><h2>以后我会怎么做</h2><p class="note">写具体能做到的事</p>
  <textarea class="rem" id="t4"></textarea><div class="hints"></div><button class="btn pri" id="toS5">下一步：AI 润色</button></section>
 <section id="S5" class="scr wf"><span class="sid">S5</span><button class="back" data-back>‹ 返回</button>
- <div class="steps" data-s="5"></div><h2>AI 润色</h2>
+ <div class="steps" data-s="6"></div><h2>AI 润色</h2>
  <div class="card"><small>你写的</small><div id="mine"></div></div>
  <div class="card"><small>AI 润色占位 <span id="ver"></span></small><div id="pol"></div></div>
  <p class="note">免费润色剩余：<b id="cred">1</b> 次</p>
  <button class="btn pri" id="usePol">用这版</button><button class="btn" id="useMine">用我自己写的</button><button class="btn" id="again">再润色一次</button></section>
 <section id="S6" class="scr wf"><span class="sid">S6</span><button class="back" data-back>‹ 返回</button>
- <div class="steps" data-s="6"></div><h2>转盘上放什么</h2><p class="note">写你真的能做到的事，至少 3 个</p>
+ <div class="steps" data-s="7"></div><h2>转盘上放什么</h2><p class="note">写你真的能做到的事，至少 3 个</p>
  <div id="items"></div><button class="btn" id="addItem">＋ 加一项</button><p class="note" id="itemErr"></p><button class="btn pri" id="toS7">下一步</button></section>
 <section id="S7" class="scr wf"><span class="sid">S7</span><button class="back" data-back>‹ 返回</button>
- <div class="steps" data-s="7"></div><h2>信封做好了</h2><div class="box" style="height:120px">（信封预览占位）</div>
+ <div class="steps" data-s="8"></div><h2>信封做好了</h2><div class="box" style="height:120px">（信封预览占位）</div>
  <div class="link" id="flink"></div><button class="btn pri" id="copy">复制链接</button><p class="note" id="copied"></p>
  <button class="btn" id="previewBtn">先看看她会看到什么</button></section>
 <section id="S8" class="scr wf"><span class="sid">S8</span><button class="back" data-back>‹ 返回</button>
@@ -371,10 +376,24 @@ function go(id){show(id);if(!/^(letter)$/.test(id))scrollTo(0,0)}
 document.addEventListener('click',function(e){var b=e.target.closest('[data-back]');if(!b)return;var p=HIST.pop()||'S0';cur=p;_show(p);onEnter(p);
   if(p==='letter'){var f=$('#final');f&&f.scrollIntoView()}else scrollTo(0,0)});
 $('#c1').dataset.go='R4';$('#c2').dataset.go='R7';
-document.querySelectorAll('.steps').forEach(function(s){var n=+s.dataset.s;for(var i=1;i<=7;i++){var x=document.createElement('i');if(i<=n)x.className='on';s.appendChild(x)}
-  s.insertAdjacentHTML('afterend','<p class="note">第 '+n+' / 7 步</p>')});
-var R=['说好七点去接她，我迟到了一个小时','她打了三个电话我都没接','让她一个人在楼下等，又冷又着急','她觉得自己在我心里不重要'];
-$('#reasons').innerHTML=R.map(function(r){return '<label class="ck"><input type="checkbox"> '+r+'</label>'}).join('');
+document.querySelectorAll('.steps').forEach(function(s){var n=+s.dataset.s;for(var i=1;i<=8;i++){var x=document.createElement('i');if(i<=n)x.className='on';s.appendChild(x)}
+  s.insertAdjacentHTML('afterend','<p class="note">第 '+n+' / 8 步</p>')});
+var G=[
+ {k:/迟到|迟了|晚了|没去|没来|放鸽子|爽约|没接|等了|几点|点半|小时/,r:['等了那么久没人管，觉得自己不被在乎','你没提前说一声，让她一直担心你是不是出了什么事','打电话、发消息都找不到你，又着急又委屈','说好的时间没做到，她不知道下次还能不能信你'],jie:'说好来接她却没来，她只能一个人在原地等'},
+ {k:/忘了|纪念日|生日|周年|节日|礼物/,r:['她一直记着这一天，你却忘了，觉得自己没被放在心上','她可能早早就在期待，最后落了空','她不想每次都要自己提醒你','她在意的是被你记住的那种感觉']},
+ {k:/聊天|女生|男生|异性|前任|微信|暧昧|点赞/,r:['看到你和别人聊得热络，她心里没底','她不知道你们聊了什么，越想越不安','你没主动跟她说，她觉得自己被瞒着','她想确认自己在你心里是最特别的那个']},
+ {k:/吵|凶|冲|吼|语气|不耐烦|骂|说了重话/,r:['你说话的语气让她很受伤','她本来想好好说，却被你的情绪顶了回去','那几句话她可能还记着，一想起来就难过','她觉得在你面前没法放心说出自己的感受']}];
+var GEN=['她觉得自己的感受没被看见','这件事让她很失望，也有点委屈','她希望你能明白她在意的是什么','她不确定你是不是真的知道哪里让她难过'];
+function reasonsFor(t){var out=[],hit=[];G.forEach(function(g,i){if(g.k.test(t)){hit.push(i);var r=g.r.slice();if(g.jie&&/接/.test(t))r.splice(1,0,g.jie);out.push(r)}});
+ if(!out.length)return {groups:['generic'],r:GEN.slice()};var m=[];
+ if(out.length===1)m=out[0].slice(0,5);else{var i=0;while(m.length<5&&out.some(function(r){return r[i]})){out.forEach(function(r){if(r[i]&&m.length<5)m.push(r[i])});i++}}
+ return {groups:hit.map(function(i){return['late','forgot','chat','harsh'][i]}),r:m}}
+window.__reasonsFor=reasonsFor;
+$('#s1what').addEventListener('input',function(){$('#toS1b').disabled=!this.value.trim()});
+$('#toS1b').onclick=function(){var t=$('#s1what').value.trim();if(!t)return;var res=reasonsFor(t);S.story=t;
+ $('#reasons').innerHTML=res.r.map(function(r){return '<label class="ck"><input type="checkbox" value="'+r+'"> '+r+'</label>'}).join('');$('#reasons').dataset.groups=res.groups.join(',');
+ $('#thinking').hidden=false;$('#rwrap').hidden=true;go('S1b');setTimeout(function(){$('#thinking').hidden=true;$('#rwrap').hidden=false},1200)};
+$('#toS2').onclick=function(){S.reasons=[].filter.call(document.querySelectorAll('#reasons input'),function(c){return c.checked}).map(function(c){return c.value});go('S2')};
 $('#allck').onclick=function(){document.querySelectorAll('#reasons input').forEach(function(c){c.checked=true})};
 var T={'但是':'写到「但是」了，她可能会把前面的道歉当成铺垫。试试只说你做了什么？','如果你觉得':'「如果你觉得」会让她觉得你不确定自己错在哪。试试直接说出来？'};
 document.querySelectorAll('textarea.rem').forEach(function(t){t.addEventListener('input',function(){var h=[];for(var k in T)if(t.value.indexOf(k)>=0)h.push('<div class="hintw" data-trig="'+k+'">'+T[k]+'</div>');t.nextElementSibling.innerHTML=h.join('')})});
