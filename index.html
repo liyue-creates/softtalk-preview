@@ -172,6 +172,31 @@ body{font-family:"ZCOOL KuaiLe","Kaiti SC","STKaiti","KaiTi",cursive,sans-serif;
 .ph small{font-size:14px;color:var(--ink2)}
 @media (max-height:700px){.endsp{height:170px}}
 @media (prefers-reduced-motion:reduce){*,#hero *{animation:none!important;transition-duration:.01s!important;transition-delay:0s!important}#hero{transition:none}}
+.wf{position:relative}
+.wf{min-height:100svh;background:#f4f4f4;color:#333;font-family:system-ui,-apple-system,sans-serif;padding:44px 20px 32px;box-sizing:border-box;font-size:16px}
+.wf *{box-sizing:border-box}
+.wf .sid{position:absolute;top:8px;left:10px;font:12px monospace;background:#333;color:#fff;padding:2px 6px;border-radius:4px}
+.wf .back{position:absolute;top:6px;right:12px;background:none;border:0;color:#555;font-size:14px;text-decoration:underline;padding:6px}
+.wf h2{font-size:20px;margin:8px 0 6px}.wf p.note{color:#777;font-size:13px;margin:4px 0 12px}
+.wf .box{background:#ddd;border:2px dashed #999;border-radius:10px;padding:16px;margin:12px 0;text-align:center;color:#555}
+.wf .btn{display:block;width:100%;min-height:48px;margin:10px 0;border:2px solid #333;border-radius:10px;background:#fff;font:inherit;font-size:16px;color:#222}
+.wf .btn.pri{background:#555;color:#fff}.wf .btn:disabled{opacity:.4}
+.wf textarea,.wf input[type=text]{width:100%;font:inherit;font-size:16px;padding:10px;border:2px solid #999;border-radius:8px;background:#fff}
+.wf textarea{min-height:140px}
+.wf label.ck{display:flex;gap:10px;align-items:flex-start;padding:10px;background:#fff;border:1px solid #ccc;border-radius:8px;margin:6px 0}
+.wf .hintw{background:#fff7d6;border:1px solid #e0c060;border-radius:8px;padding:10px;margin:8px 0;font-size:14px;color:#6a5200}
+.wf .steps{display:flex;gap:4px;margin:0 0 8px}.wf .steps i{flex:1;height:6px;background:#ccc;border-radius:3px}.wf .steps i.on{background:#555}
+.wf .bar{height:16px;background:#ccc;border-radius:8px;overflow:hidden}.wf .bar b{display:block;height:100%;width:0;background:#666;transition:width .2s}
+.wf .hitbox{height:220px;display:flex;align-items:center;justify-content:center;font-size:22px;user-select:none;-webkit-user-select:none}
+.wf .wheelw{position:relative;width:260px;height:260px;margin:16px auto}
+.wf .wheel{width:260px;height:260px;border-radius:50%;border:3px solid #333;position:relative;transition:transform 2.4s cubic-bezier(.2,.8,.2,1)}
+.wf .wheel span{position:absolute;left:50%;top:50%;width:110px;margin-left:0;font-size:12px;transform-origin:0 0;padding-left:20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wf .ptr{position:absolute;left:50%;top:-14px;margin-left:-10px;border:10px solid transparent;border-top:18px solid #c33;z-index:2}
+.wf .item{display:flex;gap:8px;margin:6px 0}.wf .item input{flex:1}.wf .item button{width:44px;border:2px solid #999;border-radius:8px;background:#fff}
+.wf .card{background:#ddd;border:2px solid #999;border-radius:14px;padding:18px;margin:12px 0;line-height:1.7}
+.wf .card small{display:block;color:#777;font-size:12px}
+.wf .link{font:13px monospace;word-break:break-all;background:#fff;border:1px solid #ccc;padding:10px;border-radius:8px}
+.wf .pick{text-align:left}
 </style></head><body>
 <section id="env" class="scr on">
   <svg class="star" style="left:12%;top:30%" viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.4 4.6 1.8 7.3L12 17.6 5.6 21.5l1.8-7.3L2 9.6 9 9z" fill="#F6D98B" stroke="#3A2A24" stroke-width="1.5" stroke-linejoin="round"/></svg>
@@ -217,6 +242,69 @@ body{font-family:"ZCOOL KuaiLe","Kaiti SC","STKaiti","KaiTi",cursive,sans-serif;
 <section id="phA" class="scr"><div class="ph">打小人 / 罚单 放在这里<small>（demo 占位）</small><button class="pill ghost" data-go="letter">回到信</button></div></section>
 <section id="phB" class="scr"><div class="ph">转盘 / 承诺 放在这里<small>（demo 占位）</small><button class="pill" data-go="letter">回到信</button></div></section>
 
+<section id="S0" class="scr wf"><span class="sid">S0</span>
+ <h2>软话小人</h2><p class="note">线框 demo · 开始页</p><div class="box" style="height:180px">（标题 / 插画占位）</div>
+ <button class="btn pri" data-go="S1">我要道歉</button><button class="btn" id="toEnv">我收到了一封信</button></section>
+<section id="S1" class="scr wf"><span class="sid">S1</span><button class="back" data-back>‹ 返回</button>
+ <div class="steps" data-s="1"></div><h2>她可能为什么生气？</h2><p class="note">AI 建议的原因（占位），勾上你觉得对的</p>
+ <textarea id="s1what" style="min-height:90px" placeholder="AI 会根据这里列原因"></textarea>
+ <div id="reasons"></div><button class="btn" id="allck">不确定就全勾</button><button class="btn pri" data-go="S2">下一步</button></section>
+<section id="S2" class="scr wf"><span class="sid">S2</span><button class="back" data-back>‹ 返回</button>
+ <div class="steps" data-s="2"></div><h2>我做错了什么</h2><p class="note">只写发生了什么、你做了什么</p>
+ <textarea class="rem" id="t2"></textarea><div class="hints"></div><button class="btn pri" data-go="S3">下一步</button></section>
+<section id="S3" class="scr wf"><span class="sid">S3</span><button class="back" data-back>‹ 返回</button>
+ <div class="steps" data-s="3"></div><h2>我懂你为什么难过</h2><p class="note">站在她那边，想想她那一刻的感受</p>
+ <textarea class="rem" id="t3"></textarea><div class="hints"></div><button class="btn pri" data-go="S4">下一步</button></section>
+<section id="S4" class="scr wf"><span class="sid">S4</span><button class="back" data-back>‹ 返回</button>
+ <div class="steps" data-s="4"></div><h2>以后我会怎么做</h2><p class="note">写具体能做到的事</p>
+ <textarea class="rem" id="t4"></textarea><div class="hints"></div><button class="btn pri" id="toS5">下一步：AI 润色</button></section>
+<section id="S5" class="scr wf"><span class="sid">S5</span><button class="back" data-back>‹ 返回</button>
+ <div class="steps" data-s="5"></div><h2>AI 润色</h2>
+ <div class="card"><small>你写的</small><div id="mine"></div></div>
+ <div class="card"><small>AI 润色占位 <span id="ver"></span></small><div id="pol"></div></div>
+ <p class="note">免费润色剩余：<b id="cred">1</b> 次</p>
+ <button class="btn pri" id="usePol">用这版</button><button class="btn" id="useMine">用我自己写的</button><button class="btn" id="again">再润色一次</button></section>
+<section id="S6" class="scr wf"><span class="sid">S6</span><button class="back" data-back>‹ 返回</button>
+ <div class="steps" data-s="6"></div><h2>转盘上放什么</h2><p class="note">写你真的能做到的事，至少 3 个</p>
+ <div id="items"></div><button class="btn" id="addItem">＋ 加一项</button><p class="note" id="itemErr"></p><button class="btn pri" id="toS7">下一步</button></section>
+<section id="S7" class="scr wf"><span class="sid">S7</span><button class="back" data-back>‹ 返回</button>
+ <div class="steps" data-s="7"></div><h2>信封做好了</h2><div class="box" style="height:120px">（信封预览占位）</div>
+ <div class="link" id="flink"></div><button class="btn pri" id="copy">复制链接</button><p class="note" id="copied"></p>
+ <button class="btn" id="previewBtn">先看看她会看到什么</button></section>
+<section id="S8" class="scr wf"><span class="sid">S8</span><button class="back" data-back>‹ 返回</button>
+ <h2>积分和兑换</h2><div class="box" style="height:140px">积分和兑换码（占位）</div>
+ <input type="text" id="code" placeholder="输入兑换码"><button class="btn pri" id="redeem">兑换</button><p class="note" id="redeemMsg"></p></section>
+<section id="R4" class="scr wf"><span class="sid">R4</span><button class="back" data-back>‹ 返回</button>
+ <h2>打他出出气</h2><p class="note">点小人，打一下</p><div class="box hitbox" id="hit">小人</div>
+ <p>消气值 <b id="hitN">0</b>/10</p><div class="bar"><b id="hitBar"></b></div>
+ <button class="btn pri" data-go="R5">给他开罚单</button></section>
+<section id="R5" class="scr wf"><span class="sid">R5</span><button class="back" data-back>‹ 返回</button>
+ <h2>你来开罚单</h2><p class="note">罚他做什么，你说了算</p>
+ <input type="text" id="fWhat" placeholder="罚他…"><div style="height:10px"></div><input type="text" id="fWhen" placeholder="期限（比如 这周内）">
+ <button class="btn pri" id="toR6">生成罚单</button></section>
+<section id="R6" class="scr wf"><span class="sid">R6</span><button class="back" data-back>‹ 返回</button>
+ <h2>罚单</h2><div class="card"><small>罚单</small>罚他：<b id="tWhat"></b><br>期限：<b id="tWhen"></b><small>长按保存（占位）</small></div>
+ <button class="btn" data-go="R7">也看看另一个</button><button class="btn pri" data-go="R9">我原谅你了</button></section>
+<section id="R7" class="scr wf"><span class="sid">R7</span><button class="back" data-back>‹ 返回</button>
+ <h2>他准备了这些</h2><p class="note">转一转，或者直接挑一个</p>
+ <div class="wheelw"><div class="ptr"></div><div class="wheel" id="wheel"></div></div>
+ <button class="btn pri" id="spin">转一下</button><p class="note" id="spinRes"></p><div id="plist"></div></section>
+<section id="R8" class="scr wf"><span class="sid">R8</span><button class="back" data-back>‹ 返回</button>
+ <h2>你选了</h2><div class="card" id="picked"></div>
+ <button class="btn" data-go="R4">也看看另一个</button><button class="btn pri" data-go="R9">我原谅你了</button></section>
+<section id="R9" class="scr wf"><span class="sid">R9</span><button class="back" data-back>‹ 返回</button>
+ <h2>确定原谅他了吗？</h2><div class="box" style="height:140px">（确认插画占位）</div>
+ <button class="btn pri" data-go="R10">嗯，原谅了</button><button class="btn" data-back>再想想</button></section>
+<section id="R10" class="scr wf"><span class="sid">R10</span><button class="back" data-back>‹ 返回</button>
+ <h2>和好券</h2><div class="card"><small>软话</small><div id="cSoft"></div><small>承诺</small><div id="cProm"></div><small>签名</small><div id="cSign"></div><small>长按保存（占位）</small></div>
+ <button class="btn" id="restart">回到开始</button></section>
+
+<script>(function(){try{var q=new URLSearchParams(location.search);if(q.get('preview')!=='1')return;var d=JSON.parse(sessionStorage.getItem('st_letter')||'null');if(!d)return;
+var beats=document.querySelectorAll('.sheet .beat');d.forEach(function(txt,i){var b=beats[i];if(!b||!txt)return;var ps=[].slice.call(b.querySelectorAll('p.ln.tw'));
+ var ss=txt.split(/(?<=[。！？!?\n])/).map(function(s){return s.trim()}).filter(Boolean);var last=ps[ps.length-1];
+ ss.forEach(function(s,k){var p=ps[k];if(!p){p=document.createElement('p');p.className='ln tw';last.after(p);last=p}p.textContent=s});
+ ps.slice(ss.length).forEach(function(p){p.remove()})})}catch(e){}})();
+</script>
 <script>
 var $=function(s){return document.querySelector(s)},rm=matchMedia('(prefers-reduced-motion:reduce)').matches,opened=false;
 function show(id){document.querySelectorAll('.scr').forEach(function(s){s.classList.toggle('on',s.id===id)});}
@@ -273,4 +361,57 @@ new IntersectionObserver(function(es){if(!es[0].isIntersecting||finalSeen)return
   if(cur){clearTimeout(timer);cur=null}lines.forEach(function(p){if(!p.dataset.done)done(p)});queue=[];talk(false);begin(lines.length-1);
   setTimeout(function(){$('#c1').classList.remove('hide');$('#c1').classList.add('show')},rm?0:700);
   setTimeout(function(){$('#c2').classList.remove('hide');$('#c2').classList.add('show')},rm?0:850)},{threshold:.5}).observe($('#final'));
+</script>
+<script>(function(){
+var S={items:['陪你去吃那家店','这周接送你上下班','一起看你想看的电影'],credits:1,ver:1,pick:null,ticket:null,hits:0};
+try{var it=JSON.parse(sessionStorage.getItem('st_items')||'null');if(it&&it.length)S.items=it}catch(e){}
+var $=function(s){return document.querySelector(s)},HIST=[],cur='env',_show=window.show;
+window.show=function(id){if(id!==cur)HIST.push(cur);cur=id;_show(id);onEnter(id)};
+function go(id){show(id);if(!/^(letter)$/.test(id))scrollTo(0,0)}
+document.addEventListener('click',function(e){var b=e.target.closest('[data-back]');if(!b)return;var p=HIST.pop()||'S0';cur=p;_show(p);onEnter(p);
+  if(p==='letter'){var f=$('#final');f&&f.scrollIntoView()}else scrollTo(0,0)});
+$('#c1').dataset.go='R4';$('#c2').dataset.go='R7';
+document.querySelectorAll('.steps').forEach(function(s){var n=+s.dataset.s;for(var i=1;i<=7;i++){var x=document.createElement('i');if(i<=n)x.className='on';s.appendChild(x)}
+  s.insertAdjacentHTML('afterend','<p class="note">第 '+n+' / 7 步</p>')});
+var R=['说好七点去接她，我迟到了一个小时','她打了三个电话我都没接','让她一个人在楼下等，又冷又着急','她觉得自己在我心里不重要'];
+$('#reasons').innerHTML=R.map(function(r){return '<label class="ck"><input type="checkbox"> '+r+'</label>'}).join('');
+$('#allck').onclick=function(){document.querySelectorAll('#reasons input').forEach(function(c){c.checked=true})};
+var T={'但是':'写到「但是」了，她可能会把前面的道歉当成铺垫。试试只说你做了什么？','如果你觉得':'「如果你觉得」会让她觉得你不确定自己错在哪。试试直接说出来？'};
+document.querySelectorAll('textarea.rem').forEach(function(t){t.addEventListener('input',function(){var h=[];for(var k in T)if(t.value.indexOf(k)>=0)h.push('<div class="hintw" data-trig="'+k+'">'+T[k]+'</div>');t.nextElementSibling.innerHTML=h.join('')})});
+$('#t2').value='周六晚上说好七点去接你，我打游戏忘了时间，八点才出门。你在楼下等了一个小时，我一个电话都没接。';
+$('#t3').value='那天风很大，你一个人在楼下等，一定又冷又着急。';
+$('#t4').value='以后约好的时间，我提前半小时定闹钟。这周六，换我先到，等你。';
+function parts(){return [$('#t2').value.trim(),$('#t3').value.trim(),$('#t4').value.trim()]}
+function polish(){$('#ver').textContent='（第 '+S.ver+' 版）';$('#pol').innerHTML=parts().map(function(p){return '<p>'+esc(p.replace(/我一个电话都没接/,'你的电话我一个都没接'))+(S.ver>1?'（占位改写 '+S.ver+'）':'')+'</p>'}).join('');$('#cred').textContent=S.credits}
+function esc(s){return s.replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+$('#toS5').onclick=function(){$('#mine').innerHTML=parts().map(function(p){return '<p>'+esc(p)+'</p>'}).join('');polish();go('S5')};
+$('#again').onclick=function(){if(S.credits>0){S.credits--;S.ver++;polish()}else go('S8')};
+$('#usePol').onclick=function(){S.letter=[].map.call(document.querySelectorAll('#pol p'),function(p){return p.textContent});go('S6')};
+$('#useMine').onclick=function(){S.letter=parts();go('S6')};
+function renderItems(){$('#items').innerHTML=S.items.map(function(v,i){return '<div class="item"><input type="text" value="'+esc(v)+'" data-i="'+i+'"><button data-del="'+i+'">×</button></div>'}).join('')}
+$('#items').addEventListener('input',function(e){if(e.target.dataset.i!=null)S.items[e.target.dataset.i]=e.target.value});
+$('#items').addEventListener('click',function(e){var d=e.target.dataset.del;if(d!=null){S.items.splice(+d,1);renderItems()}});
+$('#addItem').onclick=function(){S.items.push('');renderItems()};
+$('#toS7').onclick=function(){var v=S.items.map(function(x){return x.trim()}).filter(Boolean);if(v.length<3){$('#itemErr').textContent='再写 '+(3-v.length)+' 个吧，至少 3 个';return}
+  S.items=v;$('#itemErr').textContent='';$('#flink').textContent=location.origin+location.pathname+'?to=env&id=demo123（假链接）';go('S7')};
+$('#copy').onclick=function(){try{navigator.clipboard.writeText($('#flink').textContent)}catch(e){}$('#copied').textContent='已复制（占位）'};
+$('#previewBtn').onclick=function(){sessionStorage.setItem('st_letter',JSON.stringify(S.letter||parts()));sessionStorage.setItem('st_items',JSON.stringify(S.items));location.href=location.pathname+'?preview=1&to=env'};
+$('#redeem').onclick=function(){S.credits+=3;$('#redeemMsg').textContent='兑换成功（占位）：+3 次润色';$('#cred').textContent=S.credits};
+$('#toEnv').onclick=function(){go('env')};
+$('#hit').addEventListener('click',function(){S.hits=Math.min(10,S.hits+1);$('#hitN').textContent=S.hits;$('#hitBar').style.width=S.hits*10+'%'});
+$('#toR6').onclick=function(){S.ticket={what:$('#fWhat').value.trim()||'（没写）',when:$('#fWhen').value.trim()||'（没写）'};$('#tWhat').textContent=S.ticket.what;$('#tWhen').textContent=S.ticket.when;go('R6')};
+var rot=0;function renderWheel(){var n=S.items.length,g=[];for(var i=0;i<n;i++)g.push((i%2?'#bbb':'#e2e2e2')+' '+(i*360/n)+'deg '+((i+1)*360/n)+'deg');
+  var w=$('#wheel');w.style.background='conic-gradient('+g.join(',')+')';
+  w.innerHTML=S.items.map(function(t,i){return '<span style="transform:rotate('+((i+.5)*360/n-90)+'deg)">'+esc(t)+'</span>'}).join('');
+  $('#plist').innerHTML=S.items.map(function(t,i){return '<button class="btn pick" data-pick="'+i+'">'+esc(t)+'</button>'}).join('')}
+function pick(i){S.pick=S.items[i];$('#picked').textContent=S.pick;go('R8')}
+$('#plist').addEventListener('click',function(e){var b=e.target.closest('[data-pick]');if(b)pick(+b.dataset.pick)});
+$('#spin').onclick=function(){var n=S.items.length,i=Math.floor(Math.random()*n),seg=360/n;rot+=1440+((360-(i+.5)*seg)-(rot%360)+360)%360;$('#wheel').style.transform='rotate('+rot+'deg)';
+  $('#spin').disabled=true;window.__spinIdx=i;setTimeout(function(){$('#spin').disabled=false;$('#spinRes').innerHTML='转到了：<b>'+esc(S.items[i])+'</b> <button class="btn" id="takeSpin">就这个</button>';$('#takeSpin').onclick=function(){pick(i)}},2500)};
+function onEnter(id){if(id==='S6')renderItems();if(id==='R7')renderWheel();
+  if(id==='R10'){var L=S.letter;$('#cSoft').textContent=(L&&L[2])?L[2].split(/(?<=[。！？])/)[0]:'这周六，还是那家店门口，这次换我先到，等你。';
+    $('#cProm').textContent=S.pick?S.pick:(S.ticket?'罚单：'+S.ticket.what+'（'+S.ticket.when+'）':'（还没选）');$('#cSign').textContent='阿哲 · 小鱼'}}
+$('#restart').onclick=function(){location.href=location.pathname};
+var q=new URLSearchParams(location.search);if(!(q.get('to')==='env'||/^#(env|letter)$/.test(location.hash))){cur='S0';_show('S0')}
+})();
 </script></body></html>
