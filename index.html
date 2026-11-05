@@ -216,7 +216,7 @@ textarea.t.mid{min-height:110px}
 .bar{margin:8px auto 0}
 .tease{font-size:14px;color:#E8505B;background:#FDEBE6;border-radius:14px;padding:6px 12px;margin:6px auto;display:none;text-align:center;max-width:360px}.tease.on{display:block;animation:fadeUp .4s}
 .cd.done{background:#FDE7E3}.cd.done::after{content:"✓";position:absolute;right:10px;top:6px;color:var(--pink)}.cd{position:relative}
-@media (max-height:700px){.wh{width:220px;height:220px}}
+@media (max-height:700px){.wh{width:200px;height:200px}#wheelS h2{margin-bottom:0}}
 /* hit (ported 75f00eb) */
 .stage2{--h:300px;position:relative;width:300px;max-width:92vw;height:var(--h);margin:14px auto 4px;cursor:pointer;touch-action:manipulation;user-select:none;-webkit-user-select:none}
 .stage2 .me{height:100%;position:relative;display:flex;justify-content:center}
@@ -349,6 +349,14 @@ img.out{display:block;max-width:100%;max-height:52vh;margin-left:auto!important;
   <input class="t" id="fC" style="margin:-4px 0 12px;font-size:16px" value="周末陪你去吃那家想吃很久的火锅">
   <label class="chk" data-t="talk"><input type="checkbox"><i></i><span>听我解释<br><small style="color:var(--ink2)">放在信后面，她点开才会看到</small></span></label>
   <textarea class="t mid" id="fE" style="display:none;margin:-4px 0 12px;font-size:16px" placeholder="想补充的来龙去脉写在这里，她愿意听的时候再看。"></textarea>
+  <div class="prom">
+  <b style="font-size:17px">我的承诺</b><small style="color:var(--ink2);display:block">会写进她最后收到的和好券里</small>
+  <div class="chips" id="prM"><button class="on" data-m="1">让 TA 挑一个</button><button data-m="0">全都给 TA</button></div>
+  <p class="ghint on" id="prH" style="font-size:14px;color:var(--ink2);margin:2px 0 6px">她会从里面挑一个最想要的，写进和好券</p>
+  <div class="chips" id="prQ"></div>
+  <div id="prL"></div>
+  <button class="pill ghost sm" id="prAdd" style="margin-top:4px">＋ 加一项</button>
+  </div>
   <p class="tips">「先静一静」会一直在，她想缓一缓的时候随时可以点。</p>
   <div class="row"><button class="back" data-go="W8">‹ 上一步</button><button class="pill" data-next="T1">预览</button></div>
 </section>
@@ -385,6 +393,8 @@ img.out{display:block;max-width:100%;max-height:52vh;margin-left:auto!important;
   <label><input type="checkbox" id="xw" checked>转盘</label>
   <textarea class="t mid" id="xwi" style="min-height:90px;font-size:15px" placeholder="转盘选项，一行一个"></textarea>
   <label><input type="checkbox" id="xc" checked>刮开小券</label><input class="t" id="xci" style="font-size:15px">
+  <label>承诺（一行一个）</label><textarea class="t mid" id="xpr" style="min-height:80px;font-size:15px"></textarea>
+  <label><input type="radio" name="xpm" id="xpm1" checked>让 TA 挑一个</label><label><input type="radio" name="xpm" id="xpm0">全都给 TA</label>
   <label><input type="checkbox" id="xt">听我解释</label><textarea class="t mid" id="xti" style="font-size:15px"></textarea>
   </div>
   <div class="row c"><button class="pill" id="xGo">生成链接</button></div>
@@ -512,7 +522,7 @@ var LATE={
 var GEN={
  p:'她生气的时候，心里常常藏着一句没说出口的话：「我希望自己在你心里是被在意的。」回到那个时刻想一想，她当时看到了什么、在等什么、最希望你做什么。她的难过，多半就藏在这些地方。',
  r:['那个时候她需要你，你不在身边','她说的话，好像没有被认真听进去','有些事你没先告诉她','说好的事没做到','她的心情被晾在了一边']};
-var SAMPLE={n:'小雨',s:'阿杰',p:LATE.pol,t:{hit:1,wheel:1,scratch:1,talk:1},w:['奶茶一个月','陪你逛一整天街','做一顿大餐','包一周家务','买你想要的那个','任你安排一天'],c:'周末陪你去吃那家想吃很久的火锅',e:'那天其实是项目临时出了问题，我一忙就没看手机。不过这些都不重要，重要的是我让你一个人等了那么久。'};
+var SAMPLE={n:'小雨',s:'阿杰',p:LATE.pol,pr:['以后要晚到，我一定提前告诉你','下周六补上那顿饭，我来订位'],t:{hit:1,wheel:1,scratch:1,talk:1},w:['奶茶一个月','陪你逛一整天街','做一顿大餐','包一周家务','买你想要的那个','任你安排一天'],c:'周末陪你去吃那家想吃很久的火锅',e:'那天其实是项目临时出了问题，我一忙就没看手机。不过这些都不重要，重要的是我让你一个人等了那么久。'};
 
 /* ---------- sender ---------- */
 var S={n:'',s:'',w:'',ana:null,tick:[],p:['','',''],pol:null,ver:'pol',t:{hit:1,wheel:1,scratch:1,talk:0}};
@@ -534,18 +544,29 @@ var NEXT={
  W5:function(){if(!$('#p1').value.trim()){toast('写一两句就好');return}show('W6')},
  W6:function(){if(!$('#p2').value.trim()){toast('写一两句就好');return}S.p=[0,1,2].map(function(i){return $('#p'+i).value.trim()});$('#pv7').textContent=letter(S.p);show('W7')},
  W7:function(){S.pol=S.ana===LATE?LATE.pol.slice():S.p.map(tidy);$('#polNote').textContent=S.ana===LATE?'帮你把话理顺了，意思都没变。哪句不像你，可以切回原来的。':'只把标点和断句理顺了一点，意思都是你的。';S.ver='pol';$$('#W8 .seg button').forEach(function(b){b.classList.toggle('on',b.dataset.v=='pol')});$('#pv8').textContent=letter(S.pol);show('W8')},
- W8:function(){renderWheelEd();show('T1')},
+ W8:function(){renderWheelEd();if(!$('#prL').dataset.b){$('#prL').dataset.b=1;prBind()}show('T1')},
  T1:function(){$$('#T1 .chk').forEach(function(c){S.t[c.dataset.t]=c.classList.contains('on')?1:0});if(S.t.talk&&!$('#fE').value.trim()){toast('写一下想补充的话吧');return}
    $('#pv2').textContent=letter(finalP());var L={hit:'打他出气 + 罚单',wheel:'转盘',scratch:'刮开小券',talk:'听我解释'};$('#pvT').textContent='台阶：'+Object.keys(L).filter(function(k){return S.t[k]}).map(function(k){return L[k]}).concat('先静一静').join(' · ');show('P2')},
  P2:function(){var u=mkLink();$('#lk3').textContent=u;$('#op3').href=u;show('P3')}
 };
-function payload(){return {n:S.n,s:S.s,p:finalP(),t:S.t,w:$$('#wheelEd input').map(function(i){return i.value.trim()}).filter(Boolean),c:$('#fC').value.trim(),e:$('#fE').value.trim()}}
+function payload(){return prOut({n:S.n,s:S.s,p:finalP(),t:S.t,w:$$('#wheelEd input').map(function(i){return i.value.trim()}).filter(Boolean),c:$('#fC').value.trim(),e:$('#fE').value.trim()})}
 function mkLink(){return base()+'#r='+enc(payload())}
 $('#pvOpen').onclick=function(){window.open(mkLink(),'_blank')};
 $('#cp3').onclick=function(){copy($('#lk3').textContent)};
 $$('#W8 .seg button').forEach(function(b){b.onclick=function(){S.ver=b.dataset.v;$$('#W8 .seg button').forEach(function(x){x.classList.toggle('on',x==b)});$('#pv8').textContent=letter(finalP())}});
 function bindChk(c){c.addEventListener('click',function(e){e.preventDefault();c.classList.toggle('on');if(c.dataset.t=='talk')$('#fE').style.display=c.classList.contains('on')?'block':'none';if(c.dataset.t=='wheel')$('#wheelEd').style.display=c.classList.contains('on')?'block':'none';if(c.dataset.t=='scratch')$('#fC').style.display=c.classList.contains('on')?'block':'none'})}
 $$('#T1 .chk').forEach(bindChk);
+var PROMS=['买奶茶','请吃饭','陪你逛街','任你处置'],PM=1,PRL=['以后要晚到，我一定提前告诉你'];
+function prDraw(){$('#prL').innerHTML=PRL.map(function(v,i){return '<div style="display:flex;gap:6px;margin-bottom:6px"><input class="t" data-i="'+i+'" maxlength="20" style="font-size:15px;padding:8px 12px;flex:1" value="'+esc(v)+'" placeholder="写一个你会做到的事"><button class="pill ghost sm" data-d="'+i+'" style="padding:4px 12px"'+(PRL.length<=1?' disabled':'')+'>×</button></div>'}).join('');
+ $('#prQ').innerHTML=PROMS.map(function(p){return '<button'+(PRL.indexOf(p)>=0?' class="on"':'')+'>'+p+'</button>'}).join('');
+ $('#prAdd').disabled=PRL.length>=6;$('#prH').textContent=PM?'她会从里面挑一个最想要的，写进和好券':'和好券上会写下你所有的承诺';
+ $$('#prM button').forEach(function(b){b.classList.toggle('on',+b.dataset.m==PM)})}
+function prBind(){$('#prL').addEventListener('input',function(e){if(e.target.dataset.i!=null)PRL[+e.target.dataset.i]=e.target.value});
+ $('#prL').addEventListener('click',function(e){var d=e.target.dataset.d;if(d!=null&&PRL.length>1){PRL.splice(+d,1);prDraw()}});
+ $('#prQ').addEventListener('click',function(e){var t=e.target.textContent;if(e.target.tagName!='BUTTON')return;var i=PRL.indexOf(t);if(i>=0){if(PRL.length>1)PRL.splice(i,1)}else if(PRL.length<6){var j=PRL.indexOf('');if(j>=0)PRL[j]=t;else PRL.push(t)}prDraw()});
+ $('#prM').addEventListener('click',function(e){if(e.target.dataset.m!=null){PM=+e.target.dataset.m;prDraw()}});
+ $('#prAdd').onclick=function(){if(PRL.length<6){PRL.push('');prDraw();var x=$$('#prL input');x[x.length-1].focus()}};prDraw()}
+function prOut(o){var a=PRL.map(function(x){return x.trim()}).filter(Boolean);if(a.length)o[PM&&a.length>1?'ps':'pr']=a;return o}
 function renderWheelEd(){if($('#wheelEd').children.length)return;$('#wheelEd').innerHTML=WHEEL.map(function(w){return '<input class="t" style="font-size:15px;padding:8px 12px;margin-bottom:6px" value="'+esc(w)+'">'}).join('')}
 $('#fast').onclick=function(){toast('极速版马上就来～')};
 $$('[data-go]').forEach(function(b){b.onclick=function(){show(b.dataset.go)}});
@@ -553,8 +574,8 @@ $$('[data-next]').forEach(function(b){b.onclick=function(){NEXT[b.dataset.next](
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 
 /* ---------- fill page ---------- */
-function initFill(){$('#xN').value=SAMPLE.n;$('#xS').value=SAMPLE.s;[0,1,2].forEach(function(i){$('#x'+i).value=SAMPLE.p[i]});$('#xwi').value=SAMPLE.w.join('\n');$('#xci').value=SAMPLE.c;$('#xti').value=SAMPLE.e;
- $('#xGo').onclick=function(){var d={n:$('#xN').value.trim(),s:$('#xS').value.trim(),p:[0,1,2].map(function(i){return $('#x'+i).value.trim()}),t:{hit:+$('#xh').checked,wheel:+$('#xw').checked,scratch:+$('#xc').checked,talk:+$('#xt').checked},w:$('#xwi').value.split('\n').map(function(x){return x.trim()}).filter(Boolean),c:$('#xci').value.trim(),e:$('#xti').value.trim()};
+function initFill(){$('#xN').value=SAMPLE.n;$('#xS').value=SAMPLE.s;[0,1,2].forEach(function(i){$('#x'+i).value=SAMPLE.p[i]});$('#xwi').value=SAMPLE.w.join('\n');$('#xci').value=SAMPLE.c;$('#xti').value=SAMPLE.e;$('#xpr').value=SAMPLE.pr.join('\n');
+ $('#xGo').onclick=function(){var d={n:$('#xN').value.trim(),s:$('#xS').value.trim(),p:[0,1,2].map(function(i){return $('#x'+i).value.trim()}),t:{hit:+$('#xh').checked,wheel:+$('#xw').checked,scratch:+$('#xc').checked,talk:+$('#xt').checked},w:$('#xwi').value.split('\n').map(function(x){return x.trim()}).filter(Boolean),c:$('#xci').value.trim(),e:$('#xti').value.trim()};var pa=$('#xpr').value.split('\n').map(function(x){return x.trim()}).filter(Boolean);if(pa.length)d[$('#xpm1').checked&&pa.length>1?'ps':'pr']=pa;
   var u=base()+'#r='+enc(d);$('#xL').textContent=u;['#xL','#xCp','#xOp'].forEach(function(s){$(s).style.display=''});$('#xOp').href=u};
  $('#xCp').onclick=function(){copy($('#xL').textContent)};show('FILL')}
 
@@ -698,9 +719,9 @@ onShow.wheelS=function(){if(whInit)return;whInit=true;$('#disc').innerHTML=wheel
 $('#spin').onclick=function(){var W=D.w,n=W.length,i=Math.floor(Math.random()*n),b=$('#spin');b.disabled=true;squeak();
   rot+=360*5+(360-(i*360/n+180/n))-(rot%360);$('#disc').style.transform='rotate('+rot+'deg)';$('#whRes').textContent='转呀转…';
   setTimeout(function(){b.disabled=false;var r=W[i];yay();
-   if(r=='你来点一个'){spun=true;b.style.display='none';$('#whRes').innerHTML='你来点一个：想要哪个？<div class="pens" style="margin-top:8px">'+W.filter(function(w){return w!=r}).map(function(w){return '<button class="chip">'+esc(w)+'</button>'}).join('')+'</div>';
+   if(r=='你来点一个'){spun=true;b.style.display='none';scrollTo(0,0);$('#whRes').innerHTML='你来点一个：想要哪个？<div class="pens" style="margin-top:8px">'+W.filter(function(w){return w!=r}).map(function(w){return '<button class="chip">'+esc(w)+'</button>'}).join('')+'</div>';
     [].forEach.call($('#whRes').querySelectorAll('.chip'),function(c){c.onclick=function(){prize=c.textContent;yay();$('#whRes').textContent='🎉 就它了：'+prize+'！';b.style.display='';b.textContent='收下';b.onclick=function(){mark('wheelS');show('hub')}}});return}
-   prize=r;spun=true;mark('wheelS');$('#whRes').textContent='🎉 抽中：'+r+'！';b.textContent='收下';b.onclick=function(){show('hub')};
+   prize=r;spun=true;mark('wheelS');$('#whRes').textContent='🎉 抽中：'+r+'！';scrollTo(0,0);b.textContent='收下';b.onclick=function(){show('hub')};
    var c=window.confetti&&confetti.create($('#cf'),{resize:true,useWorker:false});c&&c({particleCount:60,spread:70,origin:{y:.55},colors:['#EE7F92','#FFD36E','#6FA3D8']})},3100)};
 function boom(){var c=window.confetti&&confetti.create($('#cf'),{resize:true,useWorker:false});if(!c)return;var col=['#EE7F92','#6FA3D8','#FFD36E','#9CC28A','#fff'];
   if(RM){c({particleCount:60,spread:90,origin:{y:.5},colors:col,ticks:120});return}
@@ -744,7 +765,12 @@ onShow.scS=function(){$('#scU').textContent=D.c;if(scInit)return;scInit=true;var
  function sc(e){if(!down)return;var b=cv.getBoundingClientRect();c.beginPath();c.arc((e.clientX-b.left)*2,(e.clientY-b.top)*2,40,0,7);c.fill();if(++cnt>40){cv.style.transition='opacity .5s';cv.style.opacity=0;$('#scH').textContent='刮开啦，记得找他兑现～'}}
  cv.addEventListener('pointerdown',function(e){down=true;sc(e)});cv.addEventListener('pointermove',sc);addEventListener('pointerup',function(){down=false})};
 onShow.talkS=function(){mark('talkS');$('#talkT').textContent=D.e};
-onShow.fgvS=function(){var PR=D.pr&&D.pr.length?D.pr:sents(D.p[2]).slice(0,2).map(function(x){x=x.split(/[，,；;]/)[0].replace(/[。！!]$/,'');return x.length>15?x.slice(0,15):x});window.PR=PR;yay();boom();drawCard('coupon',function(u){var o=$('#fgvOut');o.innerHTML='<img class="out" alt="和好券" src="'+u+'"><p class="sub2" style="text-align:center">长按图片保存，发给他</p>'})};
+onShow.fgvS=function(){var all=D.ps||D.pr||[],pick=!!D.ps&&all.length>1;var o=$('#fgvOut');
+ function go(PR){window.PR=PR.length?PR:[softRaw()];yay();boom();drawCard('coupon',function(u){o.innerHTML='<img class="out" alt="和好券" src="'+u+'">'})}
+ if(window.PR&&window.PRdone){go(window.PR);return}
+ if(pick){o.innerHTML='<div style="text-align:center"><p style="font-size:19px;font-weight:800;color:#E8505B;margin:0">挑一个你最想要的吧</p><p class="sub2" style="margin:4px 0 10px">'+T2+' 会把它写进和好券里</p><div class="pens">'+all.map(function(p,i){return '<button class="chip" data-i="'+i+'">'+esc(p)+'</button>'}).join('')+'</div></div>';
+  [].forEach.call(o.querySelectorAll('.chip'),function(b){b.onclick=function(){window.PRdone=1;go([all[+b.dataset.i]])}});return}
+ window.PRdone=1;go(all)};
 /* ---------- router ---------- */
 (function(){var h=location.hash,q=location.search;
  if(/^#r=/.test(h)){try{var d=dec(h.slice(3));d.t=d.t||{};d.w=d.w||[];d.p=d.p||['','',''];initRecv(d);return}catch(e){}}
