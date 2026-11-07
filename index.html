@@ -284,7 +284,16 @@ img.out{display:block;max-width:100%;max-height:52vh;margin-left:auto!important;
 .scbox canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none}
 .talkcard{background:var(--paper);border:2px solid var(--ink);border-radius:14px;padding:18px;font-size:18px;line-height:1.9;white-space:pre-wrap}
 .lock{opacity:.5}
-.forgive{display:block;margin:26px auto 0;background:none;border:0;font:inherit;font-size:15px;color:var(--ink2);text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+.forgive{display:block;margin:26px auto 0;background:none;border:0;font:inherit;font-size:16px;color:var(--ink2);text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+/* forgiveness choice from 75f00eb: 原谅 stays and grows, 不原谅 dodges */
+.fgq{text-align:center;font-size:26px;margin:4px 0 8px}
+.fgzone{position:relative;width:100%;max-width:380px;height:220px;margin:4px auto 8px;touch-action:manipulation}
+#yes{position:absolute;left:50%;top:46%;z-index:2;min-width:120px;min-height:48px;transform:translate(-50%,-50%) scale(var(--s,1));transition:transform .25s;touch-action:manipulation}
+#yes:active{transform:translate(-50%,-50%) scale(calc(var(--s,1) * .96))}
+#no{position:absolute;z-index:1;min-height:44px;min-width:88px;padding:0 16px;border-radius:22px;border:2px solid #4A6E99;background:#DCE8F6;color:#4A6E99;font:inherit;font-size:16px;white-space:nowrap;transition:left .22s,top .22s;touch-action:manipulation}
+.fgexit{display:flex;justify-content:center;margin:4px 0 8px}
+#fgCalm{min-height:44px;position:static}
+@media (max-height:700px){.fgq{font-size:22px;margin:0}.fgzone{height:168px}}
 .fillgrid label{display:flex;gap:8px;align-items:center;font-size:16px;margin:8px 0}
 </style></head><body>
 <div class="toast" id="toast"></div>
@@ -482,7 +491,7 @@ img.out{display:block;max-width:100%;max-height:52vh;margin-left:auto!important;
   <div class="bar"><span>消气值</span><div class="tr"><div class="fl" id="fl"></div></div><span id="flt">0%</span></div>
   <div class="tease" id="tz">还有一份补偿已经备好，随时给你 🎁</div><p class="sub2" id="thx" style="display:none;text-align:center;color:#E8505B;font-size:16px">谢谢你愿意听我说完</p>
   <div class="grid" id="hubGrid"></div>
-  <button class="forgive" data-r="fgvS">我想好了，原谅他这一次</button>
+  <button class="forgive" data-r="fgvS">原谅他吗？</button>
 </section>
 
 <section class="scr" id="fineS">
@@ -527,8 +536,13 @@ img.out{display:block;max-width:100%;max-height:52vh;margin-left:auto!important;
 
 <section class="scr" id="fgvS">
   <div class="topbar"><button class="back" data-r="hub">‹ 返回</button></div>
-  <h2 style="text-align:center">和好券</h2>
-  <p class="desc" style="text-align:center">长按图片可以保存下来</p>
+  <h2 class="fgq" id="fgQ">原谅他吗？</h2>
+  <div class="fgzone" id="zone">
+    <button type="button" class="pill" id="yes">原谅</button>
+    <button type="button" id="no">不原谅</button>
+  </div>
+  <div class="fgexit"><button type="button" class="pill ghost" id="fgCalm" data-r="calmS">先静一静</button></div>
+  <p class="desc" id="fgHint" style="text-align:center;display:none">长按图片可以保存下来</p>
   <div id="fgvOut"></div>
   <div class="row c"><button class="pill ghost sm" data-r="hub">‹ 返回</button></div>
 </section>
@@ -812,12 +826,27 @@ onShow.scS=function(){$('#scU').textContent=D.c;if(scInit)return;scInit=true;var
  function sc(e){if(!down)return;var b=cv.getBoundingClientRect();c.beginPath();c.arc((e.clientX-b.left)*2,(e.clientY-b.top)*2,40,0,7);c.fill();if(++cnt>40){cv.style.transition='opacity .5s';cv.style.opacity=0;$('#scH').textContent='刮开啦，记得找他兑现～'}}
  cv.addEventListener('pointerdown',function(e){down=true;sc(e)});cv.addEventListener('pointermove',sc);addEventListener('pointerup',function(){down=false})};
 onShow.talkS=function(){mark('talkS');$('#talkT').textContent=D.e};
-onShow.fgvS=function(){var all=D.ps||D.pr||[],pick=!!D.ps&&all.length>1;var o=$('#fgvOut');
- function go(PR){window.PR=PR.length?PR:[softRaw()];yay();boom();drawCard('coupon',function(u){o.innerHTML='<img class="out" alt="和好券" src="'+u+'">'})}
- if(window.PR&&window.PRdone){go(window.PR);return}
- if(pick){o.innerHTML='<div style="text-align:center"><p style="font-size:19px;font-weight:800;color:#E8505B;margin:0">挑一个你最想要的吧</p><p class="sub2" style="margin:4px 0 10px">'+T2+' 会把它写进和好券里</p><div class="pens">'+all.map(function(p,i){return '<button class="chip" data-i="'+i+'">'+esc(p)+'</button>'}).join('')+'</div></div>';
-  [].forEach.call(o.querySelectorAll('.chip'),function(b){b.onclick=function(){window.PRdone=1;go([all[+b.dataset.i]])}});return}
- window.PRdone=1;go(all)};
+var NOS=['不原谅','别嘛～','再想想嘛','好不好嘛～','再给我一次机会嘛','抱抱我嘛～'],noi=0,fgShow=function(){};
+function placeNo(first){var zone=$('#zone'),no=$('#no'),yes=$('#yes');if(!zone||zone.style.display=='none')return;
+ var zw=zone.clientWidth,zh=zone.clientHeight,bw=no.offsetWidth,bh=no.offsetHeight,maxX=Math.max(0,zw-bw),maxY=Math.max(0,zh-bh);
+ if(first!==false&&noi==0){no.style.left=(maxX/2)+'px';no.style.top=maxY+'px';return}
+ var yr=yes.getBoundingClientRect(),zr=zone.getBoundingClientRect(),x,y,k=0;
+ do{x=Math.random()*maxX;y=Math.random()*maxY;k++}while(k<30&&x<yr.right-zr.left+8&&x+bw>yr.left-zr.left-8&&y<yr.bottom-zr.top+8&&y+bh>yr.top-zr.top-8);
+ no.style.left=Math.max(0,Math.min(maxX,x))+'px';no.style.top=Math.max(0,Math.min(maxY,y))+'px'}
+(function(){var no=$('#no'),yes=$('#yes');
+ function dodge(e){if(e.cancelable)e.preventDefault();noi++;squeak();no.textContent=NOS[Math.min(noi,NOS.length-1)];yes.style.setProperty('--s',String(Math.min(1+noi*.18,2.1)));placeNo(false)}
+ no.addEventListener('pointerdown',dodge);no.addEventListener('click',function(e){e.preventDefault()});
+ yes.onclick=function(){yes.disabled=true;fgShow()}})();
+onShow.fgvS=function(){var all=D.ps||D.pr||[],pick=!!D.ps&&all.length>1;var o=$('#fgvOut'),q=$('#fgQ'),zone=$('#zone');
+ function go(PR){window.PR=PR.length?PR:[softRaw()];yay();boom();zone.style.display='none';q.textContent='谢谢你原谅他！';$('#fgHint').style.display='';drawCard('coupon',function(u){o.innerHTML='<img class="out" alt="和好券" src="'+u+'">';fitActive()})}
+ function showPrize(){if(window.PR&&window.PRdone){go(window.PR);return}
+  if(pick){zone.style.display='none';q.textContent='谢谢你原谅他！';o.innerHTML='<div style="text-align:center"><p style="font-size:19px;font-weight:800;color:#E8505B;margin:0">挑一个你最想要的吧</p><p class="sub2" style="margin:4px 0 10px">'+T2+' 会把它写进和好券里</p><div class="pens">'+all.map(function(p,i){return '<button class="chip" data-i="'+i+'">'+esc(p)+'</button>'}).join('')+'</div></div>';
+   [].forEach.call(o.querySelectorAll('.chip'),function(b){b.onclick=function(){window.PRdone=1;go([all[+b.dataset.i]])}});fitActive();return}
+  window.PRdone=1;go(all)}
+ fgShow=showPrize;
+ if(window.PRdone){showPrize();return}
+ zone.style.display='';q.textContent='原谅他吗？';$('#fgHint').style.display='none';o.innerHTML='';noi=0;$('#no').textContent=NOS[0];$('#yes').disabled=false;$('#yes').style.setProperty('--s','1');
+ requestAnimationFrame(function(){placeNo(true);fitActive()})};
 /* ---------- router ---------- */
 (function(){var h=location.hash,q=location.search;
  if(/^#r=/.test(h)){try{var d=dec(h.slice(3));d.t=d.t||{};d.w=d.w||[];d.p=d.p||['','',''];initRecv(d);return}catch(e){}}
