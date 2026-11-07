@@ -1,0 +1,11 @@
+{
+  "name": "softtalk-preview",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test:mobile": "node test/mobile-regression.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.65.0"
+  }
+}
