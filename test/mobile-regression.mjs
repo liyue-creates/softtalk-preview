@@ -291,14 +291,100 @@ async function zoomAndPlay(page, label) {
   check(labels.length >= 4 && labels.some((t) => t.includes('奶茶')), label + ' original wheel options');
 
   await page.click('#wheelS [data-r="hub"]');
-  await page.click('#hub .forgive');
-  await page.waitForSelector('#fgvS.on img.out', { timeout: 4000 });
+  await forgiveDodge(page, label);
   const coupon = await page.$eval('#fgvOut img.out', (el) => el.src.slice(0, 20));
   check(coupon.startsWith('data:image/jpeg'), label + ' coupon is a JPEG');
 
   const girl = await page.request.get(base + '/assets/chars/her_giggle.webp');
   const boy = await page.request.get(base + '/assets/chars/him_heart.webp');
   check(girl.ok() && boy.ok(), label + ' blue boy and pink girl assets still served');
+}
+
+const NOS = ['不原谅', '别嘛～', '再想想嘛', '好不好嘛～', '再给我一次机会嘛', '抱抱我嘛～'];
+async function forgiveDodge(page, label) {
+  await page.click('#hub .forgive');
+  await page.waitForSelector('#fgvS.on #no');
+  await page.waitForTimeout(80);
+  const opened = await page.evaluate(() => {
+    const box = (el) => {
+      const r = el.getBoundingClientRect();
+      return { x: r.x, y: r.y, r: r.right, b: r.bottom, w: r.width, h: r.height };
+    };
+    return {
+      q: document.querySelector('#fgQ').textContent,
+      no: document.querySelector('#no').textContent,
+      yes: document.querySelector('#yes').textContent,
+      calm: box(document.querySelector('#fgCalm')),
+      yesBox: box(document.querySelector('#yes')),
+      hubCalm: document.querySelector('#hub [data-to="calmS"]').textContent
+    };
+  });
+  check(opened.q === '原谅他吗？', label + ' prompt is 原谅他吗？');
+  check(opened.yes === '原谅' && opened.no === '不原谅', label + ' 原谅 stays, 不原谅 is the other choice');
+  check(opened.hubCalm.includes('先静一静'), label + ' hub 先静一静 remains');
+  await page.touchscreen.tap(opened.calm.x + opened.calm.w / 2, opened.calm.y + opened.calm.h / 2);
+  await page.waitForSelector('#calmS.on');
+  check((await page.textContent('#calmS h2')).includes('先静一静'), label + ' 先静一静 opens without forgiving');
+  await page.click('#calmS [data-r="hub"]');
+  await page.click('#hub .forgive');
+  await page.waitForSelector('#fgvS.on #no');
+  await page.waitForTimeout(80);
+  const scale0 = await page.evaluate(() => window.visualViewport.scale);
+  const rel = () => page.evaluate(() => {
+    const z = document.querySelector('#zone').getBoundingClientRect();
+    const y = document.querySelector('#yes').getBoundingClientRect();
+    const c = document.querySelector('#fgCalm').getBoundingClientRect();
+    return {
+      yesX: (y.left + y.right) / 2 - (z.left + z.right) / 2,
+      yesY: (y.top + y.bottom) / 2 - z.top,
+      gap: c.top - z.bottom
+    };
+  });
+  const before = await rel();
+  let moved = 0;
+  for (let i = 0; i < 4; i++) {
+    const b = await page.locator('#no').boundingBox();
+    await page.touchscreen.tap(b.x + b.width / 2, b.y + b.height / 2);
+    await page.waitForTimeout(280);
+    const b2 = await page.locator('#no').boundingBox();
+    if (Math.hypot(b2.x - b.x, b2.y - b.y) > 6) moved++;
+  }
+  const st = await page.evaluate(() => {
+    const no = document.querySelector('#no');
+    const yes = document.querySelector('#yes');
+    const zone = document.querySelector('#zone').getBoundingClientRect();
+    const scr = document.querySelector('#fgvS').getBoundingClientRect();
+    const nr = no.getBoundingClientRect();
+    const yr = yes.getBoundingClientRect();
+    const calm = document.querySelector('#fgCalm').getBoundingClientRect();
+    const overlaps = !(nr.right < calm.left - 1 || nr.left > calm.right + 1 || nr.bottom < calm.top - 1 || nr.top > calm.bottom + 1);
+    return {
+      label: no.textContent,
+      inside: nr.left >= zone.left - 1 && nr.right <= zone.right + 1 && nr.top >= zone.top - 1 && nr.bottom <= zone.bottom + 1,
+      inScr: nr.top >= scr.top - 1 && nr.bottom <= scr.bottom + 1 && nr.left >= scr.left - 1 && nr.right <= scr.right + 1,
+      yesX: (yr.left + yr.right) / 2 - (zone.left + zone.right) / 2,
+      yesY: (yr.top + yr.bottom) / 2 - zone.top,
+      gap: calm.top - zone.bottom,
+      s: parseFloat(yes.style.getPropertyValue('--s')),
+      scale: window.visualViewport.scale,
+      touch: getComputedStyle(no).touchAction,
+      yesTouch: getComputedStyle(yes).touchAction,
+      overlaps,
+      overflowX: document.querySelector('#fgvS').scrollWidth - document.querySelector('#fgvS').clientWidth
+    };
+  });
+  check(moved >= 3, label + ' touch moves 不原谅 (' + moved + '/4)');
+  check(NOS.indexOf(st.label) > 0, label + ' refusal label changes to ' + st.label);
+  check(st.inside && st.inScr && !st.overlaps, label + ' 不原谅 stays in the zone and off 先静一静');
+  check(Math.abs(st.yesX) < 4 && Math.abs(st.yesX - before.yesX) < 4 && Math.abs(st.yesY - before.yesY) < 6, label + ' 原谅 stays centered');
+  check(st.s > 1.2, label + ' 原谅 grows while 不原谅 runs (' + st.s + ')');
+  check(Math.abs(st.gap - before.gap) < 6, label + ' 先静一静 keeps its place below the choices');
+  check(st.touch === 'manipulation' && st.yesTouch === 'manipulation', label + ' forgiveness controls block double-tap zoom');
+  check(Math.abs(st.scale - scale0) < 0.02, label + ' dodge taps do not zoom the page');
+  check(st.overflowX <= 1, label + ' forgiveness screen has no horizontal overflow');
+  const yesBox = await page.locator('#yes').boundingBox();
+  await page.touchscreen.tap(yesBox.x + yesBox.width / 2, yesBox.y + yesBox.height / 2);
+  await page.waitForSelector('#fgvOut img.out', { timeout: 4000 });
 }
 
 async function sender(page, label) {
